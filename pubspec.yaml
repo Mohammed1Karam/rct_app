@@ -1,0 +1,104 @@
+name: rct
+description: "A new Flutter project."
+publish_to: 'none'
+
+version: 1.0.16+64
+
+environment:
+  sdk: '>=3.2.3 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.2
+  flutter_onboarding_slider: ^1.0.11
+  flutter_svg: ^2.0.9
+  flutter_screenutil: ^5.9.0
+  provider: ^6.1.2
+  file_picker: ^8.0.0+1
+  google_maps_place_picker_mb: ^3.1.2
+  bloc: ^8.1.4
+  meta: ^1.11.0
+  flutter_secure_storage: ^9.0.0
+  http: ^1.2.1
+  flutter_bloc: ^8.1.5
+  modal_progress_hud_nsn: ^0.5.1
+  image_picker: ^1.1.0
+  transparent_image: ^2.0.1
+  google_maps_flutter: ^2.6.1
+  permission_handler: ^11.3.1
+  path: ^1.9.0
+  dio: ^5.0.0
+  uuid: ^4.4.0
+  cloud_firestore: ^5.5.0
+  awesome_notifications: ^0.10.1
+  firebase_messaging: ^15.2.5
+  firebase_core: ^3.13.0
+  smooth_page_indicator: ^1.2.0+3
+  url_launcher: ^6.3.0
+  shared_preferences: ^2.1.0
+  share_plus: ^10.0.0
+  pin_code_fields: ^8.0.1
+  open_file: ^3.5.10
+  go_router: ^14.6.1
+  get: ^4.6.6
+  flutter_image_compress: ^2.3.0
+  location: ^8.0.1
+  google_api_headers: ^2.0.0
+  device_preview: ^1.2.0
+  loading_animation_widget: ^1.3.0
+  carousel_slider: ^5.0.0
+  webview_flutter: ^4.13.0
+  timeago: ^3.7.1
+  intl: ^0.20.2
+  printing: ^5.14.2
+  pdf: ^3.11.3
+  flutter_xlider: ^3.5.0
+  app_links: ^6.4.1
+  syncfusion_flutter_pdfviewer: ^31.1.19
+
+dev_dependencies:
+  flutter_launcher_icons: ^0.14.3
+  flutter_test:
+    sdk: flutter
+
+dependency_overrides:
+  intl: ^0.20.2
+
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/playstore.png"
+  background_color: "#1e252f"
+  adaptive_icon_background: "#1e252f"
+
+flutter_lints: ^2.0.0
+
+flutter:
+  uses-material-design: true
+  generate: true
+
+  fonts:
+    - family: URW-DIN-Arabic
+      fonts:
+        - asset: assets/fonts/alfont_com_AlFont_com_URW-DIN-Arabic.ttf
+
+  assets:
+    - assets/icons/
+    - assets/images/
+
+flutter_intl:
+  enabled: true
+
+
+# إضافة قسم l10n إذا لم يكن موجودًا مسبقًا:
+# l10n.yaml في جذر المشروع:
+# arb-dir: lib/l10n
+# template-arb-file: intl_en.arb
+# output-localization-file: app_localizations.dart
+# output-dir: lib/l10n
+# synthetic-package: false

@@ -1,0 +1,2 @@
+/Users/apple-tech/Downloads/RCT-Mobile/android/app/.cxx/RelWithDebInfo/u2y2b4f5/armeabi-v7a/CMakeFiles/rebuild_cache.dir
+/Users/apple-tech/Downloads/RCT-Mobile/android/app/.cxx/RelWithDebInfo/u2y2b4f5/armeabi-v7a/CMakeFiles/edit_cache.dir
