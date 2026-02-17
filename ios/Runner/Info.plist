@@ -97,9 +97,9 @@
 			<string>The example App requires temporary access to the device's precise location.</string>
 		</dict>
 		<key>NSAppTransportSecurity</key>
-        <dict>
-            <key>NSAllowsArbitraryLoads</key>
-            <true/>
-        </dict>
+		<dict>
+			<key>NSAllowsArbitraryLoads</key>
+			<true/>
+		</dict>
 	</dict>
 </plist>
