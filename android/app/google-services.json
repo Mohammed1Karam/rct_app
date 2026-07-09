@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "6763257958",
+    "project_id": "rct-app-dd771",
+    "storage_bucket": "rct-app-dd771.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:6763257958:android:d932118256f34f1ab64da7",
+        "android_client_info": {
+          "package_name": "com.rct.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBTCv4cexYolPqp4YgQSLcAtuUyTX1EJxQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

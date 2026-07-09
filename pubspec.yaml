@@ -1,0 +1,154 @@
+name: rct
+description: "A new Flutter project."
+publish_to: 'none'
+
+version: 1.0.26+71
+
+environment:
+  sdk: '>=3.2.3 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.2
+  flutter_onboarding_slider: ^1.0.11
+  flutter_svg: ^2.0.9
+  flutter_screenutil: ^5.9.0
+  provider: ^6.1.2
+  file_picker: ^8.0.0+1
+  google_maps_place_picker_mb: ^3.1.2
+  bloc: ^8.1.4
+  meta: ^1.11.0
+  flutter_secure_storage: ^9.0.0
+  http: ^1.2.1
+  flutter_bloc: ^8.1.5
+  modal_progress_hud_nsn: ^0.5.1
+  image_picker: ^1.1.0
+  transparent_image: ^2.0.1
+  google_maps_flutter: ^2.6.1
+  permission_handler: ^11.3.1
+  path: ^1.9.0
+  dio: ^5.0.0
+  uuid: ^4.4.0
+  cloud_firestore: ^5.5.0
+  awesome_notifications: ^0.10.1
+  firebase_messaging: ^15.2.5
+  firebase_core: ^3.13.0
+  smooth_page_indicator: ^1.2.0+3
+  url_launcher: ^6.3.0
+  shared_preferences: ^2.1.0
+  share_plus: ^10.0.0
+  pin_code_fields: ^8.0.1
+  open_file: ^3.5.10
+  go_router: ^14.6.1
+  get: ^4.6.6
+  flutter_image_compress: ^2.3.0
+  location: ^8.0.1
+  google_api_headers: ^2.0.0
+  device_preview: ^1.2.0
+  loading_animation_widget: ^1.3.0
+  carousel_slider: ^5.0.0
+  webview_flutter: ^4.13.0
+  timeago: ^3.7.1
+  intl: ^0.20.2
+  printing: ^5.14.2
+  pdf: ^3.11.3
+  flutter_xlider: ^3.5.0
+  app_links: ^7.0.0
+  syncfusion_flutter_pdfviewer: ^31.1.19
+  flutter_native_splash: ^2.4.7
+  dots_indicator: ^4.0.1
+
+dev_dependencies:
+  flutter_launcher_icons: ^0.14.3
+  flutter_test:
+    sdk: flutter
+  intl_utils: ^2.8.14
+
+dependency_overrides:
+  intl: ^0.20.2
+
+
+flutter_native_splash:
+  color: "#1e252f"
+  image: assets/images/splash.png
+
+  android_12:
+    color: "#1e252f"
+    image: assets/images/splash.png
+
+  android: true
+  ios: true
+
+
+
+flutter_lints: ^2.0.0
+
+flutter:
+  uses-material-design: true
+  generate: true
+
+  fonts:
+    - family: URW-DIN-Arabic
+      fonts:
+        - asset: assets/fonts/alfont_com_AlFont_com_URW-DIN-Arabic.ttf
+
+  assets:
+    - assets/icons/
+    - assets/images/
+
+flutter_intl:
+  enabled: true
+
+
+
+  #branding: assets/dart.png
+
+  # To position the branding image at the bottom of the screen you can use bottom, bottomRight,
+  # and bottomLeft. The default values is bottom if not specified or specified something else.
+  #branding_mode: bottom
+
+  # Set the branding padding from the bottom of the screen.  The default value is 0
+  # (Not supported on web yet)
+  # branding_bottom_padding: 24
+
+  # The color_dark, background_image_dark, image_dark, branding_dark are parameters that set the background
+  # and image when the device is in dark mode. If they are not specified, the app will use the
+  # parameters from above.  If there is no parameter above, the app will use the light mode values.
+  # If the image_dark parameter is specified, color_dark or background_image_dark must be specified.
+  # color_dark and background_image_dark cannot both be set.
+  #color_dark: "#042a49"
+  #background_image_dark: "assets/dark-background.png"
+  #image_dark: assets/splash-invert.png
+  #branding_dark: assets/dart_dark.png
+
+  # From Android 12 onwards, the splash screen is handled differently than in previous versions.
+  # Please visit https://developer.android.com/guide/topics/ui/splash-screen
+  # Following are specific parameters for Android 12+.
+  android_12:
+    # The image parameter sets the splash screen icon image.  If this parameter is not specified,
+    # the app's launcher icon will be used instead.
+    # Please note that the splash screen will be clipped to a circle on the center of the screen.
+    # App icon with an icon background: This should be 960×960 pixels, and fit within a circle
+    # 640 pixels in diameter.
+    # App icon without an icon background: This should be 1152×1152 pixels, and fit within a circle
+    # 768 pixels in diameter.  To fit a 1152x1152 image within a circle with a 768 diameter, simply
+    # ensure that the most important design elements of your image are placed within a circular area
+    # with a 768 diameter at the center of the 1152x1152 canvas.
+    image: assets/images/splash.png
+
+    # Splash screen background color.
+    color: "#1e252f"
+    android: true
+    ios: true
+  #web: false
+# إضافة قسم l10n إذا لم يكن موجودًا مسبقًا:
+# l10n.yaml في جذر المشروع:
+# arb-dir: lib/l10n
+# template-arb-file: intl_en.arb
+# output-localization-file: app_localizations.dart
+# output-dir: lib/l10n
+# synthetic-package: false

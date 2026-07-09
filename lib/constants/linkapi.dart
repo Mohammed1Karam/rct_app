@@ -1,0 +1,27 @@
+const String googleMapsAPIKey = "AIzaSyDYinSZ14Vg2u4XtOTvCN5i4HhIMBjIkIs";
+const String giosMapsAPIKey = "AIzaSyBAEgd6sTshM5t8VCb79d7YTINYSAm_kG8";
+const String linkServerName = "https://rctapp.com";
+//auth
+const String linkLogin = "$linkServerName/api/login";
+const String linkSignup = "$linkServerName/api/register";
+const String linkOrders = "$linkServerName/api/orders";
+const String linkSketches = "$linkServerName/api/sketches";
+const String linkDesign = "$linkServerName/api/designs";
+const String linkTypes = "$linkServerName/api/types";
+const String linkBuilds = "$linkServerName/api/builds";
+const String linkComplex = "$linkServerName/api/complexes";
+const String linkBuildstypes = "$linkServerName/api/buildtypes";
+const String linkAreaspaces = "$linkServerName/api/areaspaces";
+const String linkTerms = "$linkServerName/api/all-terms";
+const String linkConditions = "$linkServerName/api/conditions";
+const String linkReceipts = "$linkServerName/api/receipts";
+const String linkNotificationsi = "$linkServerName/api/notifications";
+const String linkPreferables = "$linkServerName/api/preferables";
+const String linkHouses = "$linkServerName/api/user/houses";
+const String linkaboutUs = "$linkServerName/api/who-we-are";
+const String favourites = "$linkServerName/api/good-list";
+const String notificationsLink = "$linkServerName/api/all-notifications";
+const String shareRCT = "$linkServerName/api/opportunities";
+const String linkInvestorUpgradeQuestions = "$linkServerName/api/investor-upgrade/questions";
+const String linkInitiatePayment = "$linkServerName/api/payments/initiate";
+const String linkSubmitInvestorUpgrade = "$linkServerName/api/investor-upgrade";
