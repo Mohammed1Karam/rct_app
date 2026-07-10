@@ -1,18 +1,20 @@
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:rct/constants/constants.dart';
 import 'package:rct/constants/linkapi.dart';
 import 'package:rct/generated/l10n.dart';
 import 'package:rct/model/modelget.dart';
 import 'package:rct/services/cache_helper.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../common copounents/custom_project_datails_widget.dart';
+import '../../common copounents/custom_text.dart';
 import '../../common copounents/pdf_viewer_view.dart';
 import '../../common copounents/sar_image.dart';
 import '../google maps/open_in_maps.dart';
@@ -414,6 +416,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
 
 
 
+/*
 //new
 class DetailsScreen extends StatefulWidget {
   final String? id;
@@ -803,5 +806,403 @@ class _DetailsScreenState extends State<DetailsScreen> {
         );
       },
     );
+  }
+}
+*/
+
+class DetailsScreen extends StatefulWidget {
+  final String? id;
+  final bool isdeeplink;
+
+  const DetailsScreen({super.key, required this.id, required this.isdeeplink});
+
+  @override
+  State<DetailsScreen> createState() => _DetailsScreenState();
+}
+
+class _DetailsScreenState extends State<DetailsScreen> {
+  int _selectedTabIndex = 0;
+  int _currentImagePage = 0;
+  late final RealEstateDetailsCubit _cubit;
+
+  @override
+  void initState() {
+    super.initState();
+    _cubit = RealEstateDetailsCubit(RealEstateDetailsRepository());
+    final id = widget.id ?? '';
+    if (id.isNotEmpty) {
+      _cubit.getPropertyDetails(id);
+    }
+  }
+
+  @override
+  void dispose() {
+    _cubit.close();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider.value(
+      value: _cubit,
+      child: BlocBuilder<RealEstateDetailsCubit, RealEstateDetailsState>(
+        builder: (context, state) {
+          if (state is RealEstateDetailsLoading || state is RealEstateDetailsInitial) {
+            return const Scaffold(
+              backgroundColor: Colors.white,
+              body: Center(child: CircularProgressIndicator(color: Colors.black)),
+            );
+          } else if (state is RealEstateDetailsSuccess) {
+            return Scaffold(
+              backgroundColor: Colors.white,
+              body: SafeArea(
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      _displayImageSlider(MediaQuery.of(context).size.width, 320.h, state.product),
+                      SizedBox(height: 20.h),
+                      _displayDetails(state.product),
+                    ],
+                  ),
+                ),
+              ),
+            );
+          } else if (state is RealEstateDetailsError) {
+            return Scaffold(
+              body: Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: CustomText(text: state.message, textAlign: TextAlign.center),
+                ),
+              ),
+            );
+          }
+          return const SizedBox.shrink();
+        },
+      ),
+    );
+  }
+
+  Widget _displayImageSlider(double width, double height, Modelget product) {
+    final images = _images(product);
+
+    return SizedBox(
+      width: width,
+      height: height,
+      child: Stack(
+        children: [
+          CarouselSlider(
+            items: images.map((image) {
+              return SizedBox(
+                width: width,
+                height: height,
+                child: Image.network(image, fit: BoxFit.fill),
+              );
+            }).toList(),
+            options: CarouselOptions(
+              height: height,
+              autoPlay: false,
+              viewportFraction: 1,
+              onPageChanged: (page, _) {
+                setState(() {
+                  _currentImagePage = page;
+                });
+              },
+            ),
+          ),
+          PositionedDirectional(
+            bottom: 20,
+            start: 0,
+            end: 0,
+            child: Center(
+              child: DotsIndicator(
+                dotsCount: images.isEmpty ? 1 : images.length,
+                position: _currentImagePage.toDouble(),
+                decorator: DotsDecorator(
+                  size: const Size.square(8.0),
+                  activeSize: const Size(40.0, 9.0),
+                  activeShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
+                  activeColor: Colors.white,
+                  color: const Color(0xFFE0E0E0),
+                ),
+              ),
+            ),
+          ),
+          PositionedDirectional(
+            top: 20,
+            start: 10,
+            child: IconButton(
+              icon: const Icon(Icons.arrow_back_ios_new_sharp, color: Colors.white),
+              onPressed: () => Navigator.pop(context),
+            ),
+          ),
+          PositionedDirectional(
+            top: 20,
+            end: 20,
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 8.h),
+              decoration: BoxDecoration(borderRadius: BorderRadius.circular(24.r), color: Colors.white),
+              child: CustomText(
+                text: S.of(context).existing,
+                style: TextStyle(fontSize: 14.sp, color: const Color(0xFF20262F), fontWeight: FontWeight.w600),
+              ),
+            ),
+          )
+        ],
+      ),
+    );
+  }
+
+  Widget _displayDetails(Modelget product) {
+    final rawPrice = product.price ?? product.total_price ?? '0';
+    final formattedCost = NumberFormat('#,###').format(int.tryParse(rawPrice.toString()) ?? 0);
+
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 20.w),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Expanded(
+                child: CustomText(
+                  text: product.house_type ?? product.name ?? '',
+                  style: TextStyle(fontSize: 18.sp, color: Colors.black, fontWeight: FontWeight.w700),
+                ),
+              ),
+              Row(
+                children: [
+                  if (CacheHelper.getData(key: "lang") == "ar") SarImage(height: 18.h, color: primaryColor),
+                  CustomText(
+                    text: " $formattedCost ",
+                    style: TextStyle(fontSize: 18.sp, color: Colors.black, fontWeight: FontWeight.w700),
+                  ),
+                  if (CacheHelper.getData(key: "lang") == "en") SarImage(height: 18.h, color: primaryColor),
+                ],
+              ),
+            ],
+          ),
+          SizedBox(height: 12.h),
+          Row(
+            children: [
+              SvgPicture.asset("assets/icons/location.svg", width: 18.w, height: 18.h, colorFilter: const ColorFilter.mode(Color(0xFF494949), BlendMode.srcIn)),
+              SizedBox(width: 6.w),
+              Expanded(
+                child: CustomText(
+                  text: "${product.city_name ?? ''} - ${product.district_name ?? ''}",
+                  style: TextStyle(fontSize: 12.sp, color: const Color(0xFF494949)),
+                ),
+              )
+            ],
+          ),
+          SizedBox(height: 20.h),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              _buildFeatureItem("assets/icons/homeSize.svg", "${product.house_space ?? '0'} m²"),
+              _buildFeatureItem("assets/icons/bath.svg", CacheHelper.getData(key: "lang") == "ar" ? "0 حمام" : "0 Bathrooms"),
+              _buildFeatureItem("assets/icons/bed.svg", CacheHelper.getData(key: "lang") == "ar" ? "0 غرف" : "0 Rooms"),
+            ],
+          ),
+          _buildTabs(),
+          _buildTabContent(product),
+          SizedBox(height: 32.h),
+          _buildWhatsAppButton(product),
+          SizedBox(height: 32.h),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildFeatureItem(String iconPath, String label) {
+    return Row(
+      children: [
+        SvgPicture.asset(iconPath, width: 20.w, height: 20.h, colorFilter: const ColorFilter.mode(Color(0xFF494949), BlendMode.srcIn)),
+        SizedBox(width: 8.w),
+        CustomText(text: label, style: TextStyle(fontSize: 10.sp, color: const Color(0xFF494949))),
+      ],
+    );
+  }
+
+  Widget _buildTabs() {
+    final local = S.of(context);
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: 24.h),
+      padding: EdgeInsets.all(4.r),
+      decoration: BoxDecoration(color: const Color(0xFFF8F8F8), borderRadius: BorderRadius.circular(12.r)),
+      child: Row(
+        children: [
+          _buildTabItem(0, local.overview),
+          _buildTabItem(1, local.documents),
+          _buildTabItem(2, local.location),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildTabItem(int index, String title) {
+    bool isSelected = _selectedTabIndex == index;
+    return Expanded(
+      child: GestureDetector(
+        onTap: () => setState(() => _selectedTabIndex = index),
+        child: Container(
+          padding: EdgeInsets.symmetric(vertical: 10.h),
+          decoration: BoxDecoration(
+            color: isSelected ? Colors.white : Colors.transparent,
+            borderRadius: BorderRadius.circular(10.r),
+            border:  BorderDirectional(end: BorderSide(color: isSelected?Color(0xFF0A3444):Colors.transparent,width: 2.sp)),
+            boxShadow: isSelected ? [BoxShadow(color: Colors.black.withOpacity(0.05), blurRadius: 4, offset: const Offset(0, 2))] : null,
+          ),
+          child: Center(
+            child: CustomText(
+              text: title,
+              style: TextStyle(
+                fontSize: 12.sp,
+                fontWeight: isSelected ? FontWeight.w700 : FontWeight.w400,
+                color: isSelected ? const Color(0xFF20262F) : const Color(0xFF8A8A8A),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildTabContent(Modelget product) {
+    switch (_selectedTabIndex) {
+      case 0:
+        return _buildOverviewTab(product);
+      case 1:
+        return _buildDocumentsTab(product);
+      case 2:
+        return _buildLocationTab(product);
+      default:
+        return _buildOverviewTab(product);
+    }
+  }
+
+  Widget _buildOverviewTab(Modelget product) {
+    final local = S.of(context);
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        CustomText(
+          text: local.discreption,
+          style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w700, color: const Color(0xFF20262F)),
+        ),
+        SizedBox(height: 8.h),
+        CustomText(
+          text: product.description,
+          style: TextStyle(fontSize: 12.sp, color: const Color(0xFF494949), height: 1.5),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildDocumentsTab(Modelget product) {
+    final local = S.of(context);
+    return GestureDetector(
+      onTap: () {
+        if ((product.file ?? '').isNotEmpty) {
+          Navigator.push(context, MaterialPageRoute(builder: (context) => PDFViewerPage(pdfUrl: product.file!)));
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(local.file_not_found)));
+        }
+      },
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(16.r),
+          border: Border.all(color: const Color(0xFFEEEEEE)),
+        ),
+        child: Row(
+          children: [
+            SvgPicture.asset("assets/icons/document-text.svg", width: 24.w, height: 24.h),
+            SizedBox(width: 12.w),
+            CustomText(
+              text: local.open_project_file,
+              style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w600, color: const Color(0xFF20262F)),
+            ),
+            const Spacer(),
+            Icon(Icons.file_download_outlined, color: const Color(0xFF8A8A8A), size: 24.sp),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildLocationTab(Modelget product) {
+    return Column(
+      children: [
+        SizedBox(
+          height: 200.h,
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(12.r),
+            child: GoogleMap(
+              initialCameraPosition: CameraPosition(target: LatLng(double.tryParse(product.lat.toString()) ?? 0, double.tryParse(product.long.toString()) ?? 0), zoom: 15),
+              markers: {Marker(markerId: const MarkerId('property_location'), position: LatLng(double.tryParse(product.lat.toString()) ?? 0, double.tryParse(product.long.toString()) ?? 0))},
+              myLocationButtonEnabled: false,
+              zoomControlsEnabled: false,
+            ),
+          ),
+        ),
+        SizedBox(height: 16.h),
+        GestureDetector(
+          onTap: () => openGoogleMaps(double.tryParse(product.lat.toString()) ?? 0, double.tryParse(product.long.toString()) ?? 0, label: product.name),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              CustomText(
+                text: S.of(context).open_project_location,
+                style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w600, color: const Color(0xFF3B82F6)),
+              ),
+              SizedBox(width: 6.w),
+              Icon(Icons.open_in_new, color: const Color(0xFF3B82F6), size: 18.sp),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildWhatsAppButton(Modelget product) {
+    final local = S.of(context);
+    return GestureDetector(
+      onTap: () async {
+        final deepLink = "$linkServerName/product/${product.id}";
+        final message = " عرض عقاري: $deepLink";
+        final uri = Uri(scheme: 'https', host: 'wa.me', path: '966569988788', queryParameters: {'text': message});
+        await launchUrl(uri, mode: LaunchMode.externalApplication);
+      },
+      child: Container(
+        width: double.infinity,
+        height: 56.h,
+        decoration: BoxDecoration(color: const Color(0xFF25D366), borderRadius: BorderRadius.circular(12.r)),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset("assets/images/watsap222222.png", height: 24.h, width: 24.w, color: Colors.white),
+            SizedBox(width: 10.w),
+            CustomText(text: local.contact_via_whatsapp, style: TextStyle(color: Colors.white, fontSize: 14.sp, fontWeight: FontWeight.w700)),
+          ],
+        ),
+      ),
+    );
+  }
+
+  List<String> _images(Modelget product) {
+    final values = [product.image1, product.image2, product.image3, product.image4]
+        .where((e) => (e ?? '').toString().isNotEmpty)
+        .map((e) => _normalizeUrl(e.toString()))
+        .toList();
+    return values.isEmpty ? ['https://via.placeholder.com/600x400'] : values;
+  }
+
+  String _normalizeUrl(String value) {
+    if (value.startsWith('http://') || value.startsWith('https://')) return value;
+    return '$linkServerName/$value';
   }
 }

@@ -3664,6 +3664,16 @@ class S {
     );
   }
 
+  /// `No hidden fees`
+  String get no_hidden_fees {
+    return Intl.message(
+      'No hidden fees',
+      name: 'no_hidden_fees',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Ownership Guarantees`
   String get ownership_guarantees_title {
     return Intl.message(

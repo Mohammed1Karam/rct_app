@@ -917,7 +917,7 @@ class _OwnershipDetailsScreenState extends State<OwnershipDetailsScreen> {
             children: [
               _buildGuaranteeChip(local.direct_ownership),
               _buildGuaranteeChip(local.full_transparency),
-              _buildGuaranteeChip(local.guaranteed_returns),
+              _buildGuaranteeChip(local.no_hidden_fees),
             ],
           ),
         ],

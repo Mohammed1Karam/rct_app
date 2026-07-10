@@ -1395,6 +1395,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get guaranteed_returns => 'Guaranteed Returns';
 
   @override
+  String get no_hidden_fees => 'No hidden fees';
+
+  @override
   String get please_upload_document => 'Please upload a document first';
 
   @override

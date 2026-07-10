@@ -1367,6 +1367,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get guaranteed_returns => 'عوائد مضمونة';
 
   @override
+  String get no_hidden_fees => 'بدون رسوم خفية';
+
+  @override
   String get please_upload_document => 'يرجى تحميل وثيقة أولاً';
 
   @override

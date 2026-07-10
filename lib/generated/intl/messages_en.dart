@@ -369,6 +369,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "guaranteed_returns": MessageLookupByLibrary.simpleMessage(
       "Guaranteed Returns",
     ),
+    "no_hidden_fees": MessageLookupByLibrary.simpleMessage(
+      "No hidden fees",
+    ),
     "guarantees_description": MessageLookupByLibrary.simpleMessage(
       "Your investment is protected and guaranteed; as the direct owner and developer of the investment assets is RCT, which ensures the highest levels of security and transparency in managing your returns.",
     ),

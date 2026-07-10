@@ -430,6 +430,7 @@
   "direct_ownership": "ملكية مباشرة",
   "full_transparency": "شفافية كاملة",
   "guaranteed_returns": "عوائد مضمونة",
+  "no_hidden_fees": "بدون رسوم خفية",
   "please_upload_document": "يرجى تحميل وثيقة أولاً",
   "please_answer_yes_condition": "يرجى الإجابة بـ 'نعم' على شرط واحد على الأقل",
   "phone_number_limit_9": "يجب ألا يقل رقم الهاتف عن ٩ أرقام",

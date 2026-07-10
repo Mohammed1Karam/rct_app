@@ -461,6 +461,7 @@
   "direct_ownership": "Direct Ownership",
   "full_transparency": "Full Transparency",
   "guaranteed_returns": "Guaranteed Returns",
+  "no_hidden_fees": "No hidden fees",
   "please_upload_document": "Please upload a document first",
   "please_answer_yes_condition": "Please answer 'Yes' to at least one condition",
   "phone_number_limit_9": "Phone number must be at least 9 digits",

@@ -329,6 +329,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "full_transparency": MessageLookupByLibrary.simpleMessage("شفافية كاملة"),
     "guaranteed_returns": MessageLookupByLibrary.simpleMessage("عوائد مضمونة"),
+    "no_hidden_fees": MessageLookupByLibrary.simpleMessage("بدون رسوم خفية"),
     "guarantees_description": MessageLookupByLibrary.simpleMessage(
       "استثمارك محمي ومضمون؛ حيث أن الجهة المالكة والمطورة للأصول الاستثمارية بشكل مباشر هي RCT ، مما يضمن أعلى مستويات الأمان والشفافية في إدارة عوائدك.",
     ),

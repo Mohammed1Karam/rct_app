@@ -2714,6 +2714,12 @@ abstract class AppLocalizations {
   /// **'Guaranteed Returns'**
   String get guaranteed_returns;
 
+  /// No description provided for @no_hidden_fees.
+  ///
+  /// In en, this message translates to:
+  /// **'No hidden fees'**
+  String get no_hidden_fees;
+
   /// No description provided for @please_upload_document.
   ///
   /// In en, this message translates to:
