@@ -143,14 +143,14 @@ class _ShareDetailsState extends State<ShareDetails> {
               top: 20,
               end: 20,
               child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 8.w,vertical: 5.h),
+                padding: EdgeInsets.symmetric(horizontal: 16.w,vertical: 5.h),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(24.r),
                     color: Colors.white),
                 child: CustomText(
                   text: S.of(context).existing,
                   style: TextStyle(
-                      fontSize: 16.sp,
+                      fontSize: 14.sp,
                       color: Color(0xFF20262F),
                       fontWeight: FontWeight.w600),
                 ),
@@ -169,7 +169,7 @@ class _ShareDetailsState extends State<ShareDetails> {
           CustomText(
             text: product.name,
             style: TextStyle(
-                fontSize: 20.sp,
+                fontSize: 16.sp,
                 color: Colors.black,
                 fontWeight: FontWeight.w600),
           ),
@@ -189,7 +189,7 @@ class _ShareDetailsState extends State<ShareDetails> {
                       child: CustomText(
                         text: product.location,
                         style: TextStyle(
-                            fontSize: 14.sp, color: const Color(0xFF494949)),
+                            fontSize: 12.sp, color: const Color(0xFF494949)),
                       ),
                     )
                   ],
@@ -209,7 +209,7 @@ class _ShareDetailsState extends State<ShareDetails> {
                       child: CustomText(
                         text: S.of(context).property_age_years(product.age.toString()),
                         style: TextStyle(
-                            fontSize: 14.sp, color: const Color(0xFF494949)),
+                            fontSize: 12.sp, color: const Color(0xFF494949)),
                       ),
                     )
                   ],
@@ -221,7 +221,7 @@ class _ShareDetailsState extends State<ShareDetails> {
           CustomText(
             text: S.of(context).description,
             style: TextStyle(
-              fontSize: 16.sp,
+              fontSize: 14.sp,
               fontWeight: FontWeight.w700,
               color: const Color(0xFF20262F),
             ),
@@ -230,7 +230,7 @@ class _ShareDetailsState extends State<ShareDetails> {
           CustomText(
             text: product.description,
             style: TextStyle(
-              fontSize: 14.sp,
+              fontSize: 12.sp,
               color: const Color(0xFF494949),
               height: 1.5,
             ),
@@ -276,7 +276,7 @@ class _ShareDetailsState extends State<ShareDetails> {
               CustomText(
                 text: local.guarantees_title,
                 style: TextStyle(
-                  fontSize: 18.sp,
+                  fontSize: 16.sp,
                   fontWeight: FontWeight.w700,
                   color: const Color(0xFF20262F),
                 ),
@@ -287,7 +287,7 @@ class _ShareDetailsState extends State<ShareDetails> {
           CustomText(
             text: local.guarantees_description,
             style: TextStyle(
-              fontSize: 14.sp,
+              fontSize: 12.sp,
               color: const Color(0xFF494949),
               height: 1.6,
             ),
@@ -324,7 +324,7 @@ class _ShareDetailsState extends State<ShareDetails> {
           CustomText(
             text: text,
             style: TextStyle(
-              fontSize: 11.sp,
+              fontSize: 10.sp,
               color: const Color(0xFF3B82F6),
               fontWeight: FontWeight.w600,
             ),
@@ -388,7 +388,7 @@ class _ShareDetailsState extends State<ShareDetails> {
                 : local.join_now,
             style: TextStyle(
               color: Colors.white,
-              fontSize: 16.sp,
+              fontSize: 14.sp,
               fontWeight: FontWeight.w700,
             ),
           ),
@@ -498,7 +498,7 @@ class _ShareDetailsState extends State<ShareDetails> {
             child: CustomText(
               text: title,
               style: TextStyle(
-                fontSize: 14.sp,
+                fontSize: 12.sp,
                 fontWeight: isSelected ? FontWeight.w700 : FontWeight.w400,
                 color: isSelected ? const Color(0xFF20262F) : const Color(0xFF8A8A8A),
               ),
@@ -606,7 +606,7 @@ class _ShareDetailsState extends State<ShareDetails> {
                 CustomText(
                   text: local.executive_summary,
                   style: TextStyle(
-                    fontSize: 16.sp,
+                    fontSize: 14.sp,
                     fontWeight: FontWeight.w600,
                     color: const Color(0xFF20262F),
                   ),
@@ -664,7 +664,7 @@ class _ShareDetailsState extends State<ShareDetails> {
               CustomText(
                 text: S.of(context).open_project_location,
                 style: TextStyle(
-                  fontSize: 14.sp,
+                  fontSize: 12.sp,
                   fontWeight: FontWeight.w600,
                   color: const Color(0xFF3B82F6),
                 ),
@@ -725,7 +725,7 @@ class _ShareDetailsState extends State<ShareDetails> {
                 CustomText(
                   text: title,
                   style: TextStyle(
-                    fontSize: 12.sp,
+                    fontSize: 10.sp,
                     color: const Color(0xFF8A8A8A),
                     fontWeight: FontWeight.w400,
                   ),
@@ -736,7 +736,7 @@ class _ShareDetailsState extends State<ShareDetails> {
                   child: CustomText(
                     text: value,
                     style: TextStyle(
-                      fontSize: 16.sp,
+                      fontSize: 14.sp,
                       color: const Color(0xFF20262F),
                       fontWeight: FontWeight.w700,
                     ),
@@ -773,7 +773,7 @@ class _ShareDetailsState extends State<ShareDetails> {
               CustomText(
                 text: local.opportunity_status_title,
                 style: TextStyle(
-                  fontSize: 14.sp,
+                  fontSize: 12.sp,
                   fontWeight: FontWeight.w600,
                   color: const Color(0xFF272727),
                 ),
@@ -781,7 +781,7 @@ class _ShareDetailsState extends State<ShareDetails> {
               CustomText(
                 text: "$paid ${local.of_text} $total",
                 style: TextStyle(
-                  fontSize: 14.sp,
+                  fontSize: 12.sp,
                   fontWeight: FontWeight.w700,
                   color: const Color(0xFF272727),
                 ),
@@ -805,14 +805,14 @@ class _ShareDetailsState extends State<ShareDetails> {
               CustomText(
                 text: "${local.remainingopportunities} $remaining",
                 style: TextStyle(
-                  fontSize: 12.sp,
+                  fontSize: 10.sp,
                   color: const Color(0xFF494949),
                 ),
               ),
               CustomText(
                 text: "$percent% ${local.completed}",
                 style: TextStyle(
-                  fontSize: 12.sp,
+                  fontSize: 10.sp,
                   color: const Color(0xFF494949),
                 ),
               ),
@@ -840,7 +840,7 @@ class _ShareDetailsState extends State<ShareDetails> {
         CustomText(
           text: local.determine_investment_size,
           style: TextStyle(
-            fontSize: 18.sp,
+            fontSize: 16.sp,
             fontWeight: FontWeight.w700,
             color: const Color(0xFF20262F),
           ),
@@ -872,7 +872,7 @@ class _ShareDetailsState extends State<ShareDetails> {
                       CustomText(
                         text: countofchances.toString().padLeft(2, '0'),
                         style: TextStyle(
-                          fontSize: 32.sp,
+                          fontSize: 24.sp,
                           fontWeight: FontWeight.w700,
                           color: const Color(0xFF20262F),
                         ),
@@ -880,7 +880,7 @@ class _ShareDetailsState extends State<ShareDetails> {
                       CustomText(
                         text: local.opportunity,
                         style: TextStyle(
-                          fontSize: 14.sp,
+                          fontSize: 12.sp,
                           color: const Color(0xFF8A8A8A),
                         ),
                       ),
@@ -964,7 +964,7 @@ class _ShareDetailsState extends State<ShareDetails> {
             CustomText(
               text: title,
               style: TextStyle(
-                fontSize: 14.sp,
+                fontSize: 12.sp,
                 fontWeight: FontWeight.w600,
                 color: const Color(0xFF20262F),
               ),
@@ -973,7 +973,7 @@ class _ShareDetailsState extends State<ShareDetails> {
               CustomText(
                 text: subtitle,
                 style: TextStyle(
-                  fontSize: 16.sp,
+                  fontSize: 14.sp,
                   color: const Color(0xFF8A8A8A),
                 ),
               ),
@@ -987,7 +987,7 @@ class _ShareDetailsState extends State<ShareDetails> {
         CustomText(
           text: value,
           style: TextStyle(
-            fontSize: 20.sp,
+            fontSize: 16.sp,
             fontWeight: FontWeight.w700,
             color: textColor,
           ),

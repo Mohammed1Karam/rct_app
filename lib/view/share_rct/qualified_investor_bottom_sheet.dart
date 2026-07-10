@@ -135,7 +135,7 @@ class _QualifiedInvestorBottomSheetState extends State<QualifiedInvestorBottomSh
                   CustomText(
                     text: local.upgrade_to_qualified_investor,
                     style: TextStyle(
-                      fontSize: 18.sp,
+                      fontSize: 16.sp,
                       fontWeight: FontWeight.w700,
                       color: const Color(0xFF20262F),
                     ),
@@ -261,7 +261,7 @@ class _QualifiedInvestorBottomSheetState extends State<QualifiedInvestorBottomSh
             CustomText(
               text: question.question,
               style: TextStyle(
-                fontSize: 14.sp,
+                fontSize: 12.sp,
                 fontWeight: FontWeight.w500,
                 color: Colors.black,
                 height: 1.5,
@@ -303,7 +303,7 @@ class _QualifiedInvestorBottomSheetState extends State<QualifiedInvestorBottomSh
           CustomText(
             text: label,
             style: TextStyle(
-              fontSize: 14.sp,
+              fontSize: 12.sp,
               color: isSelected ? const Color(0xFF20262F) : const Color(0xFF8A8A8A),
             ),
           ),
@@ -353,7 +353,7 @@ class _QualifiedInvestorBottomSheetState extends State<QualifiedInvestorBottomSh
                 text: local.upload_portfolio_reports,
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontSize: 12.sp,
+                  fontSize: 10.sp,
                   color: const Color(0xFF8A8A8A),
                   height: 1.5,
                 ),
@@ -363,7 +363,7 @@ class _QualifiedInvestorBottomSheetState extends State<QualifiedInvestorBottomSh
             CustomText(
               text: local.supported_formats,
               style: TextStyle(
-                fontSize: 12.sp,
+                fontSize: 10.sp,
                 color: const Color(0xFFBCBCBC),
               ),
             ),
@@ -404,7 +404,7 @@ class _QualifiedInvestorBottomSheetState extends State<QualifiedInvestorBottomSh
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
-                        fontSize: 14.sp,
+                        fontSize: 12.sp,
                         color: const Color(0xFF20262F),
                         fontWeight: FontWeight.w500,
                       ),
@@ -413,7 +413,7 @@ class _QualifiedInvestorBottomSheetState extends State<QualifiedInvestorBottomSh
                     Text(
                       "${(file.lengthSync() / 1024 / 1024).toStringAsFixed(2)} MB",
                       style: TextStyle(
-                        fontSize: 10.sp,
+                        fontSize: 9.sp,
                         color: const Color(0xFF8A8A8A),
                       ),
                     ),
