@@ -2755,6 +2755,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Your data has been sent successfully'**
   String get data_sent_successfully;
+
+  /// No description provided for @investor_request_pending.
+  ///
+  /// In en, this message translates to:
+  /// **'Your upgrade request is under review'**
+  String get investor_request_pending;
+
+  /// No description provided for @investor_request_rejected.
+  ///
+  /// In en, this message translates to:
+  /// **'Upgrade request rejected'**
+  String get investor_request_rejected;
+
+  /// No description provided for @rejection_reason_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Rejection reason: '**
+  String get rejection_reason_label;
+
+  /// No description provided for @request_upgrade_btn.
+  ///
+  /// In en, this message translates to:
+  /// **'Request Upgrade'**
+  String get request_upgrade_btn;
 }
 
 class _AppLocalizationsDelegate

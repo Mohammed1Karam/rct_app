@@ -352,6 +352,14 @@ class MessageLookup extends MessageLookupByLibrary {
     "ireadTermsandiagreeit": MessageLookupByLibrary.simpleMessage(
       "لقد قرأت الشروط والأحكام وأوافق عليها",
     ),
+    "investor_request_pending": MessageLookupByLibrary.simpleMessage(
+      "طلب الترقية الخاص بك قيد المراجعة",
+    ),
+    "investor_request_rejected": MessageLookupByLibrary.simpleMessage(
+      "تم رفض طلب الترقية",
+    ),
+    "rejection_reason_label": MessageLookupByLibrary.simpleMessage("سبب الرفض: "),
+    "request_upgrade_btn": MessageLookupByLibrary.simpleMessage("اطلب ترقية"),
     "jazan": MessageLookupByLibrary.simpleMessage("جازان"),
     "jeddah": MessageLookupByLibrary.simpleMessage("جدة"),
     "joinRCT": MessageLookupByLibrary.simpleMessage("انضم إلى RCT"),
@@ -420,7 +428,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "numberOfApartments": MessageLookupByLibrary.simpleMessage("عدد الشقق"),
     "numberOfFloors": MessageLookupByLibrary.simpleMessage("عدد الأدوار"),
     "of_text": MessageLookupByLibrary.simpleMessage("من"),
-    "ok": MessageLookupByLibrary.simpleMessage("حسناً"),
+    "ok": MessageLookupByLibrary.simpleMessage("موافق"),
     "oldBuildings": MessageLookupByLibrary.simpleMessage("مباني قديمة"),
     "oldBuildingsOrders": MessageLookupByLibrary.simpleMessage(
       "طلبات المباني القديمة",

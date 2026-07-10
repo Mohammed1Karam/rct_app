@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:rct/common%20copounents/custom_text.dart';
 import 'package:rct/common%20copounents/main_button.dart';
+import 'package:rct/common%20copounents/sharewepview.dart';
 import 'package:rct/generated/l10n.dart';
 import 'package:rct/model/investor_upgrade_model.dart';
 import 'package:rct/view/share_rct/details_repository.dart';
@@ -13,12 +14,12 @@ import 'package:rct/view/share_rct/investor_upgrade_cubit.dart';
 import 'package:rct/view/share_rct/investor_upgrade_state.dart';
 
 class QualifiedInvestorBottomSheet extends StatefulWidget {
-  final String opportunityId;
-  final int count;
+  final String? opportunityId;
+  final int? count;
   const QualifiedInvestorBottomSheet({
     super.key,
-    required this.opportunityId,
-    required this.count,
+    this.opportunityId,
+    this.count,
   });
 
   @override
@@ -32,6 +33,7 @@ class _QualifiedInvestorBottomSheetState extends State<QualifiedInvestorBottomSh
   List<File> selectedFiles = [];
   late InvestorUpgradeCubit _cubit;
   List<InvestorQuestion> _currentQuestions = [];
+  String? _pendingPaymentUrl;
 
   @override
   void initState() {
@@ -43,7 +45,8 @@ class _QualifiedInvestorBottomSheetState extends State<QualifiedInvestorBottomSh
     final local = S.of(context);
     showDialog(
       context: context,
-      builder: (context) => AlertDialog(
+      barrierDismissible: false,
+      builder: (dialogContext) => AlertDialog(
         backgroundColor: Colors.white,
         surfaceTintColor: Colors.white,
         shape:
@@ -56,7 +59,7 @@ class _QualifiedInvestorBottomSheetState extends State<QualifiedInvestorBottomSh
               child: Padding(
                 padding: EdgeInsets.all(8.r),
                 child: GestureDetector(
-                  onTap: () => Navigator.pop(context),
+                  onTap: () => Navigator.pop(dialogContext),
                   child: Icon(Icons.close, color: Colors.black, size: 24.sp),
                 ),
               ),
@@ -105,12 +108,37 @@ class _QualifiedInvestorBottomSheetState extends State<QualifiedInvestorBottomSh
               width: 120.w,
               text: local.ok,
               backGroundColor: const Color(0xFF20262F),
-              onTap: () => Navigator.pop(context),
+              onTap: () => Navigator.pop(dialogContext),
             ),
           ],
         ),
       ),
-    );
+    ).then((_) {
+      if (mounted) {
+        if (_pendingPaymentUrl != null) {
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) =>
+                  SharePaymentWebViewScreen(paymentUrl: _pendingPaymentUrl!),
+            ),
+          );
+        } else {
+          Navigator.pop(context);
+        }
+      }
+    });
+  }
+
+  void _onUpgradeSubmitted() {
+    _showSuccessDialog(context);
+    if (widget.opportunityId != null && widget.opportunityId!.isNotEmpty && widget.count != null) {
+      _cubit.initiatePayment(
+        type: "opportunity",
+        id: widget.opportunityId!,
+        count: widget.count!,
+      );
+    }
   }
 
   void _handleResponse(int questionId, int value) {
@@ -151,19 +179,11 @@ class _QualifiedInvestorBottomSheetState extends State<QualifiedInvestorBottomSh
       child: BlocListener<InvestorUpgradeCubit, InvestorUpgradeState>(
         listener: (context, state) {
           if (state is InvestorUpgradeSubmitSuccess) {
-            _showSuccessDialog(context);
-            _cubit.initiatePayment(
-              type: "opportunity",
-              id: widget.opportunityId,
-              count: widget.count,
-            );
+            _onUpgradeSubmitted();
           } else if (state is InvestorUpgradePaymentInitiated) {
-            // No snackbar here as per user request, only pop
-            Navigator.pop(context);
+            _pendingPaymentUrl = state.paymentUrl;
           } else if (state is InvestorUpgradePaymentError) {
-            // No snackbar for payment errors as per user request (e.g. "maximum 30000")
-            // Just pop to close the bottom sheet
-            Navigator.pop(context);
+            // No snackbar for payment errors as per user request
           } else if (state is InvestorUpgradeSubmitError || state is InvestorUpgradeError) {
             String message = "";
             if (state is InvestorUpgradeSubmitError) message = state.message;

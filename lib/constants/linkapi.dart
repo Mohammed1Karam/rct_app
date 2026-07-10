@@ -25,3 +25,4 @@ const String shareRCT = "$linkServerName/api/opportunities";
 const String linkInvestorUpgradeQuestions = "$linkServerName/api/investor-upgrade/questions";
 const String linkInitiatePayment = "$linkServerName/api/payments/initiate";
 const String linkSubmitInvestorUpgrade = "$linkServerName/api/investor-upgrade";
+const String linkSubmitInvestorUpgradeStatus = "$linkServerName/api/investor-upgrade/status";

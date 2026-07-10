@@ -131,7 +131,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get requestWillBeReviewed =>
-      'سيتم دراسة الطلب قريباً يمكنك مراجعة الاشعارات';
+      'سيتم دراسة الطلب قريباً يمكنك مراجعة الإشعارات';
 
   @override
   String get electronicDeed => 'الصك الإلكتروني *';
@@ -172,7 +172,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get cancel => 'الغاء';
 
   @override
-  String get ok => 'حسنا';
+  String get ok => 'موافق';
 
   @override
   String get reject => 'رفض';

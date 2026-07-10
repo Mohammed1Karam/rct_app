@@ -467,5 +467,9 @@
   "phone_number_limit_9": "Phone number must be at least 9 digits",
   "opportunity_not_available": "This opportunity is not currently available",
   "thanks": "Thank you",
-  "data_sent_successfully": "Your data has been sent successfully"
+  "data_sent_successfully": "Your data has been sent successfully",
+  "investor_request_pending": "Your upgrade request is under review",
+  "investor_request_rejected": "Upgrade request rejected",
+  "rejection_reason_label": "Rejection reason: ",
+  "request_upgrade_btn": "Request Upgrade"
 }

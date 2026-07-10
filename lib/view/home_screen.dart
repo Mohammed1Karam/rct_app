@@ -57,6 +57,8 @@ import 'package:url_launcher/url_launcher_string.dart';
 import '../common copounents/custom_dialog.dart';
 import '../generated/l10n.dart';
 import 'ownership/renters_cubit.dart';
+import 'package:rct/model/investor_status_model.dart';
+import 'package:rct/view/share_rct/qualified_investor_bottom_sheet.dart';
 
 class HomeScreen extends StatefulWidget {
   static String id = "HomeScreen";
@@ -74,6 +76,7 @@ class _HomeScreenState extends State<HomeScreen> {
   dynamic number = 0;
   dynamic image;
   bool isQualifiedInvestor = false;
+  InvestorStatusModel? investorStatus;
   double hight = 130;
   String whatsapUrl = "https://wa.me/+966569988788";
   String emailUrl = "support@apprct.info";
@@ -84,6 +87,9 @@ class _HomeScreenState extends State<HomeScreen> {
     checkLoginStatus();
     // _fetchUnreadCount();
     _checkLoginStatus();
+    if (await checkLoginStatus()) {
+      context.read<FinalOrdersCubit>().fetchInvestorStatus();
+    }
   }
 
   void initState() {
@@ -111,6 +117,11 @@ class _HomeScreenState extends State<HomeScreen> {
           image = state.myImage ??
               'https://via.placeholder.com/150';
           isQualifiedInvestor = state.isQualifiedInvestor ?? false;
+        });
+      } else if (state is InvestorStatusSuccess) {
+        setState(() {
+          investorStatus = state.investorStatus;
+          isQualifiedInvestor = state.investorStatus.isQualifiedInvestor;
         });
       }
     });
@@ -323,6 +334,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                     "https://example.com/default-image.png";
                             isQualifiedInvestor = state.isQualifiedInvestor ?? false;
                           });
+                        } else if (state is InvestorStatusSuccess) {
+                          setState(() {
+                            investorStatus = state.investorStatus;
+                            isQualifiedInvestor = state.investorStatus.isQualifiedInvestor;
+                          });
                         } else if (state is UserFaild) {
                           setState(() {
                             name = 'Default Name';
@@ -334,53 +350,80 @@ class _HomeScreenState extends State<HomeScreen> {
                         if (state is UserLoading) {
                           return const Center();
                         }
-                        return ListTile(
-                          leading: CircleAvatar(
-                            backgroundImage: NetworkImage(image ?? ""),
-                            radius: 40,
-                          ),
-                          title: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Text(
-                                name,
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .titleMedium!
-                                    .copyWith(
-                                      fontWeight: FontWeight.w900,
-                                      color: Colors.black,
-                                      fontSize: 12,
-                                    ),
+                        return Column(
+                          mainAxisSize: MainAxisSize.min,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            ListTile(
+                              leading: CircleAvatar(
+                                backgroundImage: NetworkImage(image ?? ""),
+                                radius: 40,
                               ),
-                              if (isQualifiedInvestor) ...[
-                                SizedBox(width: 5.w),
-                                SvgPicture.asset(
-                                  "assets/icons/verifyIcon.svg",
-                                  width: 15.w,
-                                  height: 15.h,
-                                ),
-                              ]
-                            ],
-                          ),
-                          subtitle: InkWell(
-                            onTap: () {
-                              Navigator.of(context).push(
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        const EditProfileScreen()),
-                              );
-                            },
-                            child: Text(
-                              local.editFile,
-                              style: const TextStyle(
-                                color: Colors.blue,
-                                fontSize: 13,
-                                decoration: TextDecoration.underline,
-                                decorationColor: Colors.blue,
+                              title: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Text(
+                                    name,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .titleMedium!
+                                        .copyWith(
+                                          fontWeight: FontWeight.w900,
+                                          color: Colors.black,
+                                          fontSize: 12,
+                                        ),
+                                  ),
+                                  if (isQualifiedInvestor) ...[
+                                    SizedBox(width: 5.w),
+                                    SvgPicture.asset(
+                                      "assets/icons/verifyIcon.svg",
+                                      width: 15.w,
+                                      height: 15.h,
+                                    ),
+                                  ]
+                                ],
+                              ),
+                              subtitle: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  if (investorStatus?.requestStatus == "pending")
+                                    Padding(
+                                      padding: EdgeInsets.only(top: 4.h),
+                                      child: Text(
+                                        local.investor_request_pending,
+                                        style: TextStyle(
+                                          color: Colors.orange,
+                                          fontSize: 11.sp,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
+                                    ),
+                                  InkWell(
+                                    onTap: () {
+                                      Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                const EditProfileScreen()),
+                                      );
+                                    },
+                                    child: Padding(
+                                      padding: EdgeInsets.only(top: 4.h),
+                                      child: Text(
+                                        local.editFile,
+                                        style: const TextStyle(
+                                          color: Colors.blue,
+                                          fontSize: 13,
+                                          decoration: TextDecoration.underline,
+                                          decorationColor: Colors.blue,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
-                          ),
+                          ],
                         );
                       },
                     )

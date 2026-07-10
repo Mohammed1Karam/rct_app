@@ -39,7 +39,7 @@
   "numberOfApartments": "عدد الشقق",
   "enterNumberOfApartments": "ادخل عدد الشقق",
   "requestSentSuccessfully": "تم إرسال الطلب بنجاح",
-  "requestWillBeReviewed": "سيتم دراسة الطلب قريباً، يمكنك مراجعة الاشعارات",
+  "requestWillBeReviewed": "سيتم دراسة الطلب قريباً، يمكنك مراجعة الإشعارات",
   "electronicDeed": "الصك الإلكتروني *",
   "addSoilTestReport": "إضافة تقرير فحص التربة",
   "additionalCostIfNotAvailable": "في حال لم يتوفر ستكون هناك تكلفة إضافية بمبلغ ٢٠٠٠ ريال",
@@ -52,7 +52,7 @@
   "accept": "قبول",
   "cancelRequestConfirmation": "سيتم إلغاء الطلب، هل أنت متأكد من الالغاء؟",
   "cancel": "إلغاء",
-  "ok": "حسناً",
+  "ok": "موافق",
   "reject": "رفض",
   "typeOfBuilding": "نوع البناء",
   "totalProjectCost": "التكلفة الإجمالية للمشروع شاملة قيمة الضريبة المضافة",
@@ -436,5 +436,9 @@
   "phone_number_limit_9": "يجب ألا يقل رقم الهاتف عن ٩ أرقام",
   "opportunity_not_available": "هذه الفرصة غير متاحة حالياً",
   "thanks": "شكراً لك",
-  "data_sent_successfully": "تم إرسال بياناتك بنجاح"
+  "data_sent_successfully": "تم إرسال بياناتك بنجاح",
+  "investor_request_pending": "طلب الترقية الخاص بك قيد المراجعة",
+  "investor_request_rejected": "تم رفض طلب الترقية",
+  "rejection_reason_label": "سبب الرفض: ",
+  "request_upgrade_btn": "اطلب ترقية"
 }

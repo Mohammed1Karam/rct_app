@@ -1,5 +1,6 @@
 import 'package:rct/model/modelget.dart';
 import 'package:rct/view/final_orders/opportunity_model.dart';
+import 'package:rct/model/investor_status_model.dart';
 
 abstract class FinalOrdersStates {}
 
@@ -111,3 +112,15 @@ class UserFaild extends FinalOrdersStates {
 }
 
 class UserLoading extends FinalOrdersStates {}
+
+class InvestorStatusLoading extends FinalOrdersStates {}
+
+class InvestorStatusSuccess extends FinalOrdersStates {
+  final InvestorStatusModel investorStatus;
+  InvestorStatusSuccess(this.investorStatus);
+}
+
+class InvestorStatusFaild extends FinalOrdersStates {
+  final String message;
+  InvestorStatusFaild(this.message);
+}

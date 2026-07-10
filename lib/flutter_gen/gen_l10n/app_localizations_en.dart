@@ -1416,4 +1416,16 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get data_sent_successfully => 'Your data has been sent successfully';
+
+  @override
+  String get investor_request_pending => 'Your upgrade request is under review';
+
+  @override
+  String get investor_request_rejected => 'Upgrade request rejected';
+
+  @override
+  String get rejection_reason_label => 'Rejection reason: ';
+
+  @override
+  String get request_upgrade_btn => 'Request Upgrade';
 }

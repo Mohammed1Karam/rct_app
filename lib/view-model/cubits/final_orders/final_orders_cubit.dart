@@ -13,6 +13,7 @@ import 'package:rct/view-model/cubits/final_orders/final_orders_states.dart';
 import 'package:rct/view/favorite/favorites_model.dart';
 import 'package:rct/view/final_orders/opportunity_model.dart';
 import 'package:rct/view/final_orders/rawlands_model.dart';
+import 'package:rct/model/investor_status_model.dart';
 
 class FinalOrdersCubit extends Cubit<FinalOrdersStates> {
   FinalOrdersCubit() : super(InitialFinalOrderStates());
@@ -541,6 +542,41 @@ class FinalOrdersCubit extends Cubit<FinalOrdersStates> {
       }
     } catch (e) {
       print('An unexpected error occurred: $e');
+    }
+  }
+
+  Future<void> fetchInvestorStatus() async {
+    emit(InvestorStatusLoading());
+    final token = await _getAuthToken();
+
+    try {
+      final response = await _dio.get(
+        linkSubmitInvestorUpgradeStatus,
+        options: Options(
+          headers: {
+            'Authorization': 'Bearer $token',
+            "Accept-Language": CacheHelper.getData(key: "lang"),
+          },
+        ),
+      );
+
+      if (response.statusCode == 200) {
+        final responseData = response.data;
+        if (responseData['status'] == true || responseData['status'] == 200) {
+          final investorStatus = InvestorStatusModel.fromJson(responseData['data']);
+          emit(InvestorStatusSuccess(investorStatus));
+        } else {
+          emit(InvestorStatusFaild(responseData['message'] ?? 'Failed to fetch status'));
+        }
+      } else {
+        emit(InvestorStatusFaild('Failed to fetch status'));
+      }
+    } on DioException catch (e) {
+      emit(InvestorStatusFaild('Error fetching status'));
+      debugPrint('Error: $e');
+    } catch (e) {
+      emit(InvestorStatusFaild('Error fetching status'));
+      debugPrint('Error: $e');
     }
   }
 

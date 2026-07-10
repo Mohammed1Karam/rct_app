@@ -3748,6 +3748,46 @@ class S {
       args: [],
     );
   }
+
+  /// `Your upgrade request is under review`
+  String get investor_request_pending {
+    return Intl.message(
+      'Your upgrade request is under review',
+      name: 'investor_request_pending',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Upgrade request rejected`
+  String get investor_request_rejected {
+    return Intl.message(
+      'Upgrade request rejected',
+      name: 'investor_request_rejected',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Rejection reason: `
+  String get rejection_reason_label {
+    return Intl.message(
+      'Rejection reason: ',
+      name: 'rejection_reason_label',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Request Upgrade`
+  String get request_upgrade_btn {
+    return Intl.message(
+      'Request Upgrade',
+      name: 'request_upgrade_btn',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

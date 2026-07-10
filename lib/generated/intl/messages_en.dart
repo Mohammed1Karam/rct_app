@@ -394,6 +394,18 @@ class MessageLookup extends MessageLookupByLibrary {
     "ireadTermsandiagreeit": MessageLookupByLibrary.simpleMessage(
       "I have read the terms and conditions and agree to them",
     ),
+    "investor_request_pending": MessageLookupByLibrary.simpleMessage(
+      "Your upgrade request is under review",
+    ),
+    "investor_request_rejected": MessageLookupByLibrary.simpleMessage(
+      "Upgrade request rejected",
+    ),
+    "rejection_reason_label": MessageLookupByLibrary.simpleMessage(
+      "Rejection reason: ",
+    ),
+    "request_upgrade_btn": MessageLookupByLibrary.simpleMessage(
+      "Request Upgrade",
+    ),
     "jazan": MessageLookupByLibrary.simpleMessage("Jazan"),
     "jeddah": MessageLookupByLibrary.simpleMessage("Jeddah"),
     "joinRCT": MessageLookupByLibrary.simpleMessage("Join RCT"),

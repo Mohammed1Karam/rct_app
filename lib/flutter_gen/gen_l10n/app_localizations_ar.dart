@@ -131,7 +131,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get requestWillBeReviewed =>
-      'سيتم دراسة الطلب قريباً، يمكنك مراجعة الاشعارات';
+      'سيتم دراسة الطلب قريباً، يمكنك مراجعة الإشعارات';
 
   @override
   String get electronicDeed => 'الصك الإلكتروني *';
@@ -172,7 +172,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get cancel => 'إلغاء';
 
   @override
-  String get ok => 'حسناً';
+  String get ok => 'موافق';
 
   @override
   String get reject => 'رفض';
@@ -1387,4 +1387,16 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get data_sent_successfully => 'تم إرسال بياناتك بنجاح';
+
+  @override
+  String get investor_request_pending => 'طلب الترقية الخاص بك قيد المراجعة';
+
+  @override
+  String get investor_request_rejected => 'تم رفض طلب الترقية';
+
+  @override
+  String get rejection_reason_label => 'سبب الرفض: ';
+
+  @override
+  String get request_upgrade_btn => 'اطلب ترقية';
 }
