@@ -39,6 +39,80 @@ class _QualifiedInvestorBottomSheetState extends State<QualifiedInvestorBottomSh
     _cubit = InvestorUpgradeCubit(ShareDetailsRepository())..getQuestions();
   }
 
+  void _showSuccessDialog(BuildContext context) {
+    final local = S.of(context);
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        backgroundColor: Colors.white,
+        surfaceTintColor: Colors.white,
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.r)),
+        titlePadding: EdgeInsets.zero,
+        title: Column(
+          children: [
+            Align(
+              alignment: AlignmentDirectional.topEnd,
+              child: Padding(
+                padding: EdgeInsets.all(8.r),
+                child: GestureDetector(
+                  onTap: () => Navigator.pop(context),
+                  child: Icon(Icons.close, color: Colors.black, size: 24.sp),
+                ),
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.all(15.r),
+              decoration: const BoxDecoration(
+                color: Color(0xFFE5E7EB),
+                shape: BoxShape.circle,
+              ),
+              child: Container(
+                padding: EdgeInsets.all(10.r),
+                decoration: const BoxDecoration(
+                  color: Color(0xFF20262F),
+                  shape: BoxShape.circle,
+                ),
+                child: Icon(Icons.check, color: Colors.white, size: 30.sp),
+              ),
+            ),
+          ],
+        ),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            CustomText(
+              text: local.requestSentSuccessfully,
+              style: TextStyle(
+                fontSize: 16.sp,
+                fontWeight: FontWeight.w700,
+                color: const Color(0xFF20262F),
+              ),
+              textAlign: TextAlign.center,
+            ),
+            SizedBox(height: 12.h),
+            CustomText(
+              text: local.requestWillBeReviewed,
+              style: TextStyle(
+                fontSize: 12.sp,
+                color: const Color(0xFF8A8A8A),
+                height: 1.5,
+              ),
+              textAlign: TextAlign.center,
+            ),
+            SizedBox(height: 24.h),
+            MainButton(
+              width: 120.w,
+              text: local.ok,
+              backGroundColor: const Color(0xFF20262F),
+              onTap: () => Navigator.pop(context),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   void _handleResponse(int questionId, int value) {
     setState(() {
       if (value == 1) {
@@ -77,12 +151,7 @@ class _QualifiedInvestorBottomSheetState extends State<QualifiedInvestorBottomSh
       child: BlocListener<InvestorUpgradeCubit, InvestorUpgradeState>(
         listener: (context, state) {
           if (state is InvestorUpgradeSubmitSuccess) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(state.message),
-                backgroundColor: Colors.green,
-              ),
-            );
+            _showSuccessDialog(context);
             _cubit.initiatePayment(
               type: "opportunity",
               id: widget.opportunityId,

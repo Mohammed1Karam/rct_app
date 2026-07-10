@@ -429,10 +429,10 @@ class MessageLookup extends MessageLookupByLibrary {
       "شارع واحد",
     ),
     "open_project_file": MessageLookupByLibrary.simpleMessage(
-      "عرض ملف المشروع",
+      "ملف المشروع",
     ),
     "open_project_location": MessageLookupByLibrary.simpleMessage(
-      "عرض موقع المشروع",
+      "فتح في خرائط جوجل",
     ),
     "opportunities_number": MessageLookupByLibrary.simpleMessage("عدد الفرص"),
     "opportunity": MessageLookupByLibrary.simpleMessage("فرصة"),

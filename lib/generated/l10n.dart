@@ -3354,10 +3354,10 @@ class S {
     );
   }
 
-  /// `View project file`
+  /// `Project File`
   String get open_project_file {
     return Intl.message(
-      'View project file',
+      'Project File',
       name: 'open_project_file',
       desc: '',
       args: [],

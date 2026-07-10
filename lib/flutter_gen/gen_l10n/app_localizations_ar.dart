@@ -1240,10 +1240,10 @@ class AppLocalizationsAr extends AppLocalizations {
   String get view_on_map => 'عرض الموقع على الخريطة';
 
   @override
-  String get open_project_location => 'عرض موقع المشروع';
+  String get open_project_location => 'فتح في خرائط جوجل';
 
   @override
-  String get open_project_file => 'عرض ملف المشروع';
+  String get open_project_file => 'ملف المشروع';
 
   @override
   String get file_not_found => 'الملف غير موجود';

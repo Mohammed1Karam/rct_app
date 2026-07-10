@@ -479,10 +479,10 @@ class MessageLookup extends MessageLookupByLibrary {
       "One street",
     ),
     "open_project_file": MessageLookupByLibrary.simpleMessage(
-      "View project file",
+      "Project File",
     ),
     "open_project_location": MessageLookupByLibrary.simpleMessage(
-      "View project location",
+      "Open in Google Maps",
     ),
     "opportunities_number": MessageLookupByLibrary.simpleMessage(
       "Number of Opportunities",

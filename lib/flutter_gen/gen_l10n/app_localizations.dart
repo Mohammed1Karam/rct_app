@@ -2489,13 +2489,13 @@ abstract class AppLocalizations {
   /// No description provided for @open_project_location.
   ///
   /// In en, this message translates to:
-  /// **'View project location'**
+  /// **'Open in Google Maps'**
   String get open_project_location;
 
   /// No description provided for @open_project_file.
   ///
   /// In en, this message translates to:
-  /// **'View project file'**
+  /// **'Project File'**
   String get open_project_file;
 
   /// No description provided for @file_not_found.

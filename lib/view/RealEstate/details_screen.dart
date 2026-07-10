@@ -1084,15 +1084,9 @@ class _DetailsScreenState extends State<DetailsScreen> {
   }
 
   Widget _buildOverviewTab(Modelget product) {
-    final local = S.of(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        CustomText(
-          text: local.discreption,
-          style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w700, color: const Color(0xFF20262F)),
-        ),
-        SizedBox(height: 8.h),
         CustomText(
           text: product.description,
           style: TextStyle(fontSize: 12.sp, color: const Color(0xFF494949), height: 1.5),
@@ -1180,7 +1174,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
       child: Container(
         width: double.infinity,
         height: 56.h,
-        decoration: BoxDecoration(color: const Color(0xFF25D366), borderRadius: BorderRadius.circular(12.r)),
+        decoration: BoxDecoration(color: const Color(0xff20262F), borderRadius: BorderRadius.circular(12.r)),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

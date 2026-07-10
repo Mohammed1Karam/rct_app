@@ -13,6 +13,7 @@ import 'package:rct/model/modelget.dart';
 import 'package:rct/view/auth/sendotp.dart';
 import 'package:rct/view/share_rct/userdetails.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:rct/services/cache_helper.dart';
 
 import '../../common copounents/custom_text.dart';
 import '../../common copounents/pdf_viewer_view.dart';
@@ -218,23 +219,45 @@ class _ShareDetailsState extends State<ShareDetails> {
             ],
           ),
           SizedBox(height: 16.h),
-          CustomText(
-            text: S.of(context).description,
-            style: TextStyle(
-              fontSize: 14.sp,
-              fontWeight: FontWeight.w700,
-              color: const Color(0xFF20262F),
+          GridView(
+            shrinkWrap: true,
+            padding: EdgeInsets.zero,
+            physics: const NeverScrollableScrollPhysics(),
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              crossAxisSpacing: 10.w,
+              mainAxisSpacing: 10.h,
+              childAspectRatio: 1.8,
             ),
+            children: [
+              _buildDetailCard(
+                title: S.of(context).opportunity_price.replaceAll(":", ""),
+                value: NumberFormat('#,###').format(
+                    int.tryParse(product.opportunity_price ?? '0') ?? 0),
+                iconPath: "assets/icons/tag.svg",
+                showSar: true,
+              ),
+              _buildDetailCard(
+                title: S.of(context).monthly_return,
+                value: "${product.percent_number} %",
+                iconPath: "assets/icons/discount-circle.svg",
+                isSvg: true,
+              ),
+              _buildDetailCard(
+                title: S.of(context).opportunityduration.replaceAll(":", ""),
+                value: "${product.project_duration} ${S.of(context).month}",
+                iconPath: "assets/icons/timer.svg",
+              ),
+              _buildDetailCard(
+                title: S.of(context).total_value,
+                value: NumberFormat('#,###')
+                    .format(int.tryParse(product.total_price ?? '0') ?? 0),
+                iconPath: "assets/icons/pocketMoney.svg",
+                showSar: true,
+              ),
+            ],
           ),
-          SizedBox(height: 8.h),
-          CustomText(
-            text: product.description,
-            style: TextStyle(
-              fontSize: 12.sp,
-              color: const Color(0xFF494949),
-              height: 1.5,
-            ),
-          ),
+          _buildOpportunityStatusBar(product),
           _buildTabs(),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -523,47 +546,17 @@ class _ShareDetailsState extends State<ShareDetails> {
   }
 
   Widget _buildOverviewTab(Modelget product) {
-    final local = S.of(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        GridView(
-          shrinkWrap: true,
-          padding: EdgeInsets.zero,
-          physics: const NeverScrollableScrollPhysics(),
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            crossAxisSpacing: 10.w,
-            mainAxisSpacing: 10.h,
-            childAspectRatio: 1.8,
+        CustomText(
+          text: product.description,
+          style: TextStyle(
+            fontSize: 12.sp,
+            color: const Color(0xFF494949),
+            height: 1.5,
           ),
-          children: [
-            _buildDetailCard(
-              title: local.opportunity_price.replaceAll(":", ""),
-              value: NumberFormat('#,###').format(
-                  int.tryParse(product.opportunity_price ?? '0') ?? 0),
-              iconPath: "assets/icons/tag.svg",
-            ),
-            _buildDetailCard(
-              title: local.monthly_return,
-              value: "${product.percent_number} %",
-              iconPath: "assets/icons/discount-circle.svg",
-              isSvg: true,
-            ),
-            _buildDetailCard(
-              title: local.opportunityduration.replaceAll(":", ""),
-              value: "${product.project_duration} ${local.month}",
-              iconPath: "assets/icons/timer.svg",
-            ),
-            _buildDetailCard(
-              title: local.total_value,
-              value: NumberFormat('#,###')
-                  .format(int.tryParse(product.total_price ?? '0') ?? 0),
-              iconPath: "assets/icons/pocketMoney.svg",
-            ),
-          ],
         ),
-        _buildOpportunityStatusBar(product),
       ],
     );
   }
@@ -604,7 +597,7 @@ class _ShareDetailsState extends State<ShareDetails> {
                 ),
                 SizedBox(width: 12.w),
                 CustomText(
-                  text: local.executive_summary,
+                  text: local.open_project_file,
                   style: TextStyle(
                     fontSize: 14.sp,
                     fontWeight: FontWeight.w600,
@@ -687,6 +680,7 @@ class _ShareDetailsState extends State<ShareDetails> {
     required String value,
     required String iconPath,
     bool isSvg = true,
+    bool showSar = false,
   }) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 12.h),
@@ -733,13 +727,25 @@ class _ShareDetailsState extends State<ShareDetails> {
                 SizedBox(height: 2.h),
                 FittedBox(
                   fit: BoxFit.scaleDown,
-                  child: CustomText(
-                    text: value,
-                    style: TextStyle(
-                      fontSize: 14.sp,
-                      color: const Color(0xFF20262F),
-                      fontWeight: FontWeight.w700,
-                    ),
+                  child: Row(
+                    children: [
+                      if (showSar && CacheHelper.getData(key: "lang") == "en") ...[
+                        SarImage(color: const Color(0xFF20262F), height: 12.h),
+                        SizedBox(width: 4.w),
+                      ],
+                      CustomText(
+                        text: value,
+                        style: TextStyle(
+                          fontSize: 14.sp,
+                          color: const Color(0xFF20262F),
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                      if (showSar && CacheHelper.getData(key: "lang") != "en") ...[
+                        SizedBox(width: 4.w),
+                        SarImage(color: const Color(0xFF20262F), height: 12.h),
+                      ],
+                    ],
                   ),
                 ),
               ],
@@ -899,12 +905,25 @@ class _ShareDetailsState extends State<ShareDetails> {
                 ],
               ),
               SizedBox(height: 16.h),
-              CustomText(
-                text: local.max_investment_limit,
-                style: TextStyle(
-                  fontSize: 12.sp,
-                  color: const Color(0xFF8A8A8A),
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Flexible(
+                    child: CustomText(
+                      text: local.max_investment_limit
+                          .replaceAll("ريال", "")
+                          .replaceAll("SAR", "")
+                          .trim(),
+                      style: TextStyle(
+                        fontSize: 12.sp,
+                        color: const Color(0xFF8A8A8A),
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                  SizedBox(width: 4.w),
+                  SarImage(color: const Color(0xFF8A8A8A), height: 10.h),
+                ],
               ),
             ],
           ),

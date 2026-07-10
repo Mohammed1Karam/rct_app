@@ -846,14 +846,40 @@ class _OwnershipDetailsScreenState extends State<OwnershipDetailsScreen> {
             ],
           ),
           SizedBox(height: 16.h),
-          CustomText(
-            text: local.description,
-            style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w700, color: const Color(0xFF20262F)),
-          ),
-          SizedBox(height: 8.h),
-          CustomText(
-            text: renter.description,
-            style: TextStyle(fontSize: 12.sp, color: const Color(0xFF494949), height: 1.5),
+          GridView(
+            shrinkWrap: true,
+            padding: EdgeInsets.zero,
+            physics: const NeverScrollableScrollPhysics(),
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              crossAxisSpacing: 10.w,
+              mainAxisSpacing: 10.h,
+              childAspectRatio: 1.8,
+            ),
+            children: [
+              _buildDetailCard(
+                title: local.first_batch,
+                value: NumberFormat('#,###').format(double.tryParse(renter.firstPayment ?? '0') ?? 0),
+                iconPath: "assets/icons/money-recive.svg",
+                showSar: true,
+              ),
+              _buildDetailCard(
+                title: CacheHelper.getData(key: "lang") == "ar" ? "خطة السداد" : local.payment_plan,
+                value: "${NumberFormat('#,###').format(renter.paymentPlan ?? 0)} ${CacheHelper.getData(key: "lang") == "ar" ? "شهرياً" : "Monthly"}",
+                iconPath: "assets/icons/calendar.svg",
+              ),
+              _buildDetailCard(
+                title: CacheHelper.getData(key: "lang") == "ar" ? "مدة السداد" : local.payment_duration,
+                value: "${renter.paymentDuration ?? 0} ${local.year}",
+                iconPath: "assets/icons/timer.svg",
+              ),
+              _buildDetailCard(
+                title: local.renter_value,
+                value: NumberFormat('#,###').format(double.tryParse(renter.price ?? '0') ?? 0),
+                iconPath: "assets/icons/pocketMoney.svg",
+                showSar: true,
+              ),
+            ],
           ),
           _buildTabs(),
           _buildTabContent(renter),
@@ -1014,45 +1040,13 @@ class _OwnershipDetailsScreenState extends State<OwnershipDetailsScreen> {
   }
 
   Widget _buildOverviewTab(RenterModel renter) {
-    final local = S.of(context);
-    final formattedPrice = NumberFormat('#,###').format(double.tryParse(renter.price ?? '0') ?? 0);
-    final formattedFirstPayment = NumberFormat('#,###').format(double.tryParse(renter.firstPayment ?? '0') ?? 0);
-    final formattedPlan = NumberFormat('#,###').format(renter.paymentPlan ?? 0);
-
-    return GridView(
-      shrinkWrap: true,
-      padding: EdgeInsets.zero,
-      physics: const NeverScrollableScrollPhysics(),
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        crossAxisSpacing: 10.w,
-        mainAxisSpacing: 10.h,
-        childAspectRatio: 1.8,
-      ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _buildDetailCard(
-          title: local.first_batch,
-          value: formattedFirstPayment,
-          iconPath: "assets/icons/money-recive.svg",
-          showSar: true,
+        CustomText(
+          text: renter.description,
+          style: TextStyle(fontSize: 12.sp, color: const Color(0xFF494949), height: 1.5),
         ),
-        _buildDetailCard(
-          title: CacheHelper.getData(key: "lang") == "ar" ? "خطة السداد" : local.payment_plan,
-          value: "$formattedPlan ${CacheHelper.getData(key: "lang") == "ar" ? "شهرياً" : "Monthly"}",
-          iconPath: "assets/icons/calendar.svg",
-        ),
-        _buildDetailCard(
-          title: CacheHelper.getData(key: "lang") == "ar" ? "مدة السداد" : local.payment_duration,
-          value: "${renter.paymentDuration ?? 0} ${local.year}",
-          iconPath: "assets/icons/timer.svg",
-        ),
-        _buildDetailCard(
-          title: local.renter_value,
-          value: formattedPrice,
-          iconPath: "assets/icons/pocketMoney.svg",
-          showSar: true,
-        ),
-
       ],
     );
   }
@@ -1194,6 +1188,8 @@ class _OwnershipDetailsScreenState extends State<OwnershipDetailsScreen> {
     final maxUnits = renter.units ?? 0;
     final price = double.tryParse(renter.price ?? '0') ?? 0;
     final totalAmount = quantity * price;
+    final firstPayment = double.tryParse(renter.firstPayment ?? '0') ?? 0;
+    final totalFirstPayment = quantity * firstPayment;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -1222,10 +1218,45 @@ class _OwnershipDetailsScreenState extends State<OwnershipDetailsScreen> {
           ),
         ),
         SizedBox(height: 24.h),
+        // Total First Payment Row
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            CustomText(text: local.total_value, style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w600, color: const Color(0xFF20262F))),
+            CustomText(
+              text: CacheHelper.getData(key: "lang") == "ar" ? "إجمالي الدفعة الأولى" : "Total First Payment",
+              style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w600, color: const Color(0xFF20262F)),
+            ),
+            Row(
+              children: [
+                CustomText(text: NumberFormat('#,###').format(totalFirstPayment), style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w700, color: const Color(0xFF20262F))),
+                SizedBox(width: 4.w),
+                SarImage(color: const Color(0xFF20262F), height: 16.h),
+              ],
+            ),
+          ],
+        ),
+        SizedBox(height: 16.h),
+        // Total Value Row
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                CustomText(
+                  text: CacheHelper.getData(key: "lang") == "ar" ? "القيمة الإجمالية للوحدات" : "Total Units Value",
+                  style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w600, color: const Color(0xFF20262F)),
+                ),
+                SizedBox(height: 4.h),
+                CustomText(
+                  text: CacheHelper.getData(key: "lang") == "ar"
+                      ? "(شاملة الأقساط لمدة ${renter.paymentDuration} سنة)"
+                      : "(Including installments for ${renter.paymentDuration} years)",
+                  style: TextStyle(fontSize: 10.sp, color: const Color(0xFF8A8A8A)),
+                ),
+              ],
+            ),
             Row(
               children: [
                 CustomText(text: NumberFormat('#,###').format(totalAmount), style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w700, color: const Color(0xFF20262F))),

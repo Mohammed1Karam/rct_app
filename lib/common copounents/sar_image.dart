@@ -9,7 +9,7 @@ class SarImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       // child: Image.asset("assets/images/sar.png", color: color?? Color.fromARGB(255, 5, 97, 50),),
-      child: SvgPicture.asset("assets/icons/sar.svg"),
+      child: SvgPicture.asset("assets/icons/sar.svg",colorFilter: ColorFilter.mode(color??Colors.black , BlendMode.srcIn),),
       height: height?? 13,
     );
   }

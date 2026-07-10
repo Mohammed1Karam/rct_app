@@ -1268,10 +1268,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get view_on_map => 'View location on map';
 
   @override
-  String get open_project_location => 'View project location';
+  String get open_project_location => 'Open in Google Maps';
 
   @override
-  String get open_project_file => 'View project file';
+  String get open_project_file => 'Project File';
 
   @override
   String get file_not_found => 'File not found';
