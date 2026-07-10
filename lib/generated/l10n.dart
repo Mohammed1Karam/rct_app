@@ -3664,6 +3664,26 @@ class S {
     );
   }
 
+  /// `Ownership Guarantees`
+  String get ownership_guarantees_title {
+    return Intl.message(
+      'Ownership Guarantees',
+      name: 'ownership_guarantees_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your home ownership is protected and guaranteed; as RCT is the owner and developer of the assets, ensuring an ownership experience characterized by security, credibility, and complete clarity throughout all stages of contracting.`
+  String get ownership_guarantees_description {
+    return Intl.message(
+      'Your home ownership is protected and guaranteed; as RCT is the owner and developer of the assets, ensuring an ownership experience characterized by security, credibility, and complete clarity throughout all stages of contracting.',
+      name: 'ownership_guarantees_description',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Please upload a document first`
   String get please_upload_document {
     return Intl.message(

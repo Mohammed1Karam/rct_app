@@ -890,7 +890,7 @@ class _OwnershipDetailsScreenState extends State<OwnershipDetailsScreen> {
               ),
               SizedBox(width: 8.w),
               CustomText(
-                text: local.guarantees_title,
+                text: local.ownership_guarantees_title,
                 style: TextStyle(
                   fontSize: 16.sp,
                   fontWeight: FontWeight.w700,
@@ -901,7 +901,7 @@ class _OwnershipDetailsScreenState extends State<OwnershipDetailsScreen> {
           ),
           SizedBox(height: 12.h),
           CustomText(
-            text: local.guarantees_description,
+            text: local.ownership_guarantees_description,
             style: TextStyle(
               fontSize: 12.sp,
               color: const Color(0xFF494949),

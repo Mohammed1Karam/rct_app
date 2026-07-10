@@ -2684,6 +2684,18 @@ abstract class AppLocalizations {
   /// **'Your investment is protected and guaranteed; as the direct owner and developer of the investment assets is RCT, which ensures the highest levels of security and transparency in managing your returns.'**
   String get guarantees_description;
 
+  /// No description provided for @ownership_guarantees_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Ownership Guarantees'**
+  String get ownership_guarantees_title;
+
+  /// No description provided for @ownership_guarantees_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Your home ownership is protected and guaranteed; as RCT is the owner and developer of the assets, ensuring an ownership experience characterized by security, credibility, and complete clarity throughout all stages of contracting.'**
+  String get ownership_guarantees_description;
+
   /// No description provided for @direct_ownership.
   ///
   /// In en, this message translates to:

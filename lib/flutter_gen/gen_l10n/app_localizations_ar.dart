@@ -1351,6 +1351,13 @@ class AppLocalizationsAr extends AppLocalizations {
       'استثمارك محمي ومضمون؛ حيث أن الجهة المالكة والمطورة للأصول الاستثمارية بشكل مباشر هي RCT ، مما يضمن أعلى مستويات الأمان والشفافية في إدارة عوائدك.';
 
   @override
+  String get ownership_guarantees_title => 'ضمانات التملك';
+
+  @override
+  String get ownership_guarantees_description =>
+      'امتلاكك لمنزلك محمي ومضمون؛ حيث أن الجهة المالكة والمطورة للأصول هي RCT، مما يضمن لك تجربة تملك تتسم بالأمان، المصداقية، والوضوح التام في كافة مراحل التعاقد.';
+
+  @override
   String get direct_ownership => 'ملكية مباشرة';
 
   @override

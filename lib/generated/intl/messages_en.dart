@@ -506,6 +506,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "otherDetailsOrInformation": MessageLookupByLibrary.simpleMessage(
       "Other details or information",
     ),
+    "ownership_guarantees_description": MessageLookupByLibrary.simpleMessage(
+      "Your home ownership is protected and guaranteed; as RCT is the owner and developer of the assets, ensuring an ownership experience characterized by security, credibility, and complete clarity throughout all stages of contracting.",
+    ),
+    "ownership_guarantees_title": MessageLookupByLibrary.simpleMessage(
+      "Ownership Guarantees",
+    ),
     "overview": MessageLookupByLibrary.simpleMessage("Overview"),
     "own_now": MessageLookupByLibrary.simpleMessage("Own Now"),
     "page1Description": MessageLookupByLibrary.simpleMessage(

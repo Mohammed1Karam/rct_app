@@ -1379,6 +1379,13 @@ class AppLocalizationsEn extends AppLocalizations {
       'Your investment is protected and guaranteed; as the direct owner and developer of the investment assets is RCT, which ensures the highest levels of security and transparency in managing your returns.';
 
   @override
+  String get ownership_guarantees_title => 'Ownership Guarantees';
+
+  @override
+  String get ownership_guarantees_description =>
+      'Your home ownership is protected and guaranteed; as RCT is the owner and developer of the assets, ensuring an ownership experience characterized by security, credibility, and complete clarity throughout all stages of contracting.';
+
+  @override
   String get direct_ownership => 'Direct Ownership';
 
   @override

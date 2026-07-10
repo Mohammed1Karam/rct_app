@@ -450,6 +450,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "otherDetailsOrInformation": MessageLookupByLibrary.simpleMessage(
       "تفاصيل أو معلومات أخرى",
     ),
+    "ownership_guarantees_description": MessageLookupByLibrary.simpleMessage(
+      "امتلاكك لمنزلك محمي ومضمون؛ حيث أن الجهة المالكة والمطورة للأصول هي RCT، مما يضمن لك تجربة تملك تتسم بالأمان، المصداقية، والوضوح التام في كافة مراحل التعاقد.",
+    ),
+    "ownership_guarantees_title": MessageLookupByLibrary.simpleMessage("ضمانات التملك"),
     "overview": MessageLookupByLibrary.simpleMessage("نظرة عامة"),
     "own_now": MessageLookupByLibrary.simpleMessage("تملك الآن"),
     "page1Description": MessageLookupByLibrary.simpleMessage(
