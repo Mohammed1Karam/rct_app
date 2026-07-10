@@ -998,14 +998,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
             ],
           ),
           SizedBox(height: 20.h),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              _buildFeatureItem("assets/icons/homeSize.svg", "${product.house_space ?? '0'} m²"),
-              _buildFeatureItem("assets/icons/bath.svg", CacheHelper.getData(key: "lang") == "ar" ? "0 حمام" : "0 Bathrooms"),
-              _buildFeatureItem("assets/icons/bed.svg", CacheHelper.getData(key: "lang") == "ar" ? "0 غرف" : "0 Rooms"),
-            ],
-          ),
+          _buildFeatureItem("assets/icons/homeSize.svg", "${product.house_space ?? '0'} m²"),
           _buildTabs(),
           _buildTabContent(product),
           SizedBox(height: 32.h),
