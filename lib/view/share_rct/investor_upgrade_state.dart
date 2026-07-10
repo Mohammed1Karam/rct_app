@@ -16,6 +16,16 @@ class InvestorUpgradeError extends InvestorUpgradeState {
   InvestorUpgradeError(this.message);
 }
 
+class InvestorUpgradeSubmitError extends InvestorUpgradeState {
+  final String message;
+  InvestorUpgradeSubmitError(this.message);
+}
+
+class InvestorUpgradePaymentError extends InvestorUpgradeState {
+  final String message;
+  InvestorUpgradePaymentError(this.message);
+}
+
 class InvestorUpgradeSubmitting extends InvestorUpgradeState {}
 
 class InvestorUpgradeSubmitSuccess extends InvestorUpgradeState {

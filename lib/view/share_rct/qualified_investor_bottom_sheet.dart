@@ -89,20 +89,25 @@ class _QualifiedInvestorBottomSheetState extends State<QualifiedInvestorBottomSh
               count: widget.count,
             );
           } else if (state is InvestorUpgradePaymentInitiated) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(state.message),
-                backgroundColor: Colors.green,
-              ),
-            );
+            // No snackbar here as per user request, only pop
             Navigator.pop(context);
-          } else if (state is InvestorUpgradeError && answersMap.isNotEmpty) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(state.message),
-                backgroundColor: Colors.red,
-              ),
-            );
+          } else if (state is InvestorUpgradePaymentError) {
+            // No snackbar for payment errors as per user request (e.g. "maximum 30000")
+            // Just pop to close the bottom sheet
+            Navigator.pop(context);
+          } else if (state is InvestorUpgradeSubmitError || state is InvestorUpgradeError) {
+            String message = "";
+            if (state is InvestorUpgradeSubmitError) message = state.message;
+            if (state is InvestorUpgradeError) message = state.message;
+
+            if (answersMap.isNotEmpty && message.isNotEmpty) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(message),
+                  backgroundColor: Colors.red,
+                ),
+              );
+            }
           }
         },
         child: Container(

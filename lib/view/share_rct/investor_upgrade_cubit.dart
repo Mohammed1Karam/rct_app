@@ -28,13 +28,13 @@ class InvestorUpgradeCubit extends Cubit<InvestorUpgradeState> {
         answers: answers,
         questionFiles: questionFiles,
       );
-      if (result['status'] == 200 || result['status'] == "success") {
+      if (result['status'] == 200 || result['status'] == 201 || result['status'] == "success") {
         emit(InvestorUpgradeSubmitSuccess(result['message'] ?? "Upgrade request submitted successfully"));
       } else {
-        emit(InvestorUpgradeError(result['message'] ?? "Failed to submit upgrade request"));
+        emit(InvestorUpgradeSubmitError(result['message'] ?? "Failed to submit upgrade request"));
       }
     } catch (e) {
-      emit(InvestorUpgradeError(e.toString()));
+      emit(InvestorUpgradeSubmitError(e.toString()));
     }
   }
 
@@ -50,16 +50,16 @@ class InvestorUpgradeCubit extends Cubit<InvestorUpgradeState> {
         id: id,
         count: count,
       );
-      if (result['status'] == 200 || result['status'] == "success") {
+      if (result['status'] == 200 || result['status'] == 201 || result['status'] == "success") {
         emit(InvestorUpgradePaymentInitiated(
           result['message'] ?? "Payment initiated successfully",
           paymentUrl: result['data']?['payment_url'],
         ));
       } else {
-        emit(InvestorUpgradeError(result['message'] ?? "Failed to initiate payment"));
+        emit(InvestorUpgradePaymentError(result['message'] ?? "Failed to initiate payment"));
       }
     } catch (e) {
-      emit(InvestorUpgradeError(e.toString()));
+      emit(InvestorUpgradePaymentError(e.toString()));
     }
   }
 }
