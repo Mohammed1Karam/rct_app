@@ -143,7 +143,7 @@ class _ShareDetailsState extends State<ShareDetails> {
               top: 20,
               end: 20,
               child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 16.w,vertical: 5.h),
+                padding: EdgeInsets.symmetric(horizontal: 20.w,vertical: 8.h),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(24.r),
                     color: Colors.white),
