@@ -239,8 +239,11 @@ class _ShareRctState extends State<ShareRct> {
 
   Widget _buildPropertyCard(Modelget house, local) {
     final cubit = context.read<ShareCubit>();
-    int completedOpportunities = (int.tryParse(house.opportunity_count)! -
-        int.tryParse(house.number_opportunity_pay)!);
+    int total = int.tryParse(house.opportunity_count?.toString() ?? '0') ?? 0;
+    int paid =
+        int.tryParse(house.number_opportunity_pay?.toString() ?? '0') ?? 0;
+    int remaining = total - paid;
+
     return InkWell(
       onTap: () {
         Navigator.push(
@@ -251,8 +254,7 @@ class _ShareRctState extends State<ShareRct> {
       },
       child: Card(
         elevation: 3,
-        color:
-            completedOpportunities == 0 ? Colors.grey.shade200 : Colors.white,
+        color: remaining == 0 ? Colors.grey.shade200 : Colors.white,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(13)),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -347,7 +349,7 @@ class _ShareRctState extends State<ShareRct> {
                       width: 60,
                       height: 40,
                       decoration: BoxDecoration(
-                        color: completedOpportunities == 0
+                        color: remaining == 0
                             ? Colors.grey.shade200
                             : Colors.white,
                         borderRadius: BorderRadius.only(

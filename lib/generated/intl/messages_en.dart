@@ -369,9 +369,6 @@ class MessageLookup extends MessageLookupByLibrary {
     "guaranteed_returns": MessageLookupByLibrary.simpleMessage(
       "Guaranteed Returns",
     ),
-    "no_hidden_fees": MessageLookupByLibrary.simpleMessage(
-      "No hidden fees",
-    ),
     "guarantees_description": MessageLookupByLibrary.simpleMessage(
       "Your investment is protected and guaranteed; as the direct owner and developer of the investment assets is RCT, which ensures the highest levels of security and transparency in managing your returns.",
     ),
@@ -391,8 +388,8 @@ class MessageLookup extends MessageLookupByLibrary {
       "(Independent Title Deed for Each Unit)",
     ),
     "invertedBeams": MessageLookupByLibrary.simpleMessage("Inverted Beams"),
-    "ireadTermsandiagreeit": MessageLookupByLibrary.simpleMessage(
-      "I have read the terms and conditions and agree to them",
+    "investment_covered": MessageLookupByLibrary.simpleMessage(
+      "Investment Covered",
     ),
     "investor_request_pending": MessageLookupByLibrary.simpleMessage(
       "Your upgrade request is under review",
@@ -400,11 +397,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "investor_request_rejected": MessageLookupByLibrary.simpleMessage(
       "Upgrade request rejected",
     ),
-    "rejection_reason_label": MessageLookupByLibrary.simpleMessage(
-      "Rejection reason: ",
-    ),
-    "request_upgrade_btn": MessageLookupByLibrary.simpleMessage(
-      "Request Upgrade",
+    "ireadTermsandiagreeit": MessageLookupByLibrary.simpleMessage(
+      "I have read the terms and conditions and agree to them",
     ),
     "jazan": MessageLookupByLibrary.simpleMessage("Jazan"),
     "jeddah": MessageLookupByLibrary.simpleMessage("Jeddah"),
@@ -465,6 +459,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "noNotifications": MessageLookupByLibrary.simpleMessage("No notifications"),
     "noRequests": MessageLookupByLibrary.simpleMessage("No requests"),
     "noStone": MessageLookupByLibrary.simpleMessage("No Stone"),
+    "no_hidden_fees": MessageLookupByLibrary.simpleMessage("No hidden fees"),
     "noamount": MessageLookupByLibrary.simpleMessage(
       "The number of units required is greater than the number available",
     ),
@@ -476,6 +471,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "No real estate listing matches the search.",
     ),
     "nospecial": MessageLookupByLibrary.simpleMessage("No special"),
+    "notify_me_future_opportunities": MessageLookupByLibrary.simpleMessage(
+      "Notify me of future opportunities",
+    ),
     "num_of_units": MessageLookupByLibrary.simpleMessage("Number of Units"),
     "numberOfApartments": MessageLookupByLibrary.simpleMessage(
       "Number of Apartments",
@@ -490,9 +488,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "oneStreetFencePercentage": MessageLookupByLibrary.simpleMessage(
       "One street",
     ),
-    "open_project_file": MessageLookupByLibrary.simpleMessage(
-      "Project File",
-    ),
+    "open_project_file": MessageLookupByLibrary.simpleMessage("Project File"),
     "open_project_location": MessageLookupByLibrary.simpleMessage(
       "Open in Google Maps",
     ),
@@ -521,14 +517,14 @@ class MessageLookup extends MessageLookupByLibrary {
     "otherDetailsOrInformation": MessageLookupByLibrary.simpleMessage(
       "Other details or information",
     ),
+    "overview": MessageLookupByLibrary.simpleMessage("Overview"),
+    "own_now": MessageLookupByLibrary.simpleMessage("Own Now"),
     "ownership_guarantees_description": MessageLookupByLibrary.simpleMessage(
       "Your home ownership is protected and guaranteed; as RCT is the owner and developer of the assets, ensuring an ownership experience characterized by security, credibility, and complete clarity throughout all stages of contracting.",
     ),
     "ownership_guarantees_title": MessageLookupByLibrary.simpleMessage(
       "Ownership Guarantees",
     ),
-    "overview": MessageLookupByLibrary.simpleMessage("Overview"),
-    "own_now": MessageLookupByLibrary.simpleMessage("Own Now"),
     "page1Description": MessageLookupByLibrary.simpleMessage(
       "We build your dreams and turn them into reality",
     ),
@@ -722,6 +718,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Account created successfully.",
     ),
     "reject": MessageLookupByLibrary.simpleMessage("Reject"),
+    "rejection_reason_label": MessageLookupByLibrary.simpleMessage(
+      "Rejection reason: ",
+    ),
     "remainingopportunities": MessageLookupByLibrary.simpleMessage(
       "Remaining opportunities : ",
     ),
@@ -751,6 +750,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "requestWillBeReviewed": MessageLookupByLibrary.simpleMessage(
       "The request will be reviewed soon, you can check the notifications",
+    ),
+    "request_upgrade_btn": MessageLookupByLibrary.simpleMessage(
+      "Request Upgrade",
     ),
     "resendverificationcode": MessageLookupByLibrary.simpleMessage(
       "Resend verification code",

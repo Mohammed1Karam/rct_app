@@ -329,7 +329,6 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "full_transparency": MessageLookupByLibrary.simpleMessage("شفافية كاملة"),
     "guaranteed_returns": MessageLookupByLibrary.simpleMessage("عوائد مضمونة"),
-    "no_hidden_fees": MessageLookupByLibrary.simpleMessage("بدون رسوم خفية"),
     "guarantees_description": MessageLookupByLibrary.simpleMessage(
       "استثمارك محمي ومضمون؛ حيث أن الجهة المالكة والمطورة للأصول الاستثمارية بشكل مباشر هي RCT ، مما يضمن أعلى مستويات الأمان والشفافية في إدارة عوائدك.",
     ),
@@ -349,8 +348,8 @@ class MessageLookup extends MessageLookupByLibrary {
       "(صك مستقل لكل وحدة)",
     ),
     "invertedBeams": MessageLookupByLibrary.simpleMessage("الجسور المقلوبة"),
-    "ireadTermsandiagreeit": MessageLookupByLibrary.simpleMessage(
-      "لقد قرأت الشروط والأحكام وأوافق عليها",
+    "investment_covered": MessageLookupByLibrary.simpleMessage(
+      "تم تغطية الاستثمار",
     ),
     "investor_request_pending": MessageLookupByLibrary.simpleMessage(
       "طلب الترقية الخاص بك قيد المراجعة",
@@ -358,8 +357,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "investor_request_rejected": MessageLookupByLibrary.simpleMessage(
       "تم رفض طلب الترقية",
     ),
-    "rejection_reason_label": MessageLookupByLibrary.simpleMessage("سبب الرفض: "),
-    "request_upgrade_btn": MessageLookupByLibrary.simpleMessage("اطلب ترقية"),
+    "ireadTermsandiagreeit": MessageLookupByLibrary.simpleMessage(
+      "لقد قرأت الشروط والأحكام وأوافق عليها",
+    ),
     "jazan": MessageLookupByLibrary.simpleMessage("جازان"),
     "jeddah": MessageLookupByLibrary.simpleMessage("جدة"),
     "joinRCT": MessageLookupByLibrary.simpleMessage("انضم إلى RCT"),
@@ -413,6 +413,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "noNotifications": MessageLookupByLibrary.simpleMessage("لا توجد اشعارات"),
     "noRequests": MessageLookupByLibrary.simpleMessage("لا توجد طلبات"),
     "noStone": MessageLookupByLibrary.simpleMessage("بدون حجر"),
+    "no_hidden_fees": MessageLookupByLibrary.simpleMessage("بدون رسوم خفية"),
     "noamount": MessageLookupByLibrary.simpleMessage(
       "الكمية المطلوبة أكبر من العدد المتاح",
     ),
@@ -424,6 +425,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "لا توجد نتائج مطابقة للبحث",
     ),
     "nospecial": MessageLookupByLibrary.simpleMessage("لا يوجد مميز"),
+    "notify_me_future_opportunities": MessageLookupByLibrary.simpleMessage(
+      "أبلغني بالفرص القادمة",
+    ),
     "num_of_units": MessageLookupByLibrary.simpleMessage("عدد الوحدات"),
     "numberOfApartments": MessageLookupByLibrary.simpleMessage("عدد الشقق"),
     "numberOfFloors": MessageLookupByLibrary.simpleMessage("عدد الأدوار"),
@@ -436,9 +440,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "oneStreetFencePercentage": MessageLookupByLibrary.simpleMessage(
       "شارع واحد",
     ),
-    "open_project_file": MessageLookupByLibrary.simpleMessage(
-      "ملف المشروع",
-    ),
+    "open_project_file": MessageLookupByLibrary.simpleMessage("ملف المشروع"),
     "open_project_location": MessageLookupByLibrary.simpleMessage(
       "فتح في خرائط جوجل",
     ),
@@ -459,12 +461,14 @@ class MessageLookup extends MessageLookupByLibrary {
     "otherDetailsOrInformation": MessageLookupByLibrary.simpleMessage(
       "تفاصيل أو معلومات أخرى",
     ),
+    "overview": MessageLookupByLibrary.simpleMessage("نظرة عامة"),
+    "own_now": MessageLookupByLibrary.simpleMessage("تملك الآن"),
     "ownership_guarantees_description": MessageLookupByLibrary.simpleMessage(
       "امتلاكك لمنزلك محمي ومضمون؛ حيث أن الجهة المالكة والمطورة للأصول هي RCT، مما يضمن لك تجربة تملك تتسم بالأمان، المصداقية، والوضوح التام في كافة مراحل التعاقد.",
     ),
-    "ownership_guarantees_title": MessageLookupByLibrary.simpleMessage("ضمانات التملك"),
-    "overview": MessageLookupByLibrary.simpleMessage("نظرة عامة"),
-    "own_now": MessageLookupByLibrary.simpleMessage("تملك الآن"),
+    "ownership_guarantees_title": MessageLookupByLibrary.simpleMessage(
+      "ضمانات التملك",
+    ),
     "page1Description": MessageLookupByLibrary.simpleMessage(
       "شركة RCT للمقاولات والاستثمار العقاري",
     ),
@@ -648,6 +652,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "تم إنشاء الحساب بنجاح",
     ),
     "reject": MessageLookupByLibrary.simpleMessage("رفض"),
+    "rejection_reason_label": MessageLookupByLibrary.simpleMessage(
+      "سبب الرفض: ",
+    ),
     "remainingopportunities": MessageLookupByLibrary.simpleMessage(
       "الفرص المتبقية:",
     ),
@@ -674,8 +681,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "تم إرسال الطلب بنجاح",
     ),
     "requestWillBeReviewed": MessageLookupByLibrary.simpleMessage(
-      "سيتم دراسة الطلب قريباً، يمكنك مراجعة الاشعارات",
+      "سيتم دراسة الطلب قريباً، يمكنك مراجعة الإشعارات",
     ),
+    "request_upgrade_btn": MessageLookupByLibrary.simpleMessage("اطلب ترقية"),
     "resendverificationcode": MessageLookupByLibrary.simpleMessage(
       "إعادة إرسال رمز التحقق",
     ),

@@ -2779,6 +2779,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Request Upgrade'**
   String get request_upgrade_btn;
+
+  /// No description provided for @investment_covered.
+  ///
+  /// In en, this message translates to:
+  /// **'Investment Covered'**
+  String get investment_covered;
+
+  /// No description provided for @notify_me_future_opportunities.
+  ///
+  /// In en, this message translates to:
+  /// **'Notify me of future opportunities'**
+  String get notify_me_future_opportunities;
 }
 
 class _AppLocalizationsDelegate

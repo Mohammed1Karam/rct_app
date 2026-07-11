@@ -1428,4 +1428,11 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get request_upgrade_btn => 'Request Upgrade';
+
+  @override
+  String get investment_covered => 'Investment Covered';
+
+  @override
+  String get notify_me_future_opportunities =>
+      'Notify me of future opportunities';
 }

@@ -3344,10 +3344,10 @@ class S {
     );
   }
 
-  /// `View project location`
+  /// `Open in Google Maps`
   String get open_project_location {
     return Intl.message(
-      'View project location',
+      'Open in Google Maps',
       name: 'open_project_location',
       desc: '',
       args: [],
@@ -3634,6 +3634,26 @@ class S {
     );
   }
 
+  /// `Ownership Guarantees`
+  String get ownership_guarantees_title {
+    return Intl.message(
+      'Ownership Guarantees',
+      name: 'ownership_guarantees_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your home ownership is protected and guaranteed; as RCT is the owner and developer of the assets, ensuring an ownership experience characterized by security, credibility, and complete clarity throughout all stages of contracting.`
+  String get ownership_guarantees_description {
+    return Intl.message(
+      'Your home ownership is protected and guaranteed; as RCT is the owner and developer of the assets, ensuring an ownership experience characterized by security, credibility, and complete clarity throughout all stages of contracting.',
+      name: 'ownership_guarantees_description',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Direct Ownership`
   String get direct_ownership {
     return Intl.message(
@@ -3669,26 +3689,6 @@ class S {
     return Intl.message(
       'No hidden fees',
       name: 'no_hidden_fees',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Ownership Guarantees`
-  String get ownership_guarantees_title {
-    return Intl.message(
-      'Ownership Guarantees',
-      name: 'ownership_guarantees_title',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Your home ownership is protected and guaranteed; as RCT is the owner and developer of the assets, ensuring an ownership experience characterized by security, credibility, and complete clarity throughout all stages of contracting.`
-  String get ownership_guarantees_description {
-    return Intl.message(
-      'Your home ownership is protected and guaranteed; as RCT is the owner and developer of the assets, ensuring an ownership experience characterized by security, credibility, and complete clarity throughout all stages of contracting.',
-      name: 'ownership_guarantees_description',
       desc: '',
       args: [],
     );
@@ -3784,6 +3784,26 @@ class S {
     return Intl.message(
       'Request Upgrade',
       name: 'request_upgrade_btn',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Investment Covered`
+  String get investment_covered {
+    return Intl.message(
+      'Investment Covered',
+      name: 'investment_covered',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Notify me of future opportunities`
+  String get notify_me_future_opportunities {
+    return Intl.message(
+      'Notify me of future opportunities',
+      name: 'notify_me_future_opportunities',
       desc: '',
       args: [],
     );

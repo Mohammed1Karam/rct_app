@@ -1399,4 +1399,10 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get request_upgrade_btn => 'اطلب ترقية';
+
+  @override
+  String get investment_covered => 'تم تغطية الاستثمار';
+
+  @override
+  String get notify_me_future_opportunities => 'أبلغني بالفرص القادمة';
 }

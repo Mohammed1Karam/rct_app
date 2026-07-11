@@ -440,5 +440,7 @@
   "investor_request_pending": "طلب الترقية الخاص بك قيد المراجعة",
   "investor_request_rejected": "تم رفض طلب الترقية",
   "rejection_reason_label": "سبب الرفض: ",
-  "request_upgrade_btn": "اطلب ترقية"
+  "request_upgrade_btn": "اطلب ترقية",
+  "investment_covered": "تم تغطية الاستثمار",
+  "notify_me_future_opportunities": "أبلغني بالفرص القادمة"
 }

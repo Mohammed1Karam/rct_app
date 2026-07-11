@@ -471,5 +471,7 @@
   "investor_request_pending": "Your upgrade request is under review",
   "investor_request_rejected": "Upgrade request rejected",
   "rejection_reason_label": "Rejection reason: ",
-  "request_upgrade_btn": "Request Upgrade"
+  "request_upgrade_btn": "Request Upgrade",
+  "investment_covered": "Investment Covered",
+  "notify_me_future_opportunities": "Notify me of future opportunities"
 }

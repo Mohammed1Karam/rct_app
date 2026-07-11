@@ -124,13 +124,18 @@ class ShareCubit extends Cubit<ShareState> {
 
   Future<void> filterByCategory(String category) async {
     emit(ShareLoading());
-    if (category == "فرص مكتملة" || category == "Completed") {
+    if (category == "فرص مكتملة" ||
+        category == "Completed" ||
+        category == "مكتملة") {
       try {
         filterByCategoryList = allShareList.where((item) {
-          int completedOpportunities = (int.tryParse(item.opportunity_count)! -
-              int.tryParse(item.number_opportunity_pay)!);
-          print(completedOpportunities);
-          return completedOpportunities == 0;
+          int total =
+              int.tryParse(item.opportunity_count?.toString() ?? '0') ?? 0;
+          int paid =
+              int.tryParse(item.number_opportunity_pay?.toString() ?? '0') ?? 0;
+
+          // An opportunity is completed if total count > 0 and paid matches or exceeds it
+          return total > 0 && paid >= total;
         }).toList();
 
         if (filterByCategoryList!.isEmpty) {

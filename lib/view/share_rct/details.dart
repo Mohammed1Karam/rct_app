@@ -366,6 +366,32 @@ class _ShareDetailsState extends State<ShareDetails> {
     double totalAmount = countofchances * price;
     bool isUpgradeRequired = totalAmount > 30000;
 
+    if (remaining <= 0) {
+      return GestureDetector(
+        onTap: () {
+
+        },
+        child: Container(
+          width: double.infinity,
+          height: 56.h,
+          decoration: BoxDecoration(
+            color: const Color(0xFF20262F),
+            borderRadius: BorderRadius.circular(12.r),
+          ),
+          child: Center(
+            child: CustomText(
+              text: local.notify_me_future_opportunities,
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 14.sp,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+          ),
+        ),
+      );
+    }
+
     return GestureDetector(
       onTap: isPending && remaining > 0
           ? () async {
@@ -834,11 +860,16 @@ class _ShareDetailsState extends State<ShareDetails> {
     int total = int.tryParse(product.opportunity_count.toString()) ?? 0;
     int paid = int.tryParse(product.number_opportunity_pay.toString()) ?? 0;
     int remaining = total - paid;
-    double oppPrice = double.tryParse(product.opportunity_price.toString()) ?? 0;
+    double oppPrice =
+        double.tryParse(product.opportunity_price.toString()) ?? 0;
     double percent = double.tryParse(product.percent_number.toString()) ?? 0;
-    
-    double totalAmount = countofchances * oppPrice;
-    double estimatedProfit = (totalAmount * (percent / 100)) * double.parse(product.project_duration.toString());
+
+    bool isCompleted = remaining == 0;
+    double totalAmount = isCompleted ? 0 : countofchances * oppPrice;
+    double estimatedProfit = isCompleted
+        ? 0
+        : (totalAmount * (percent / 100)) *
+            double.parse(product.project_duration.toString());
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -865,22 +896,28 @@ class _ShareDetailsState extends State<ShareDetails> {
                 children: [
                   _buildCounterButton(
                     icon: Icons.remove,
-                    onTap: () {
-                      if (countofchances > 1) {
-                        setState(() {
-                          countofchances--;
-                        });
-                      }
-                    },
+                    onTap: isCompleted
+                        ? null
+                        : () {
+                            if (countofchances > 1) {
+                              setState(() {
+                                countofchances--;
+                              });
+                            }
+                          },
                   ),
                   Column(
                     children: [
                       CustomText(
-                        text: countofchances.toString().padLeft(2, '0'),
+                        text: isCompleted
+                            ? "00"
+                            : countofchances.toString().padLeft(2, '0'),
                         style: TextStyle(
                           fontSize: 24.sp,
                           fontWeight: FontWeight.w700,
-                          color: const Color(0xFF20262F),
+                          color: isCompleted
+                              ? const Color(0xFF8A8A8A)
+                              : const Color(0xFF20262F),
                         ),
                       ),
                       CustomText(
@@ -894,16 +931,30 @@ class _ShareDetailsState extends State<ShareDetails> {
                   ),
                   _buildCounterButton(
                     icon: Icons.add,
-                    onTap: () {
-                      if (countofchances < remaining) {
-                        setState(() {
-                          countofchances++;
-                        });
-                      }
-                    },
+                    onTap: isCompleted
+                        ? null
+                        : () {
+                            if (countofchances < remaining) {
+                              setState(() {
+                                countofchances++;
+                              });
+                            }
+                          },
                   ),
                 ],
               ),
+              if (isCompleted)
+                Padding(
+                  padding: EdgeInsets.only(top: 16.h),
+                  child: CustomText(
+                    text: local.investment_covered,
+                    style: TextStyle(
+                      color: Colors.red,
+                      fontSize: 14.sp,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
               SizedBox(height: 16.h),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -932,38 +983,45 @@ class _ShareDetailsState extends State<ShareDetails> {
         _buildSummaryRow(
           title: local.total_amount,
           value: NumberFormat('#,###').format(totalAmount),
-          textColor: const Color(0xFF20262F),
+          textColor:
+              isCompleted ? const Color(0xFF8A8A8A) : const Color(0xFF20262F),
         ),
         SizedBox(height: 16.h),
         _buildSummaryRow(
           title: local.total_profit,
           subtitle: local.during_months(product.project_duration.toString()),
           value: NumberFormat('#,###').format(estimatedProfit),
-          textColor: const Color(0xFF2E7D32),
-          showTrend: true,
+          textColor:
+              isCompleted ? const Color(0xFF8A8A8A) : const Color(0xFF2E7D32),
+          showTrend: !isCompleted,
         ),
       ],
     );
   }
 
-  Widget _buildCounterButton({required IconData icon, required VoidCallback onTap}) {
+  Widget _buildCounterButton({required IconData icon, VoidCallback? onTap}) {
+    bool isEnabled = onTap != null;
     return GestureDetector(
       onTap: onTap,
       child: Container(
         width: 48.w,
         height: 48.h,
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: isEnabled ? Colors.white : const Color(0xFFF5F5F5),
           shape: BoxShape.circle,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.05),
-              blurRadius: 10,
-              offset: const Offset(0, 4),
-            ),
-          ],
+          boxShadow: isEnabled
+              ? [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.05),
+                    blurRadius: 10,
+                    offset: const Offset(0, 4),
+                  ),
+                ]
+              : null,
         ),
-        child: Icon(icon, color: const Color(0xFF20262F), size: 24.sp),
+        child: Icon(icon,
+            color: isEnabled ? const Color(0xFF20262F) : const Color(0xFFBDBDBD),
+            size: 24.sp),
       ),
     );
   }
