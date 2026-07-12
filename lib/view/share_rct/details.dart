@@ -21,6 +21,7 @@ import '../../common copounents/custom_text.dart';
 import '../../common copounents/pdf_viewer_view.dart';
 import '../../generated/l10n.dart';
 import '../google maps/open_in_maps.dart';
+import 'package:rct/shared_pref.dart';
 
 import 'details_cubit.dart';
 import 'details_repository.dart';
@@ -43,12 +44,14 @@ class _ShareDetailsState extends State<ShareDetails> {
   int _selectedTabIndex = 0;
   int _currentImagePage = 0;
   bool? isLoggedIn;
+  bool isQualifiedInvestor = false;
   late final ShareDetailsCubit _cubit;
 
   @override
   void initState() {
     super.initState();
     countofchances = 1;
+    isQualifiedInvestor = AppPreferences.getData(key: 'is_qualified_investor') ?? false;
     _cubit = ShareDetailsCubit(ShareDetailsRepository());
     _cubit.getOpportunityDetails(widget.id);
   }
@@ -70,7 +73,7 @@ class _ShareDetailsState extends State<ShareDetails> {
             builder: (context, state) {
               if (state is ShareDetailsSuccess) {
                 return IconButton(
-                  icon:  SvgPicture.asset("assets/icons/shareIcon.svg"),
+                  icon:  SvgPicture.asset("assets/icons/shareIcoin.svg"),
                   onPressed: () {
                     final deepLink = "$linkServerName/details/${state.product.id}";
                     Share.share("$deepLink : ${state.product.name}");
@@ -327,7 +330,7 @@ class _ShareDetailsState extends State<ShareDetails> {
               CustomText(
                 text: local.guarantees_title,
                 style: TextStyle(
-                  fontSize: 16.sp,
+                  fontSize: 12.sp,
                   fontWeight: FontWeight.w700,
                   color: const Color(0xFF20262F),
                 ),
@@ -338,7 +341,7 @@ class _ShareDetailsState extends State<ShareDetails> {
           CustomText(
             text: local.guarantees_description,
             style: TextStyle(
-              fontSize: 12.sp,
+              fontSize: 10.sp,
               color: const Color(0xFF494949),
               height: 1.6,
             ),
@@ -375,7 +378,7 @@ class _ShareDetailsState extends State<ShareDetails> {
           CustomText(
             text: text,
             style: TextStyle(
-              fontSize: 10.sp,
+              fontSize: 8.sp,
               color: const Color(0xFF3B82F6),
               fontWeight: FontWeight.w600,
             ),
@@ -392,7 +395,7 @@ class _ShareDetailsState extends State<ShareDetails> {
         (int.tryParse(product.number_opportunity_pay.toString()) ?? 0);
     bool isPending = product.status == "pending";
     double totalAmount = countofchances * price;
-    bool isUpgradeRequired = totalAmount > 30000;
+    bool isUpgradeRequired = totalAmount > 30000 && !isQualifiedInvestor;
 
     if (remaining <= 0) {
       return GestureDetector(
@@ -429,7 +432,7 @@ class _ShareDetailsState extends State<ShareDetails> {
               }
               bool logged = await Checktoken().hasToken();
               if (logged) {
-                if (countofchances > 0) {
+                if (countofchances > 0 || isQualifiedInvestor) {
                   Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: (context) => PostUserDetails(
@@ -462,7 +465,7 @@ class _ShareDetailsState extends State<ShareDetails> {
           child: CustomText(
             text: isUpgradeRequired
                 ? local.upgrade_request
-                : local.join_now,
+                : local.share_now,
             style: TextStyle(
               color: Colors.white,
               fontSize: 14.sp,
@@ -673,7 +676,7 @@ class _ShareDetailsState extends State<ShareDetails> {
                 child: CustomText(
                   text: title,
                   style: TextStyle(
-                    fontSize: 14.sp,
+                    fontSize: 10.sp,
                     fontWeight: FontWeight.w600,
                     color: const Color(0xFF20262F),
                   ),
@@ -809,7 +812,7 @@ class _ShareDetailsState extends State<ShareDetails> {
                       CustomText(
                         text: value,
                         style: TextStyle(
-                          fontSize: 14.sp,
+                          fontSize: 10.sp,
                           color: const Color(0xFF20262F),
                           fontWeight: FontWeight.w700,
                         ),
@@ -924,7 +927,7 @@ class _ShareDetailsState extends State<ShareDetails> {
         CustomText(
           text: local.determine_investment_size,
           style: TextStyle(
-            fontSize: 16.sp,
+            fontSize: 12.sp,
             fontWeight: FontWeight.w700,
             color: const Color(0xFF20262F),
           ),
@@ -960,7 +963,7 @@ class _ShareDetailsState extends State<ShareDetails> {
                             ? "00"
                             : countofchances.toString().padLeft(2, '0'),
                         style: TextStyle(
-                          fontSize: 24.sp,
+                          fontSize: 14.sp,
                           fontWeight: FontWeight.w700,
                           color: isCompleted
                               ? const Color(0xFF8A8A8A)
@@ -1013,7 +1016,7 @@ class _ShareDetailsState extends State<ShareDetails> {
                           .replaceAll("SAR", "")
                           .trim(),
                       style: TextStyle(
-                        fontSize: 12.sp,
+                        fontSize: 10.sp,
                         color: const Color(0xFF8A8A8A),
                       ),
                       textAlign: TextAlign.center,
@@ -1097,7 +1100,7 @@ class _ShareDetailsState extends State<ShareDetails> {
               CustomText(
                 text: subtitle,
                 style: TextStyle(
-                  fontSize: 14.sp,
+                  fontSize: 12.sp,
                   color: const Color(0xFF8A8A8A),
                 ),
               ),
@@ -1111,7 +1114,7 @@ class _ShareDetailsState extends State<ShareDetails> {
         CustomText(
           text: value,
           style: TextStyle(
-            fontSize: 16.sp,
+            fontSize: 12.sp,
             fontWeight: FontWeight.w700,
             color: textColor,
           ),

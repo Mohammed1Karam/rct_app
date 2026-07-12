@@ -45,6 +45,7 @@ class Modelget extends ChangeNotifier {
   String? file2;
   String? file3;
   bool? is_qualified_investor;
+  String? house_name;
 
   Modelget({
     this.opportunity_price,
@@ -91,6 +92,8 @@ class Modelget extends ChangeNotifier {
     this.file2,
     this.file3,
     this.is_qualified_investor,
+    this.house_name,
+
   });
 
   factory Modelget.fromJson(Map<String, dynamic> json) {
@@ -139,6 +142,7 @@ class Modelget extends ChangeNotifier {
       file2: _toString(json['file2']),
       file3: _toString(json['file3']),
       is_qualified_investor: json['is_qualified_investor'],
+      house_name: _toString(json['house_name']),
     );
   }
 

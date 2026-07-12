@@ -938,7 +938,7 @@ class _OwnershipDetailsScreenState extends State<OwnershipDetailsScreen> {
               CustomText(
                 text: local.ownership_guarantees_title,
                 style: TextStyle(
-                  fontSize: 16.sp,
+                  fontSize: 12.sp,
                   fontWeight: FontWeight.w700,
                   color: const Color(0xFF20262F),
                 ),
@@ -949,7 +949,7 @@ class _OwnershipDetailsScreenState extends State<OwnershipDetailsScreen> {
           CustomText(
             text: local.ownership_guarantees_description,
             style: TextStyle(
-              fontSize: 12.sp,
+              fontSize: 10.sp,
               color: const Color(0xFF494949),
               height: 1.6,
             ),
@@ -986,7 +986,7 @@ class _OwnershipDetailsScreenState extends State<OwnershipDetailsScreen> {
           CustomText(
             text: text,
             style: TextStyle(
-              fontSize: 10.sp,
+              fontSize: 8.sp,
               color: const Color(0xFF3B82F6),
               fontWeight: FontWeight.w600,
             ),
@@ -998,6 +998,7 @@ class _OwnershipDetailsScreenState extends State<OwnershipDetailsScreen> {
 
   Widget _buildStatItem(String text, String iconPath) {
     return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         SvgPicture.asset(iconPath, width: 16.w, height: 16.h, colorFilter: const ColorFilter.mode(Color(0xFF494949), BlendMode.srcIn)),
         SizedBox(width: 4.w),
@@ -1121,7 +1122,7 @@ class _OwnershipDetailsScreenState extends State<OwnershipDetailsScreen> {
                       CustomText(
                         text: value,
                         style: TextStyle(
-                          fontSize: 14.sp,
+                          fontSize: 10.sp,
                           color: const Color(0xFF20262F),
                           fontWeight: FontWeight.w700,
                         ),
@@ -1161,7 +1162,7 @@ class _OwnershipDetailsScreenState extends State<OwnershipDetailsScreen> {
               children: [
                 SvgPicture.asset("assets/icons/pdf.svg", width: 24.w, height: 24.h),
                 SizedBox(width: 12.w),
-                CustomText(text: local.open_project_file, style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w600, color: const Color(0xFF20262F))),
+                CustomText(text: local.open_project_file, style: TextStyle(fontSize: 10.sp, fontWeight: FontWeight.w600, color: const Color(0xFF20262F))),
                 const Spacer(),
                 Icon(Icons.file_download_outlined, color: const Color(0xFF8A8A8A), size: 24.sp),
               ],
@@ -1214,7 +1215,7 @@ class _OwnershipDetailsScreenState extends State<OwnershipDetailsScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        CustomText(text: local.num_of_units, style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w700, color: const Color(0xFF20262F))),
+        CustomText(text: local.num_of_units, style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w700, color: const Color(0xFF20262F))),
         SizedBox(height: 16.h),
         Container(
           padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 24.h),
@@ -1227,7 +1228,7 @@ class _OwnershipDetailsScreenState extends State<OwnershipDetailsScreen> {
                   _buildCounterButton(icon: Icons.remove, onTap: () { if (quantity > 1) setState(() => quantity--); }),
                   Column(
                     children: [
-                      CustomText(text: quantity.toString().padLeft(2, '0'), style: TextStyle(fontSize: 24.sp, fontWeight: FontWeight.w700, color: const Color(0xFF20262F))),
+                      CustomText(text: quantity.toString().padLeft(2, '0'), style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w700, color: const Color(0xFF20262F))),
                       CustomText(text: local.num_of_units, style: TextStyle(fontSize: 12.sp, color: const Color(0xFF8A8A8A))),
                     ],
                   ),
@@ -1248,7 +1249,7 @@ class _OwnershipDetailsScreenState extends State<OwnershipDetailsScreen> {
             ),
             Row(
               children: [
-                CustomText(text: NumberFormat('#,###').format(totalFirstPayment), style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w700, color: const Color(0xFF20262F))),
+                CustomText(text: NumberFormat('#,###').format(totalFirstPayment), style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w700, color: const Color(0xFF20262F))),
                 SizedBox(width: 4.w),
                 SarImage(color: const Color(0xFF20262F), height: 16.h),
               ],
@@ -1279,7 +1280,7 @@ class _OwnershipDetailsScreenState extends State<OwnershipDetailsScreen> {
             ),
             Row(
               children: [
-                CustomText(text: NumberFormat('#,###').format(totalAmount), style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w700, color: const Color(0xFF20262F))),
+                CustomText(text: NumberFormat('#,###').format(totalAmount), style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w700, color: const Color(0xFF20262F))),
                 SizedBox(width: 4.w),
                 SarImage(color: const Color(0xFF20262F), height: 16.h),
               ],

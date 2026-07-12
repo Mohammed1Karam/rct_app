@@ -954,7 +954,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
               padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 8.h),
               decoration: BoxDecoration(borderRadius: BorderRadius.circular(24.r), color: Colors.white),
               child: CustomText(
-                text: S.of(context).existing,
+                text: product.house_type,
                 style: TextStyle(fontSize: 14.sp, color: const Color(0xFF20262F), fontWeight: FontWeight.w600),
               ),
             ),
@@ -978,8 +978,8 @@ class _DetailsScreenState extends State<DetailsScreen> {
             children: [
               Expanded(
                 child: CustomText(
-                  text: product.house_type ?? product.name ?? '',
-                  style: TextStyle(fontSize: 18.sp, color: Colors.black, fontWeight: FontWeight.w700),
+                  text: product.house_name??product.type,
+                  style: TextStyle(fontSize: 14.sp, color: Colors.black, fontWeight: FontWeight.w700),
                 ),
               ),
               Row(
@@ -987,7 +987,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                   if (CacheHelper.getData(key: "lang") == "ar") SarImage(height: 18.h, color: primaryColor),
                   CustomText(
                     text: " $formattedCost ",
-                    style: TextStyle(fontSize: 18.sp, color: Colors.black, fontWeight: FontWeight.w700),
+                    style: TextStyle(fontSize: 14.sp, color: Colors.black, fontWeight: FontWeight.w700),
                   ),
                   if (CacheHelper.getData(key: "lang") == "en") SarImage(height: 18.h, color: primaryColor),
                 ],
@@ -1121,7 +1121,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
             SizedBox(width: 12.w),
             CustomText(
               text: local.open_project_file,
-              style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w600, color: const Color(0xFF20262F)),
+              style: TextStyle(fontSize: 10.sp, fontWeight: FontWeight.w600, color: const Color(0xFF20262F)),
             ),
             const Spacer(),
             Icon(Icons.file_download_outlined, color: const Color(0xFF8A8A8A), size: 24.sp),
