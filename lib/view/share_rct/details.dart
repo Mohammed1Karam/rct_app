@@ -13,7 +13,9 @@ import 'package:rct/model/modelget.dart';
 import 'package:rct/view/auth/sendotp.dart';
 import 'package:rct/view/share_rct/userdetails.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:rct/constants/linkapi.dart';
 import 'package:rct/services/cache_helper.dart';
+import 'package:share_plus/share_plus.dart';
 
 import '../../common copounents/custom_text.dart';
 import '../../common copounents/pdf_viewer_view.dart';
@@ -55,6 +57,32 @@ class _ShareDetailsState extends State<ShareDetails> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_ios_new_sharp, color: Colors.black),
+          onPressed: () => Navigator.pop(context),
+        ),
+        actions: [
+          BlocBuilder<ShareDetailsCubit, ShareDetailsState>(
+            bloc: _cubit,
+            builder: (context, state) {
+              if (state is ShareDetailsSuccess) {
+                return IconButton(
+                  icon:  SvgPicture.asset("assets/icons/shareIcon.svg"),
+                  onPressed: () {
+                    final deepLink = "$linkServerName/details/${state.product.id}";
+                    Share.share("$deepLink : ${state.product.name}");
+                  },
+                );
+              }
+              return const SizedBox.shrink();
+            },
+          ),
+          SizedBox(width: 10.w),
+        ],
+      ),
       body: SafeArea(
         child: BlocProvider.value(
           value: _cubit,
@@ -592,55 +620,74 @@ class _ShareDetailsState extends State<ShareDetails> {
     return Column(
       children: [
         SizedBox(height: 20.h),
-        GestureDetector(
-          onTap: () {
-            if (product.file != null && product.file != '') {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => PDFViewerPage(pdfUrl: product.file!),
-                ),
-              );
-            } else {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text(local.file_not_found)),
-              );
-            }
-          },
-          child: Container(
-            padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(16.r),
-              border: Border.all(color: const Color(0xFFEEEEEE)),
+        if (product.file != null && product.file != '')
+          _buildDocumentRow(local.executive_summary, product.file!),
+        if (product.file2 != null && product.file2 != '')
+          _buildDocumentRow(local.offering_document, product.file2!),
+        if (product.file3 != null && product.file3 != '')
+          _buildDocumentRow(local.open_project_file, product.file3!),
+        if ((product.file == null || product.file == '') &&
+            (product.file2 == null || product.file2 == '') &&
+            (product.file3 == null || product.file3 == ''))
+          Center(
+            child: Padding(
+              padding: EdgeInsets.symmetric(vertical: 20.h),
+              child: CustomText(
+                text: local.file_not_found,
+                style: TextStyle(fontSize: 14.sp, color: Colors.grey),
+              ),
             ),
-            child: Row(
-              children: [
-                SvgPicture.asset(
-                  "assets/icons/document-text.svg",
-                  width: 24.w,
-                  height: 24.h,
-                ),
-                SizedBox(width: 12.w),
-                CustomText(
-                  text: local.open_project_file,
+          ),
+      ],
+    );
+  }
+
+  Widget _buildDocumentRow(String title, String url) {
+    return Padding(
+      padding: EdgeInsets.only(bottom: 12.h),
+      child: GestureDetector(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => PDFViewerPage(pdfUrl: url),
+            ),
+          );
+        },
+        child: Container(
+          padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(16.r),
+            border: Border.all(color: const Color(0xFFEEEEEE)),
+          ),
+          child: Row(
+            children: [
+              SvgPicture.asset(
+                "assets/icons/document-text.svg",
+                width: 24.w,
+                height: 24.h,
+              ),
+              SizedBox(width: 12.w),
+              Expanded(
+                child: CustomText(
+                  text: title,
                   style: TextStyle(
                     fontSize: 14.sp,
                     fontWeight: FontWeight.w600,
                     color: const Color(0xFF20262F),
                   ),
                 ),
-                const Spacer(),
-                Icon(
-                  Icons.file_download_outlined,
-                  color: const Color(0xFF8A8A8A),
-                  size: 24.sp,
-                ),
-              ],
-            ),
+              ),
+              Icon(
+                Icons.file_download_outlined,
+                color: const Color(0xFF8A8A8A),
+                size: 24.sp,
+              ),
+            ],
           ),
         ),
-      ],
+      ),
     );
   }
 

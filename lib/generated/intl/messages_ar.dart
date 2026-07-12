@@ -20,9 +20,15 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'ar';
 
-  static String m0(duration) => "(خلال ${duration} شهر)";
+  static String m0(area) => "${area} م²";
 
-  static String m1(age) => "عمر العقار: ${age} سنوات";
+  static String m1(count) => "${count} حمام";
+
+  static String m2(duration) => "(خلال ${duration} شهر)";
+
+  static String m3(age) => "عمر العقار: ${age} سنوات";
+
+  static String m4(count) => "${count} غرف";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -97,6 +103,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "الأسعار تشمل كافة التفاصيل والرسوم:",
     ),
     "arabic": MessageLookupByLibrary.simpleMessage("العربية"),
+    "area_sqm": m0,
     "areyousureyouwanttocanceltheorder": MessageLookupByLibrary.simpleMessage(
       "هل أنت متأكد من إلغاء الطلب؟",
     ),
@@ -106,6 +113,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "attachTransferReceipt": MessageLookupByLibrary.simpleMessage(
       "إرفاق إيصال التحويل",
     ),
+    "bathrooms_count": m1,
     "betSeller": MessageLookupByLibrary.simpleMessage("الأكثر مبيعاً"),
     "birthDate": MessageLookupByLibrary.simpleMessage("تاريخ الميلاد"),
     "building": MessageLookupByLibrary.simpleMessage("عمائر"),
@@ -242,7 +250,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "dontFound": MessageLookupByLibrary.simpleMessage(
       "لا توجد نتائج مطابقة للبحث",
     ),
-    "during_months": m0,
+    "during_months": m2,
     "editFile": MessageLookupByLibrary.simpleMessage("تعديل الملف الشخصي"),
     "electronicDeed": MessageLookupByLibrary.simpleMessage("الصك الإلكتروني *"),
     "email": MessageLookupByLibrary.simpleMessage("البريد الإلكتروني"),
@@ -362,7 +370,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "jazan": MessageLookupByLibrary.simpleMessage("جازان"),
     "jeddah": MessageLookupByLibrary.simpleMessage("جدة"),
-    "joinRCT": MessageLookupByLibrary.simpleMessage("انضم إلى RCT"),
+    "joinRCT": MessageLookupByLibrary.simpleMessage("شارك RCT"),
     "join_now": MessageLookupByLibrary.simpleMessage("انضم الآن"),
     "khamisMushait": MessageLookupByLibrary.simpleMessage("خميس مشيط"),
     "khobar": MessageLookupByLibrary.simpleMessage("الخبر"),
@@ -371,6 +379,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "هل يوجد تقرير فحص التربة؟",
     ),
     "landdetails": MessageLookupByLibrary.simpleMessage("تفاصيل الأرض"),
+    "language": MessageLookupByLibrary.simpleMessage("English"),
     "license_number": MessageLookupByLibrary.simpleMessage("رقم ترخيص الإعلان"),
     "loadingError": MessageLookupByLibrary.simpleMessage(
       "حدث خطأ أثناء التحميل، حاول مرة أخرى",
@@ -432,6 +441,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "numberOfApartments": MessageLookupByLibrary.simpleMessage("عدد الشقق"),
     "numberOfFloors": MessageLookupByLibrary.simpleMessage("عدد الأدوار"),
     "of_text": MessageLookupByLibrary.simpleMessage("من"),
+    "offering_document": MessageLookupByLibrary.simpleMessage("مستند الطرح"),
     "ok": MessageLookupByLibrary.simpleMessage("موافق"),
     "oldBuildings": MessageLookupByLibrary.simpleMessage("مباني قديمة"),
     "oldBuildingsOrders": MessageLookupByLibrary.simpleMessage(
@@ -603,7 +613,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "project_duration": MessageLookupByLibrary.simpleMessage("مدة المشروع"),
     "project_name": MessageLookupByLibrary.simpleMessage("اسم المشروع"),
     "propertyLocation": MessageLookupByLibrary.simpleMessage("موقع العقار"),
-    "property_age_years": m1,
+    "property_age_years": m3,
     "q1": MessageLookupByLibrary.simpleMessage(
       "1. هل أستطيع إضافة عقاري للتطبيق؟",
     ),
@@ -693,6 +703,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "return_date": MessageLookupByLibrary.simpleMessage("تاريخ التوزيع القادم"),
     "return_type": MessageLookupByLibrary.simpleMessage("نوع العائد"),
     "riyadh": MessageLookupByLibrary.simpleMessage("الرياض"),
+    "rooms_count": m4,
     "rowland": MessageLookupByLibrary.simpleMessage("أرض خام"),
     "sar": MessageLookupByLibrary.simpleMessage("ريال"),
     "save": MessageLookupByLibrary.simpleMessage("حفظ"),

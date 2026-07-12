@@ -430,7 +430,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get rowland => 'أرض خام';
 
   @override
-  String get joinRCT => 'انضم إلى RCT';
+  String get joinRCT => 'شارك RCT';
 
   @override
   String get choosebuidingType => 'اختر نوع البناء';
@@ -1078,7 +1078,7 @@ class AppLocalizationsAr extends AppLocalizations {
       'Calculator and Projects Orders';
 
   @override
-  String get language => 'Arabic';
+  String get language => 'English';
 
   @override
   String get renter_age => 'عمر العقار:';
@@ -1278,6 +1278,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get executive_summary => 'الملخص التنفيذي';
 
   @override
+  String get offering_document => 'مستند الطرح';
+
+  @override
   String get opportunity_status_title => 'حالة الفرص';
 
   @override
@@ -1405,4 +1408,19 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get notify_me_future_opportunities => 'أبلغني بالفرص القادمة';
+
+  @override
+  String bathrooms_count(Object count) {
+    return '$count حمام';
+  }
+
+  @override
+  String rooms_count(Object count) {
+    return '$count غرف';
+  }
+
+  @override
+  String area_sqm(Object area) {
+    return '$area م²';
+  }
 }

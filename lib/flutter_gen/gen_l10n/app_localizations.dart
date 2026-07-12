@@ -2558,6 +2558,12 @@ abstract class AppLocalizations {
   /// **'Executive Summary'**
   String get executive_summary;
 
+  /// No description provided for @offering_document.
+  ///
+  /// In en, this message translates to:
+  /// **'Offering Document'**
+  String get offering_document;
+
   /// No description provided for @opportunity_status_title.
   ///
   /// In en, this message translates to:
@@ -2791,6 +2797,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Notify me of future opportunities'**
   String get notify_me_future_opportunities;
+
+  /// No description provided for @bathrooms_count.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} Bathrooms'**
+  String bathrooms_count(Object count);
+
+  /// No description provided for @rooms_count.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} Rooms'**
+  String rooms_count(Object count);
+
+  /// No description provided for @area_sqm.
+  ///
+  /// In en, this message translates to:
+  /// **'{area} m²'**
+  String area_sqm(Object area);
 }
 
 class _AppLocalizationsDelegate

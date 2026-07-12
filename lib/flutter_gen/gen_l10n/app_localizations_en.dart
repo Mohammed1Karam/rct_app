@@ -1306,6 +1306,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get executive_summary => 'Executive Summary';
 
   @override
+  String get offering_document => 'Offering Document';
+
+  @override
   String get opportunity_status_title => 'Opportunity Status';
 
   @override
@@ -1435,4 +1438,19 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get notify_me_future_opportunities =>
       'Notify me of future opportunities';
+
+  @override
+  String bathrooms_count(Object count) {
+    return '$count Bathrooms';
+  }
+
+  @override
+  String rooms_count(Object count) {
+    return '$count Rooms';
+  }
+
+  @override
+  String area_sqm(Object area) {
+    return '$area m²';
+  }
 }

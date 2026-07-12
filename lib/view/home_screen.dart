@@ -56,9 +56,10 @@ import 'package:url_launcher/url_launcher_string.dart';
 
 import '../common copounents/custom_dialog.dart';
 import '../generated/l10n.dart';
-import 'ownership/renters_cubit.dart';
 import 'package:rct/model/investor_status_model.dart';
 import 'package:rct/view/share_rct/qualified_investor_bottom_sheet.dart';
+
+import 'ownership/renters_cubit.dart';
 
 class HomeScreen extends StatefulWidget {
   static String id = "HomeScreen";
@@ -377,8 +378,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                     SizedBox(width: 5.w),
                                     SvgPicture.asset(
                                       "assets/icons/verifyIcon.svg",
-                                      width: 15.w,
-                                      height: 15.h,
+                                      width: 7.w,
+                                      height: 7.h,
                                     ),
                                   ]
                                 ],
@@ -725,12 +726,21 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               onTap: () async {
                 if (CacheHelper.getData(key: "lang") == 'ar') {
-                  provider.setLocale(const Locale('en', 'US'));
+                  await provider.setLocale(const Locale('en', 'US'));
                   appLocale.value = 'en';
                 } else {
-                  provider.setLocale(const Locale('ar', 'SA'));
+                  await provider.setLocale(const Locale('ar', 'SA'));
                   appLocale.value = 'ar';
                 }
+
+                // Refresh data for ShareRct and OwnershipScreen
+                context
+                    .read<ShareCubit>()
+                    .fetchShare('$linkServerName/api/opportunities');
+                context
+                    .read<RentersCubit>()
+                    .fetchUnAuthData("$linkServerName/api/renters");
+
                 context.read<ShareCubit>().fetchAboutUs();
                 context.read<ShareCubit>().fetchTermsConditions();
                 context.read<ShareCubit>().fetchPrivacyList();

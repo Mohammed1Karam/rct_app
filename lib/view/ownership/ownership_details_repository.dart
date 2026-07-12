@@ -3,12 +3,14 @@ import 'package:rct/constants/linkapi.dart';
 import 'package:rct/model/renter_model.dart';
 import 'package:rct/shared_pref.dart';
 
+import '../../services/cache_helper.dart';
+
 class OwnershipDetailsRepository {
   final Dio _dio = Dio();
 
   Future<RenterModel> getRenterDetails(String id) async {
     final token = AppPreferences.getData(key: 'loginToken');
-
+    final String lang =  CacheHelper.getData(key: "lang") ?? "ar";
     try {
       final response = await _dio.get(
         '$linkServerName/api/renters/$id',
@@ -16,6 +18,7 @@ class OwnershipDetailsRepository {
           headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
+            'Accept-Language': lang,
             if (token != null) 'Authorization': 'Bearer $token',
           },
         ),

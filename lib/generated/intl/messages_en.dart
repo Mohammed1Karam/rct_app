@@ -20,9 +20,15 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
-  static String m0(duration) => "(During ${duration} months)";
+  static String m0(area) => "${area} m²";
 
-  static String m1(age) => "Property Age: ${age} years";
+  static String m1(count) => "${count} Bathrooms";
+
+  static String m2(duration) => "(During ${duration} months)";
+
+  static String m3(age) => "Property Age: ${age} years";
+
+  static String m4(count) => "${count} Rooms";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -95,6 +101,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Approximate cost details and fees:",
     ),
     "arabic": MessageLookupByLibrary.simpleMessage("Arabic"),
+    "area_sqm": m0,
     "areyousureyouwanttocanceltheorder": MessageLookupByLibrary.simpleMessage(
       "Are you sure you want to cancel the order?",
     ),
@@ -104,6 +111,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "attachTransferReceipt": MessageLookupByLibrary.simpleMessage(
       "Attach Transfer Receipt",
     ),
+    "bathrooms_count": m1,
     "betSeller": MessageLookupByLibrary.simpleMessage("Best seller"),
     "birthDate": MessageLookupByLibrary.simpleMessage("Birth Date"),
     "building": MessageLookupByLibrary.simpleMessage("Building"),
@@ -264,7 +272,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "documents": MessageLookupByLibrary.simpleMessage("Documents"),
     "done": MessageLookupByLibrary.simpleMessage("Done"),
     "dontFound": MessageLookupByLibrary.simpleMessage("Don\'t Found"),
-    "during_months": m0,
+    "during_months": m2,
     "editFile": MessageLookupByLibrary.simpleMessage("Edit Profile"),
     "electronicDeed": MessageLookupByLibrary.simpleMessage("Electronic Deed *"),
     "email": MessageLookupByLibrary.simpleMessage("Email"),
@@ -665,7 +673,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "propertyLocation": MessageLookupByLibrary.simpleMessage(
       "Property Location",
     ),
-    "property_age_years": m1,
+    "property_age_years": m3,
     "q1": MessageLookupByLibrary.simpleMessage(
       "1. Can I add my property to the app?",
     ),
@@ -767,6 +775,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "return_type": MessageLookupByLibrary.simpleMessage("Return Type"),
     "riyadh": MessageLookupByLibrary.simpleMessage("Riyadh"),
+    "rooms_count": m4,
     "rowland": MessageLookupByLibrary.simpleMessage("Raw Land"),
     "sar": MessageLookupByLibrary.simpleMessage("SAR"),
     "save": MessageLookupByLibrary.simpleMessage("Save"),

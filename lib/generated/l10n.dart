@@ -3439,6 +3439,16 @@ class S {
     );
   }
 
+  /// `Offering Document`
+  String get offering_document {
+    return Intl.message(
+      'Offering Document',
+      name: 'offering_document',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Opportunity Status`
   String get opportunity_status_title {
     return Intl.message(
@@ -3807,6 +3817,31 @@ class S {
       desc: '',
       args: [],
     );
+  }
+
+  /// `{count} Bathrooms`
+  String bathrooms_count(Object count) {
+    return Intl.message(
+      '$count Bathrooms',
+      name: 'bathrooms_count',
+      desc: '',
+      args: [count],
+    );
+  }
+
+  /// `{count} Rooms`
+  String rooms_count(Object count) {
+    return Intl.message(
+      '$count Rooms',
+      name: 'rooms_count',
+      desc: '',
+      args: [count],
+    );
+  }
+
+  /// `{area} m²`
+  String area_sqm(Object area) {
+    return Intl.message('$area m²', name: 'area_sqm', desc: '', args: [area]);
   }
 }
 

@@ -12,6 +12,7 @@ import 'package:rct/constants/linkapi.dart';
 import 'package:rct/generated/l10n.dart';
 import 'package:rct/model/modelget.dart';
 import 'package:rct/services/cache_helper.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../common copounents/custom_text.dart';
@@ -855,6 +856,24 @@ class _DetailsScreenState extends State<DetailsScreen> {
           } else if (state is RealEstateDetailsSuccess) {
             return Scaffold(
               backgroundColor: Colors.white,
+              appBar: AppBar(
+                backgroundColor: Colors.white,
+                elevation: 0,
+                leading: IconButton(
+                  icon: const Icon(Icons.arrow_back_ios_new_sharp, color: Colors.black),
+                  onPressed: () => Navigator.pop(context),
+                ),
+                actions: [
+                  IconButton(
+                    icon: SvgPicture.asset("assets/icons/shareIcon.svg"),
+                    onPressed: () {
+                      final deepLink = "$linkServerName/product/${state.product.id}";
+                      Share.share("$deepLink : ${state.product.house_type ?? state.product.name}");
+                    },
+                  ),
+                  SizedBox(width: 10.w),
+                ],
+              ),
               body: SafeArea(
                 child: SingleChildScrollView(
                   child: Column(
@@ -883,7 +902,6 @@ class _DetailsScreenState extends State<DetailsScreen> {
       ),
     );
   }
-
   Widget _displayImageSlider(double width, double height, Modelget product) {
     final images = _images(product);
 
@@ -927,14 +945,6 @@ class _DetailsScreenState extends State<DetailsScreen> {
                   color: const Color(0xFFE0E0E0),
                 ),
               ),
-            ),
-          ),
-          PositionedDirectional(
-            top: 20,
-            start: 10,
-            child: IconButton(
-              icon: const Icon(Icons.arrow_back_ios_new_sharp, color: Colors.white),
-              onPressed: () => Navigator.pop(context),
             ),
           ),
           PositionedDirectional(

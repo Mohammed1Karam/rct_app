@@ -435,6 +435,7 @@
   "documents": "Documents",
   "total_value": "Total Value",
   "executive_summary": "Executive Summary",
+  "offering_document": "Offering Document",
   "opportunity_status_title": "Opportunity Status",
   "of_text": "of",
   "completed": "completed",
@@ -473,5 +474,8 @@
   "rejection_reason_label": "Rejection reason: ",
   "request_upgrade_btn": "Request Upgrade",
   "investment_covered": "Investment Covered",
-  "notify_me_future_opportunities": "Notify me of future opportunities"
+  "notify_me_future_opportunities": "Notify me of future opportunities",
+  "bathrooms_count": "{count} Bathrooms",
+  "rooms_count": "{count} Rooms",
+  "area_sqm": "{area} m²"
 }

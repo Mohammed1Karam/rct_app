@@ -8,10 +8,12 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:rct/common%20copounents/main_button.dart';
 import 'package:rct/common%20copounents/sar_image.dart';
+import 'package:rct/constants/linkapi.dart';
 import 'package:rct/model/renter_model.dart';
 import 'package:rct/services/cache_helper.dart';
 import 'package:rct/view-model/functions/check_token.dart';
 import 'package:rct/view/ownership/contract_screen.dart';
+import 'package:share_plus/share_plus.dart';
 
 import '../../common copounents/custom_text.dart';
 import '../../common copounents/pdf_viewer_view.dart';
@@ -717,6 +719,32 @@ class _OwnershipDetailsScreenState extends State<OwnershipDetailsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_ios_new_sharp, color: Colors.black),
+          onPressed: () => Navigator.pop(context),
+        ),
+        actions: [
+          BlocBuilder<OwnershipDetailsCubit, OwnershipDetailsState>(
+            bloc: _cubit,
+            builder: (context, state) {
+              if (state is OwnershipDetailsSuccess) {
+                return IconButton(
+                  icon: SvgPicture.asset("assets/icons/shareIcon.svg"),
+                  onPressed: () {
+                    final deepLink = "$linkServerName/details/${state.renter.id}";
+                    Share.share("$deepLink : ${state.renter.title}");
+                  },
+                );
+              }
+              return const SizedBox.shrink();
+            },
+          ),
+          SizedBox(width: 10.w),
+        ],
+      ),
       body: SafeArea(
         child: BlocProvider.value(
           value: _cubit,
@@ -797,14 +825,6 @@ class _OwnershipDetailsScreenState extends State<OwnershipDetailsScreen> {
               ),
             ),
           ),
-          PositionedDirectional(
-            top: 20,
-            start: 20,
-            child: IconButton(
-              icon: const Icon(Icons.arrow_back_ios, color: Colors.white),
-              onPressed: () => Navigator.pop(context),
-            ),
-          ),
         ],
       ),
     );
@@ -840,9 +860,9 @@ class _OwnershipDetailsScreenState extends State<OwnershipDetailsScreen> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              _buildStatItem("${renter.area ?? 0} م²", "assets/icons/homeSize.svg"),
-              _buildStatItem("${renter.bathrooms ?? 0} حمام", "assets/icons/bath.svg"),
-              _buildStatItem("${renter.rooms ?? 0} غرف", "assets/icons/bed.svg"),
+              _buildStatItem(local.area_sqm(renter.area ?? 0), "assets/icons/homeSize.svg"),
+              _buildStatItem(local.bathrooms_count(renter.bathrooms ?? 0), "assets/icons/bath.svg"),
+              _buildStatItem(local.rooms_count(renter.rooms ?? 0), "assets/icons/bed.svg"),
             ],
           ),
           SizedBox(height: 16.h),

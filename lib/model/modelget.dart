@@ -42,6 +42,8 @@ class Modelget extends ChangeNotifier {
   dynamic project_duration;
   dynamic electronic_instrument;
   String? file;
+  String? file2;
+  String? file3;
   bool? is_qualified_investor;
 
   Modelget({
@@ -86,6 +88,8 @@ class Modelget extends ChangeNotifier {
     this.real_estate_authority,
     this.barcode,
     this.file,
+    this.file2,
+    this.file3,
     this.is_qualified_investor,
   });
 
@@ -132,6 +136,8 @@ class Modelget extends ChangeNotifier {
       identity_number: _toString(json['identity_number']),
       birthdate: _toString(json['client_birth']),
       file: _toString(json['file']),
+      file2: _toString(json['file2']),
+      file3: _toString(json['file3']),
       is_qualified_investor: json['is_qualified_investor'],
     );
   }
@@ -190,6 +196,8 @@ class Modelget extends ChangeNotifier {
       'percent_number': percent_number,
       'electronic_instrument': electronic_instrument,
       'file': file,
+      'file2': file2,
+      'file3': file3,
       'is_qualified_investor': is_qualified_investor,
     };
   }

@@ -12,7 +12,7 @@ class ShareDetailsRepository {
 
   Future<Modelget> getOpportunityDetails(String id) async {
     final String? token = await secureStorage.read(key: "token");
-    final String lang = CacheHelper.getData(key: "lang") ?? "ar";
+    final String lang = await CacheHelper.getData(key: "lang") ?? "ar";
     try {
       final response = await _dio.get(
         '$shareRCT/$id',

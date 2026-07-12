@@ -137,7 +137,8 @@
   "chances": "الفرص",
   "presentestate": "عقار قائم",
   "rowland": "أرض خام",
-  "joinRCT": "انضم إلى RCT",
+  "joinRCT": "شارك RCT",
+  "language": "English",
   "choosebuidingType": "اختر نوع البناء",
   "birthDate": "تاريخ الميلاد",
   "commercialRegister": "السجل التجاري",
@@ -404,6 +405,7 @@
   "documents": "المستندات",
   "total_value": "إجمالي القيمة",
   "executive_summary": "الملخص التنفيذي",
+  "offering_document": "مستند الطرح",
   "opportunity_status_title": "حالة الفرص",
   "of_text": "من",
   "completed": "مكتمل",
@@ -442,5 +444,8 @@
   "rejection_reason_label": "سبب الرفض: ",
   "request_upgrade_btn": "اطلب ترقية",
   "investment_covered": "تم تغطية الاستثمار",
-  "notify_me_future_opportunities": "أبلغني بالفرص القادمة"
+  "notify_me_future_opportunities": "أبلغني بالفرص القادمة",
+  "bathrooms_count": "{count} حمام",
+  "rooms_count": "{count} غرف",
+  "area_sqm": "{area} م²"
 }
