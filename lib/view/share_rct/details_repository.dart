@@ -21,7 +21,7 @@ class ShareDetailsRepository {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
             'Accept-Language': lang,
-            if (token != null) 'Authorization': 'Bearer $token',
+            if (token != null && token.isNotEmpty) 'Authorization': 'Bearer $token',
           },
         ),
       );
@@ -53,7 +53,7 @@ class ShareDetailsRepository {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
             'Accept-Language': lang,
-            if (token != null) 'Authorization': 'Bearer $token',
+            if (token != null && token.isNotEmpty) 'Authorization': 'Bearer $token',
           },
         ),
       );
@@ -104,7 +104,7 @@ class ShareDetailsRepository {
           headers: {
             'Accept': 'application/json',
             'Accept-Language': lang,
-            if (token != null) 'Authorization': 'Bearer $token',
+            if (token != null && token.isNotEmpty) 'Authorization': 'Bearer $token',
           },
         ),
       );
@@ -138,7 +138,7 @@ class ShareDetailsRepository {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
             'Accept-Language': lang,
-            if (token != null) 'Authorization': 'Bearer $token',
+            if (token != null && token.isNotEmpty) 'Authorization': 'Bearer $token',
           },
         ),
       );
@@ -148,6 +148,38 @@ class ShareDetailsRepository {
       return e.response?.data ?? {"status": 500, "message": e.message};
     } catch (e) {
       return {"status": 500, "message": e.toString()};
+    }
+  }
+
+  Future<Map<String, dynamic>> registerOpportunityInterest({
+    required String name,
+    required String phone,
+  }) async {
+    final String? token = await secureStorage.read(key: "token");
+    final String lang = CacheHelper.getData(key: "lang") ?? "ar";
+
+    try {
+      final response = await _dio.post(
+        linkOpportunityInterest,
+        data: {
+          "name": name,
+          "phone": phone,
+        },
+        options: Options(
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Accept-Language': lang,
+            if (token != null && token.isNotEmpty) 'Authorization': 'Bearer $token',
+          },
+        ),
+      );
+
+      return response.data;
+    } on DioException catch (e) {
+      return e.response?.data ?? {"status": false, "message": e.message};
+    } catch (e) {
+      return {"status": false, "message": e.toString()};
     }
   }
 }

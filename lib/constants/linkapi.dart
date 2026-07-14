@@ -26,3 +26,4 @@ const String linkInvestorUpgradeQuestions = "$linkServerName/api/investor-upgrad
 const String linkInitiatePayment = "$linkServerName/api/payments/initiate";
 const String linkSubmitInvestorUpgrade = "$linkServerName/api/investor-upgrade";
 const String linkSubmitInvestorUpgradeStatus = "$linkServerName/api/investor-upgrade/status";
+const String linkOpportunityInterest = "$linkServerName/api/opportunity-interest";

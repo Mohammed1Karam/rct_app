@@ -961,7 +961,7 @@ class _OwnershipDetailsScreenState extends State<OwnershipDetailsScreen> {
             runSpacing: 10.h,
             alignment: WrapAlignment.start,
             children: [
-              _buildGuaranteeChip(local.direct_ownership),
+              _buildGuaranteeChip(local.without_interest),
               _buildGuaranteeChip(local.full_transparency),
               _buildGuaranteeChip(local.no_hidden_fees),
             ],

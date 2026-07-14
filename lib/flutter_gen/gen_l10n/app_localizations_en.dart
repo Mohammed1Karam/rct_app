@@ -1324,6 +1324,14 @@ class AppLocalizationsEn extends AppLocalizations {
   String get opportunity => 'Opportunity';
 
   @override
+  String get max_investment_limit_q =>
+      'Would you like to invest more than 30,000 SAR?';
+
+  @override
+  String get max_investment_limit_info =>
+      'To invest with no upper limit, upgrade your account to a Qualified Investor.';
+
+  @override
   String get max_investment_limit =>
       'Maximum investment for retail investor is 30,000 SAR';
 
@@ -1365,8 +1373,7 @@ class AppLocalizationsEn extends AppLocalizations {
       '5. Have you carried out transactions in securities markets with a total value of not less than forty million SAR and not less than ten transactions in each quarter during the past twelve months?';
 
   @override
-  String get upload_portfolio_reports =>
-      'Please upload trading reports or portfolio statement for the last 12 months';
+  String get upload_portfolio_reports => 'Please upload files';
 
   @override
   String get supported_formats => '(.jpg, .jpeg, .png, .pdf)';
@@ -1386,10 +1393,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get ownership_guarantees_description =>
-      'Your home ownership is protected and guaranteed; as RCT is the owner and developer of the assets, ensuring an ownership experience characterized by security, credibility, and complete clarity throughout all stages of contracting.';
+      'Your home ownership is protected and guaranteed; as RCT is the owner and developer of the assets, ensuring an ownership experience characterized by security, credibility, and complete clarity throughout all stages of contracting. Extended warranties on sanitary and electrical materials';
 
   @override
   String get direct_ownership => 'Direct Ownership';
+
+  @override
+  String get without_interest => 'Without Interest';
 
   @override
   String get full_transparency => 'Full Transparency';

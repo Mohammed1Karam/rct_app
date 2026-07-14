@@ -19,7 +19,7 @@ class OwnershipDetailsRepository {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
             'Accept-Language': lang,
-            if (token != null) 'Authorization': 'Bearer $token',
+            if (token != null && token.toString().isNotEmpty) 'Authorization': 'Bearer $token',
           },
         ),
       );

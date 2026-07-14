@@ -5,6 +5,7 @@ import 'package:app_links/app_links.dart';
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -378,8 +379,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                     SizedBox(width: 5.w),
                                     SvgPicture.asset(
                                       "assets/icons/verifyIcon.svg",
-                                      width: 7.w,
-                                      height: 7.h,
+                                      width: 10.w,
+                                      height: 10.h,
                                     ),
                                   ]
                                 ],

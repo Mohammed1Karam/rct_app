@@ -16,4 +16,19 @@ class ShareDetailsCubit extends Cubit<ShareDetailsState> {
       emit(ShareDetailsError(e.toString()));
     }
   }
+
+  Future<void> registerInterest({required String name, required String phone}) async {
+    emit(ShareDetailsInterestLoading());
+    try {
+      final response = await repository.registerOpportunityInterest(name: name, phone: phone);
+      // The API returns status as a boolean
+      if (response['status'] == true || response['status'] == 201 || response['status'] == 200) {
+        emit(ShareDetailsInterestSuccess(response['message'] ?? "Success"));
+      } else {
+        emit(ShareDetailsInterestError(response['message'] ?? "Failed to register interest"));
+      }
+    } catch (e) {
+      emit(ShareDetailsInterestError(e.toString()));
+    }
+  }
 }

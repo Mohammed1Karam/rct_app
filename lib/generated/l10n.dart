@@ -3484,6 +3484,26 @@ class S {
     return Intl.message('Opportunity', name: 'opportunity', desc: '', args: []);
   }
 
+  /// `Would you like to invest more than 30,000 SAR?`
+  String get max_investment_limit_q {
+    return Intl.message(
+      'Would you like to invest more than 30,000 SAR?',
+      name: 'max_investment_limit_q',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `To invest with no upper limit, upgrade your account to a Qualified Investor.`
+  String get max_investment_limit_info {
+    return Intl.message(
+      'To invest with no upper limit, upgrade your account to a Qualified Investor.',
+      name: 'max_investment_limit_info',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Maximum investment for retail investor is 30,000 SAR`
   String get max_investment_limit {
     return Intl.message(
@@ -3594,10 +3614,10 @@ class S {
     );
   }
 
-  /// `Please upload trading reports or portfolio statement for the last 12 months`
+  /// `Please upload files`
   String get upload_portfolio_reports {
     return Intl.message(
-      'Please upload trading reports or portfolio statement for the last 12 months',
+      'Please upload files',
       name: 'upload_portfolio_reports',
       desc: '',
       args: [],
@@ -3669,6 +3689,16 @@ class S {
     return Intl.message(
       'Direct Ownership',
       name: 'direct_ownership',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Without Interest`
+  String get without_interest {
+    return Intl.message(
+      'Without Interest',
+      name: 'without_interest',
       desc: '',
       args: [],
     );

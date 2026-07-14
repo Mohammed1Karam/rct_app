@@ -45,7 +45,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get welcome => 'مرحباً بك';
 
   @override
-  String get editFile => 'تعديل الملف الشخصي';
+  String get editFile => 'تعديل الملف ';
 
   @override
   String get orders => 'الطلبات';
@@ -1296,6 +1296,14 @@ class AppLocalizationsAr extends AppLocalizations {
   String get opportunity => 'فرصة';
 
   @override
+  String get max_investment_limit_q =>
+      'هل ترغب الإستثمار بأكثر من 30 ألف ريال ؟';
+
+  @override
+  String get max_investment_limit_info =>
+      'للإستثمار بلا حد أعلى، قم بترقية حسابك لمستثمر مؤهل';
+
+  @override
   String get max_investment_limit =>
       'الحد الأعلى للاستثمار كمستثمر تجزئة هو ٣٠٠٠٠ ريال';
 
@@ -1337,8 +1345,7 @@ class AppLocalizationsAr extends AppLocalizations {
       '5. هل قمت بصفقات في أسواق الأوراق المالية لا يقل مجموع قيمتها عن أربعين مليون ريال سعودي ولا تقل عن عشر صفقات في كل ربع سنة خلال الاثني عشر شهراً الماضية؟';
 
   @override
-  String get upload_portfolio_reports =>
-      'يرجى رفع تقارير التداول أو كشف المحفظة لآخر ١٢ شهراً';
+  String get upload_portfolio_reports => 'يرجى رفع المستندات';
 
   @override
   String get supported_formats => '(.jpg, .jpeg, .png, .pdf)';
@@ -1351,17 +1358,20 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get guarantees_description =>
-      'استثمارك محمي ومضمون؛ حيث أن الجهة المالكة والمطورة للأصول الاستثمارية بشكل مباشر هي RCT ، مما يضمن أعلى مستويات الأمان والشفافية في إدارة عوائدك.';
+      'امتلاكك لمنزلك محمي ومضمون؛ حيث أن الجهة المالكة والمطورة للأصول هي RCT، مما يضمن لك تجربة تملك تتسم بالأمان، المصداقية، والوضوح التام في كافة مراحل التعاقد ضمانات ممتدة على المواد الصحية و الكهربائية.';
 
   @override
   String get ownership_guarantees_title => 'ضمانات التملك';
 
   @override
   String get ownership_guarantees_description =>
-      'امتلاكك لمنزلك محمي ومضمون؛ حيث أن الجهة المالكة والمطورة للأصول هي RCT، مما يضمن لك تجربة تملك تتسم بالأمان، المصداقية، والوضوح التام في كافة مراحل التعاقد.';
+      'امتلاكك لمنزلك محمي ومضمون؛ حيث أن الجهة المالكة والمطورة للأصول هي RCT، مما يضمن لك تجربة تملك تتسم بالأمان، المصداقية، والوضوح التام في كافة مراحل التعاقد ضمانات ممتدة على المواد الصحيةو الكهربائية.';
 
   @override
   String get direct_ownership => 'ملكية مباشرة';
+
+  @override
+  String get without_interest => 'بدون فوائد';
 
   @override
   String get full_transparency => 'شفافية كاملة';

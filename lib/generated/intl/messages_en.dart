@@ -371,6 +371,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "fourStreetsFencePercentage": MessageLookupByLibrary.simpleMessage(
       "Four streets",
     ),
+    "without_interest":
+        MessageLookupByLibrary.simpleMessage("Without Interest"),
     "full_transparency": MessageLookupByLibrary.simpleMessage(
       "Full Transparency",
     ),
@@ -378,7 +380,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Guaranteed Returns",
     ),
     "guarantees_description": MessageLookupByLibrary.simpleMessage(
-      "Your investment is protected and guaranteed; as the direct owner and developer of the investment assets is RCT, which ensures the highest levels of security and transparency in managing your returns.",
+      "Your home ownership is protected and guaranteed; as RCT is the owner and developer of the assets, ensuring an ownership experience characterized by security, credibility, and complete clarity throughout all stages of contracting. Extended warranties on sanitary and electrical materials",
     ),
     "guarantees_title": MessageLookupByLibrary.simpleMessage("Guarantees"),
     "gurayat": MessageLookupByLibrary.simpleMessage("Gurayat"),
@@ -443,6 +445,12 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "max_investment_limit": MessageLookupByLibrary.simpleMessage(
       "Maximum investment for retail investor is 30,000 SAR",
+    ),
+    "max_investment_limit_info": MessageLookupByLibrary.simpleMessage(
+      "To invest with no upper limit, upgrade your account to a Qualified Investor.",
+    ),
+    "max_investment_limit_q": MessageLookupByLibrary.simpleMessage(
+      "Would you like to invest more than 30,000 SAR?",
     ),
     "message": MessageLookupByLibrary.simpleMessage("Message:"),
     "message_title": MessageLookupByLibrary.simpleMessage("Message Title:"),
@@ -913,7 +921,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Upload Payment Receipt",
     ),
     "upload_portfolio_reports": MessageLookupByLibrary.simpleMessage(
-      "Please upload trading reports or portfolio statement for the last 12 months",
+      "Please upload files",
     ),
     "view_on_map": MessageLookupByLibrary.simpleMessage("View location on map"),
     "villa": MessageLookupByLibrary.simpleMessage("Villa"),

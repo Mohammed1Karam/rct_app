@@ -268,11 +268,7 @@ class _QualifiedInvestorBottomSheetState extends State<QualifiedInvestorBottomSh
                             ..._currentQuestions.map((question) {
                               return _buildQuestionItem(question);
                             }).toList(),
-                            SizedBox(height: 24.h),
-                            _buildUploadSection(local),
-                            SizedBox(height: 24.h),
-                            _buildSelectedFilesList(),
-                            SizedBox(height: 32.h),
+                            SizedBox(height: 8.h),
                             if (state is InvestorUpgradeSubmitting)
                               const Center(child: CircularProgressIndicator(color: Colors.black))
                             else
@@ -373,6 +369,12 @@ class _QualifiedInvestorBottomSheetState extends State<QualifiedInvestorBottomSh
                 ),
               ],
             ),
+            if (answersMap[question.id] == 1) ...[
+              SizedBox(height: 24.h),
+              _buildUploadSection(local),
+              SizedBox(height: 16.h),
+              _buildSelectedFilesList(),
+            ],
           ],
         ),
       ),
@@ -446,14 +448,6 @@ class _QualifiedInvestorBottomSheetState extends State<QualifiedInvestorBottomSh
                   color: const Color(0xFF8A8A8A),
                   height: 1.5,
                 ),
-              ),
-            ),
-            SizedBox(height: 4.h),
-            CustomText(
-              text: local.supported_formats,
-              style: TextStyle(
-                fontSize: 10.sp,
-                color: const Color(0xFFBCBCBC),
               ),
             ),
           ],

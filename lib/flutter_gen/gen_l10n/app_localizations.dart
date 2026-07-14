@@ -2594,6 +2594,18 @@ abstract class AppLocalizations {
   /// **'Opportunity'**
   String get opportunity;
 
+  /// No description provided for @max_investment_limit_q.
+  ///
+  /// In en, this message translates to:
+  /// **'Would you like to invest more than 30,000 SAR?'**
+  String get max_investment_limit_q;
+
+  /// No description provided for @max_investment_limit_info.
+  ///
+  /// In en, this message translates to:
+  /// **'To invest with no upper limit, upgrade your account to a Qualified Investor.'**
+  String get max_investment_limit_info;
+
   /// No description provided for @max_investment_limit.
   ///
   /// In en, this message translates to:
@@ -2663,7 +2675,7 @@ abstract class AppLocalizations {
   /// No description provided for @upload_portfolio_reports.
   ///
   /// In en, this message translates to:
-  /// **'Please upload trading reports or portfolio statement for the last 12 months'**
+  /// **'Please upload files'**
   String get upload_portfolio_reports;
 
   /// No description provided for @supported_formats.
@@ -2699,7 +2711,7 @@ abstract class AppLocalizations {
   /// No description provided for @ownership_guarantees_description.
   ///
   /// In en, this message translates to:
-  /// **'Your home ownership is protected and guaranteed; as RCT is the owner and developer of the assets, ensuring an ownership experience characterized by security, credibility, and complete clarity throughout all stages of contracting.'**
+  /// **'Your home ownership is protected and guaranteed; as RCT is the owner and developer of the assets, ensuring an ownership experience characterized by security, credibility, and complete clarity throughout all stages of contracting. Extended warranties on sanitary and electrical materials'**
   String get ownership_guarantees_description;
 
   /// No description provided for @direct_ownership.
@@ -2707,6 +2719,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Direct Ownership'**
   String get direct_ownership;
+
+  /// No description provided for @without_interest.
+  ///
+  /// In en, this message translates to:
+  /// **'Without Interest'**
+  String get without_interest;
 
   /// No description provided for @full_transparency.
   ///

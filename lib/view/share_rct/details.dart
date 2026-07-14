@@ -89,36 +89,80 @@ class _ShareDetailsState extends State<ShareDetails> {
       body: SafeArea(
         child: BlocProvider.value(
           value: _cubit,
-          child: BlocBuilder<ShareDetailsCubit, ShareDetailsState>(
-            builder: (context, state) {
-              if (state is ShareDetailsLoading || state is ShareDetailsInitial) {
-                return const Center(
-                  child: CircularProgressIndicator(color: Colors.black),
+          child: BlocListener<ShareDetailsCubit, ShareDetailsState>(
+            listener: (context, state) {
+              if (state is ShareDetailsInterestLoading) {
+                showDialog(
+                  context: context,
+                  barrierDismissible: false,
+                  builder: (context) => const Center(
+                    child: CircularProgressIndicator(color: Color(0xFF20262F)),
+                  ),
                 );
-              } else if (state is ShareDetailsSuccess) {
-                return SingleChildScrollView(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      _displayImageSlider(MediaQuery.of(context).size.width,
-                          320.h, state.product),
-                      SizedBox(
-                        height: 20.h,
-                      ),
-                      _displayDetails(state.product)
-                    ],
+              } else if (state is ShareDetailsInterestSuccess) {
+                Navigator.pop(context); // Close loading dialog
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(state.message),
+                    backgroundColor: Colors.green,
+                  ),
+                );
+              } else if (state is ShareDetailsInterestError) {
+                Navigator.pop(context); // Close loading dialog
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(state.message),
+                    backgroundColor: Colors.red,
                   ),
                 );
               } else if (state is ShareDetailsError) {
-                return Center(
-                  child: Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: Text(state.message, textAlign: TextAlign.center),
-                  ),
-                );
+                if (state.message.contains('Unauthorized')) {
+                  _showLoginDialog();
+                }
               }
-              return const SizedBox.shrink();
             },
+            child: BlocBuilder<ShareDetailsCubit, ShareDetailsState>(
+              builder: (context, state) {
+                if (state is ShareDetailsLoading || state is ShareDetailsInitial) {
+                  return const Center(
+                    child: CircularProgressIndicator(color: Colors.black),
+                  );
+                } else if (state is ShareDetailsSuccess ||
+                    state is ShareDetailsInterestLoading ||
+                    state is ShareDetailsInterestSuccess ||
+                    state is ShareDetailsInterestError) {
+                  return BlocBuilder<ShareDetailsCubit, ShareDetailsState>(
+                    buildWhen: (previous, current) => current is ShareDetailsSuccess,
+                    builder: (context, state) {
+                      if (state is ShareDetailsSuccess) {
+                        return SingleChildScrollView(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              _displayImageSlider(MediaQuery.of(context).size.width,
+                                  320.h, state.product),
+                              SizedBox(
+                                height: 20.h,
+                              ),
+                              _displayDetails(state.product)
+                            ],
+                          ),
+                        );
+                      }
+                      return const SizedBox.shrink();
+                    },
+                  );
+                } else if (state is ShareDetailsError) {
+                  return Center(
+                    child: Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: Text(state.message, textAlign: TextAlign.center),
+                    ),
+                  );
+                }
+                return const SizedBox.shrink();
+              },
+            ),
           ),
         ),
       ),
@@ -399,8 +443,24 @@ class _ShareDetailsState extends State<ShareDetails> {
 
     if (remaining <= 0) {
       return GestureDetector(
-        onTap: () {
+        onTap: () async {
+          String? name = AppPreferences.getData(key: 'username');
+          String? phone = AppPreferences.getData(key: 'phone');
 
+          if (name != null && phone != null) {
+            _cubit.registerInterest(name: name, phone: phone);
+          } else {
+            bool logged = await Checktoken().hasToken();
+            if (logged) {
+              // If logged in but data missing, maybe something is wrong or keys are different
+              // But based on login.dart, these keys should be there.
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text(local.pleaselogin)),
+              );
+            } else {
+              _showLoginDialog();
+            }
+          }
         },
         child: Container(
           width: double.infinity,
@@ -497,31 +557,28 @@ class _ShareDetailsState extends State<ShareDetails> {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.r)),
-        title: Text(local.alert, textAlign: TextAlign.center),
-        content: Text(local.pleaselogin, textAlign: TextAlign.center),
+        title: Text(
+          local.alert,
+          textAlign: TextAlign.center,
+          style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w900),
+        ),
+        content: Text(
+          local.pleaselogin,
+          textAlign: TextAlign.center,
+          style: const TextStyle(fontSize: 12, color: Colors.black),
+        ),
         actions: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              TextButton(
-                onPressed: () => Navigator.pop(context),
-                child: Text(local.cancel, style: const TextStyle(color: Colors.black)),
-              ),
-              const SizedBox(width: 20),
-              MainButton(
-                width: 100.w,
-                text: local.login,
-                fontSize: 14.sp,
-                textColor: Colors.white,
-                backGroundColor: primaryColor,
-                onTap: () {
-                  Navigator.pop(context);
-                  Navigator.pushReplacement(
-                      context, MaterialPageRoute(builder: (context) => SendOtp()));
-                },
-              )
-            ],
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: Text(local.cancel, style: const TextStyle(fontSize: 12, color: Colors.black)),
+          ),
+          TextButton(
+            onPressed: () {
+              Navigator.pop(context);
+              Navigator.pushReplacement(
+                  context, MaterialPageRoute(builder: (context) => SendOtp()));
+            },
+            child: Text(local.login, style: const TextStyle(fontSize: 12, color: Colors.black)),
           ),
         ],
       ),
@@ -1006,26 +1063,51 @@ class _ShareDetailsState extends State<ShareDetails> {
                   ),
                 ),
               SizedBox(height: 16.h),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Flexible(
-                    child: CustomText(
-                      text: local.max_investment_limit
-                          .replaceAll("ريال", "")
-                          .replaceAll("SAR", "")
-                          .trim(),
-                      style: TextStyle(
-                        fontSize: 10.sp,
-                        color: const Color(0xFF8A8A8A),
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                  SizedBox(width: 4.w),
-                  SarImage(color: const Color(0xFF8A8A8A), height: 10.h),
-                ],
-              ),
+             totalAmount > 30000
+                 ? Padding(
+                     padding: EdgeInsets.only(top: 16.h),
+                     child: Row(
+                       crossAxisAlignment: CrossAxisAlignment.start,
+                       children: [
+                         Padding(
+                           padding: EdgeInsets.only(top: 2.h),
+                           child: SvgPicture.asset(
+                             "assets/icons/warningIcon.svg",
+                             width: 18.w,
+                             height: 18.h,
+                           ),
+                         ),
+                         SizedBox(width: 10.w),
+                         Expanded(
+                           child: Column(
+                             crossAxisAlignment: CrossAxisAlignment.start,
+                             children: [
+                               CustomText(
+                                 text: local.max_investment_limit_q,
+                                 style: TextStyle(
+                                   fontSize: 10.sp,
+                                   color: const Color(0xFFFF8C00),
+                                   fontWeight: FontWeight.w600,
+                                 ),
+                                 textAlign: TextAlign.start,
+                               ),
+                               SizedBox(height: 4.h),
+                               CustomText(
+                                 text: local.max_investment_limit_info,
+                                 style: TextStyle(
+                                   fontSize: 8.sp,
+                                   color: const Color(0xFF8A8A8A),
+                                   fontWeight: FontWeight.w400,
+                                 ),
+                                 textAlign: TextAlign.start,
+                               ),
+                             ],
+                           ),
+                         ),
+                       ],
+                     ),
+                   )
+                 : const SizedBox(),
             ],
           ),
         ),

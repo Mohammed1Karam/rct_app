@@ -18,7 +18,7 @@ class RealEstateDetailsRepository {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
             'Accept-Language': lang,
-            if (token != null) 'Authorization': 'Bearer $token',
+            if (token != null && token.isNotEmpty) 'Authorization': 'Bearer $token',
           },
         ),
       );

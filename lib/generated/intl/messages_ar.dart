@@ -251,7 +251,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "لا توجد نتائج مطابقة للبحث",
     ),
     "during_months": m2,
-    "editFile": MessageLookupByLibrary.simpleMessage("تعديل الملف الشخصي"),
+    "editFile": MessageLookupByLibrary.simpleMessage("تعديل الملف"),
     "electronicDeed": MessageLookupByLibrary.simpleMessage("الصك الإلكتروني *"),
     "email": MessageLookupByLibrary.simpleMessage("البريد الإلكتروني"),
     "english": MessageLookupByLibrary.simpleMessage("الإنجليزية"),
@@ -335,10 +335,11 @@ class MessageLookup extends MessageLookupByLibrary {
     "fourStreetsFencePercentage": MessageLookupByLibrary.simpleMessage(
       "أربع شوارع",
     ),
+    "without_interest": MessageLookupByLibrary.simpleMessage("بدون فوائد"),
     "full_transparency": MessageLookupByLibrary.simpleMessage("شفافية كاملة"),
     "guaranteed_returns": MessageLookupByLibrary.simpleMessage("عوائد مضمونة"),
     "guarantees_description": MessageLookupByLibrary.simpleMessage(
-      "استثمارك محمي ومضمون؛ حيث أن الجهة المالكة والمطورة للأصول الاستثمارية بشكل مباشر هي RCT ، مما يضمن أعلى مستويات الأمان والشفافية في إدارة عوائدك.",
+      "امتلاكك لمنزلك محمي ومضمون؛ حيث أن الجهة المالكة والمطورة للأصول هي RCT، مما يضمن لك تجربة تملك تتسم بالأمان، المصداقية، والوضوح التام في كافة مراحل التعاقد ضمانات ممتدة على المواد الصحية و الكهربائية.",
     ),
     "guarantees_title": MessageLookupByLibrary.simpleMessage("الضمانات"),
     "gurayat": MessageLookupByLibrary.simpleMessage("القريات"),
@@ -401,6 +402,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "makkahAlMukarramah": MessageLookupByLibrary.simpleMessage("مكة المكرمة"),
     "max_investment_limit": MessageLookupByLibrary.simpleMessage(
       "الحد الأعلى للاستثمار كمستثمر تجزئة هو ٣٠٠٠٠ ريال",
+    ),
+    "max_investment_limit_info": MessageLookupByLibrary.simpleMessage(
+      "للإستثمار بلا حد أعلى، قم بترقية حسابك لمستثمر مؤهل",
+    ),
+    "max_investment_limit_q": MessageLookupByLibrary.simpleMessage(
+      "هل ترغب الإستثمار بأكثر من 30 ألف ريال ؟",
     ),
     "message": MessageLookupByLibrary.simpleMessage("الرسالة:"),
     "message_title": MessageLookupByLibrary.simpleMessage("عنوان الرسالة:"),
@@ -474,7 +481,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "overview": MessageLookupByLibrary.simpleMessage("نظرة عامة"),
     "own_now": MessageLookupByLibrary.simpleMessage("تملك الآن"),
     "ownership_guarantees_description": MessageLookupByLibrary.simpleMessage(
-      "امتلاكك لمنزلك محمي ومضمون؛ حيث أن الجهة المالكة والمطورة للأصول هي RCT، مما يضمن لك تجربة تملك تتسم بالأمان، المصداقية، والوضوح التام في كافة مراحل التعاقد.",
+      "امتلاكك لمنزلك محمي ومضمون؛ حيث أن الجهة المالكة والمطورة للأصول هي RCT، مما يضمن لك تجربة تملك تتسم بالأمان، المصداقية، والوضوح التام في كافة مراحل التعاقد ضمانات ممتدة على المواد الصحيةو الكهربائية.",
     ),
     "ownership_guarantees_title": MessageLookupByLibrary.simpleMessage(
       "ضمانات التملك",
@@ -831,7 +838,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "رفع إيصال الدفع",
     ),
     "upload_portfolio_reports": MessageLookupByLibrary.simpleMessage(
-      "يرجى رفع تقارير التداول أو كشف المحفظة لآخر ١٢ شهراً",
+      "يرجى رفع المستندات",
     ),
     "view_on_map": MessageLookupByLibrary.simpleMessage(
       "عرض الموقع على الخريطة",
