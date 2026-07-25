@@ -20,9 +20,15 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
-  static String m0(duration) => "(During ${duration} months)";
+  static String m0(area) => "${area} m²";
 
-  static String m1(age) => "Property Age: ${age} years";
+  static String m1(count) => "${count} Bathrooms";
+
+  static String m2(duration) => "(During ${duration} months)";
+
+  static String m3(age) => "Property Age: ${age} years";
+
+  static String m4(count) => "${count} Rooms";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -95,6 +101,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Approximate cost details and fees:",
     ),
     "arabic": MessageLookupByLibrary.simpleMessage("Arabic"),
+    "area_sqm": m0,
     "areyousureyouwanttocanceltheorder": MessageLookupByLibrary.simpleMessage(
       "Are you sure you want to cancel the order?",
     ),
@@ -104,6 +111,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "attachTransferReceipt": MessageLookupByLibrary.simpleMessage(
       "Attach Transfer Receipt",
     ),
+    "bathrooms_count": m1,
     "betSeller": MessageLookupByLibrary.simpleMessage("Best seller"),
     "birthDate": MessageLookupByLibrary.simpleMessage("Birth Date"),
     "building": MessageLookupByLibrary.simpleMessage("Building"),
@@ -264,7 +272,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "documents": MessageLookupByLibrary.simpleMessage("Documents"),
     "done": MessageLookupByLibrary.simpleMessage("Done"),
     "dontFound": MessageLookupByLibrary.simpleMessage("Don\'t Found"),
-    "during_months": m0,
+    "during_months": m2,
     "editFile": MessageLookupByLibrary.simpleMessage("Edit Profile"),
     "electronicDeed": MessageLookupByLibrary.simpleMessage("Electronic Deed *"),
     "email": MessageLookupByLibrary.simpleMessage("Email"),
@@ -363,6 +371,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "fourStreetsFencePercentage": MessageLookupByLibrary.simpleMessage(
       "Four streets",
     ),
+    "without_interest":
+        MessageLookupByLibrary.simpleMessage("Without Interest"),
     "full_transparency": MessageLookupByLibrary.simpleMessage(
       "Full Transparency",
     ),
@@ -370,7 +380,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Guaranteed Returns",
     ),
     "guarantees_description": MessageLookupByLibrary.simpleMessage(
-      "Your investment is protected and guaranteed; as the direct owner and developer of the investment assets is RCT, which ensures the highest levels of security and transparency in managing your returns.",
+      "Your home ownership is protected and guaranteed; as RCT is the owner and developer of the assets, ensuring an ownership experience characterized by security, credibility, and complete clarity throughout all stages of contracting.",
     ),
     "guarantees_title": MessageLookupByLibrary.simpleMessage("Guarantees"),
     "gurayat": MessageLookupByLibrary.simpleMessage("Gurayat"),
@@ -435,6 +445,12 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "max_investment_limit": MessageLookupByLibrary.simpleMessage(
       "Maximum investment for retail investor is 30,000 SAR",
+    ),
+    "max_investment_limit_info": MessageLookupByLibrary.simpleMessage(
+      "To invest with no upper limit, upgrade your account to a Qualified Investor.",
+    ),
+    "max_investment_limit_q": MessageLookupByLibrary.simpleMessage(
+      "Would you like to invest more than 30,000 SAR?",
     ),
     "message": MessageLookupByLibrary.simpleMessage("Message:"),
     "message_title": MessageLookupByLibrary.simpleMessage("Message Title:"),
@@ -520,7 +536,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "overview": MessageLookupByLibrary.simpleMessage("Overview"),
     "own_now": MessageLookupByLibrary.simpleMessage("Own Now"),
     "ownership_guarantees_description": MessageLookupByLibrary.simpleMessage(
-      "Your home ownership is protected and guaranteed; as RCT is the owner and developer of the assets, ensuring an ownership experience characterized by security, credibility, and complete clarity throughout all stages of contracting.",
+      "Your home ownership is protected and guaranteed; as RCT is the owner and developer of the assets, ensuring an ownership experience characterized by security, credibility, and complete clarity throughout all stages of contracting. Extended warranties on sanitary and electrical materials.",
+    ),
+    "ownership_guarantees_against_hidden_defects":MessageLookupByLibrary.simpleMessage(
+        "Insurance against latent defects is available."
     ),
     "ownership_guarantees_title": MessageLookupByLibrary.simpleMessage(
       "Ownership Guarantees",
@@ -665,7 +684,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "propertyLocation": MessageLookupByLibrary.simpleMessage(
       "Property Location",
     ),
-    "property_age_years": m1,
+    "property_age_years": m3,
     "q1": MessageLookupByLibrary.simpleMessage(
       "1. Can I add my property to the app?",
     ),
@@ -767,6 +786,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "return_type": MessageLookupByLibrary.simpleMessage("Return Type"),
     "riyadh": MessageLookupByLibrary.simpleMessage("Riyadh"),
+    "rooms_count": m4,
     "rowland": MessageLookupByLibrary.simpleMessage("Raw Land"),
     "sar": MessageLookupByLibrary.simpleMessage("SAR"),
     "save": MessageLookupByLibrary.simpleMessage("Save"),
@@ -904,7 +924,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Upload Payment Receipt",
     ),
     "upload_portfolio_reports": MessageLookupByLibrary.simpleMessage(
-      "Please upload trading reports or portfolio statement for the last 12 months",
+      "Please upload files",
     ),
     "view_on_map": MessageLookupByLibrary.simpleMessage("View location on map"),
     "villa": MessageLookupByLibrary.simpleMessage("Villa"),
@@ -926,6 +946,9 @@ class MessageLookup extends MessageLookupByLibrary {
         ),
     "yourresponsehasbeensuccessfully": MessageLookupByLibrary.simpleMessage(
       "Your response has been successfully submitted. Thank you",
+    ),
+    "latent_defects_insurance": MessageLookupByLibrary.simpleMessage(
+        "Hidden defects insurance is available."
     ),
   };
 }

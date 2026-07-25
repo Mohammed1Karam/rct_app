@@ -30,8 +30,12 @@ class _SplashScreenState extends State<SplashScreen> {
     // Delay heavy operations to prevent initial jank
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (mounted) {
-        context.read<ShareCubit>().fetchShare('$linkServerName/api/opportunities');
-        context.read<RentersCubit>().fetchUnAuthData("$linkServerName/api/renters");
+        context
+            .read<ShareCubit>()
+            .fetchShare('$linkServerName/api/opportunities');
+        context
+            .read<RentersCubit>()
+            .fetchUnAuthData("$linkServerName/api/renters");
         FirebaseMessaging.instance.requestPermission();
       }
     });
@@ -41,7 +45,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   Future<void> reDirect() async {
     await checkOnboardingStatus();
-    await Future.delayed(const Duration(seconds: 3));
+    await Future.delayed(const Duration(seconds: 4));
 
     if (!mounted) return;
 
@@ -65,7 +69,8 @@ class _SplashScreenState extends State<SplashScreen> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     if (mounted) {
       setState(() {
-        hasCompletedOnboarding = prefs.getBool('hasCompletedOnboarding') ?? false;
+        hasCompletedOnboarding =
+            prefs.getBool('hasCompletedOnboarding') ?? false;
       });
     }
   }
@@ -73,6 +78,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFF20262f),
       body: Image.asset(
         "assets/images/splash.png",
         width: MediaQuery.of(context).size.width,
@@ -83,41 +89,31 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 }
 
-/*
-class SplashScreen extends StatefulWidget {
-  static String id = "SplashScreen";
+class IOSSplashScreen extends StatefulWidget {
+  static String id = "IOSSplashScreen";
 
-  const SplashScreen({super.key});
+  const IOSSplashScreen({super.key});
 
   @override
-  _SplashScreenState createState() => _SplashScreenState();
+  _IOSSplashScreenState createState() => _IOSSplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen>
-    with SingleTickerProviderStateMixin {
+class _IOSSplashScreenState extends State<IOSSplashScreen> {
   bool hasCompletedOnboarding = false;
-  final _scaffoldKey = GlobalKey();
-  late AnimationController _controller;
-  late Animation<double> _animation;
 
   @override
   void initState() {
     super.initState();
 
-    _controller = AnimationController(
-      vsync: this,
-      duration: const Duration(seconds: 3),
-    )..repeat(reverse: true);
-
-    _animation = Tween<double>(begin: -190, end: 0).animate(
-      CurvedAnimation(parent: _controller, curve: Curves.easeInOut),
-    );
-
     // Delay heavy operations to prevent initial jank
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (mounted) {
-        context.read<ShareCubit>().fetchShare('$linkServerName/api/opportunities');
-        context.read<RentersCubit>().fetchUnAuthData("$linkServerName/api/renters");
+        context
+            .read<ShareCubit>()
+            .fetchShare('$linkServerName/api/opportunities');
+        context
+            .read<RentersCubit>()
+            .fetchUnAuthData("$linkServerName/api/renters");
         FirebaseMessaging.instance.requestPermission();
       }
     });
@@ -125,17 +121,10 @@ class _SplashScreenState extends State<SplashScreen>
     reDirect();
   }
 
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
   Future<void> reDirect() async {
     await checkOnboardingStatus();
-    await Future.delayed(const Duration(seconds: 3));
-    // await Future.delayed(Duration.zero);
-
+    // await Future.delayed( Duration(milliseconds: 0));
+    await Future.delayed(const Duration(seconds: 4));
     if (!mounted) return;
 
     if (kDebugMode) {
@@ -158,7 +147,8 @@ class _SplashScreenState extends State<SplashScreen>
     SharedPreferences prefs = await SharedPreferences.getInstance();
     if (mounted) {
       setState(() {
-        hasCompletedOnboarding = prefs.getBool('hasCompletedOnboarding') ?? false;
+        hasCompletedOnboarding =
+            prefs.getBool('hasCompletedOnboarding') ?? false;
       });
     }
   }
@@ -166,37 +156,13 @@ class _SplashScreenState extends State<SplashScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: _scaffoldKey,
-      body: Stack(
-        children: [
-          // Background Image
-          Image.asset(
-            "assets/images/splashBackground.png",
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height,
-            fit: BoxFit.cover,
-          ),
-
-          // 4. Centered Logo with Animation
-          Center(
-            child: AnimatedBuilder(
-              animation: _animation,
-              builder: (context, child) {
-                return Transform.translate(
-                  offset: Offset(0, _animation.value),
-                  child: RepaintBoundary(child: child),
-                );
-              },
-              child: SvgPicture.asset(
-                "assets/icons/splashLogo.svg",
-                width: 100.w,
-                height: 100.h,
-              ),
-            ),
-          )
-        ],
+      backgroundColor: const Color(0xFF20262f),
+      body: Image.asset(
+        "assets/images/splash.png",
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
+        fit: BoxFit.cover,
       ),
     );
   }
 }
-*/

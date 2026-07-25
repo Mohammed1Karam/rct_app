@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:app_links/app_links.dart';
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -5,16 +7,13 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:path/path.dart' as p;
-import 'package:rct/l10n/app_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:provider/provider.dart';
 import 'package:rct/common copounents/locale_provider.dart';
 import 'package:rct/constants/constants.dart';
-import 'package:rct/firebase_options.dart';
 import 'package:rct/model/auth/login_model.dart';
 import 'package:rct/model/auth/register_model.dart';
 import 'package:rct/model/build_types_model.dart';
@@ -367,7 +366,7 @@ class MyApp extends StatelessWidget {
                 ),
               ),
               debugShowCheckedModeBanner: false,
-              initialRoute: SplashScreen.id,
+              // تم حذف initialRoute لأنه يسبب تكرار الشاشة مع وجود home
               // localizationsDelegates: AppLocalizations.localizationsDelegates,
               localizationsDelegates: [
                 S.delegate,
@@ -389,7 +388,7 @@ class MyApp extends StatelessWidget {
                 return supportedLocales.first;
               },
               // home: CacheHelper.getData(key: "hasCompletedOnboarding")??false?HomeScreen():OnboardingScreen(),
-              home: SplashScreen(),
+              home: Platform.isIOS? IOSSplashScreen(): SplashScreen(),
             ),
           ),
         ));

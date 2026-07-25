@@ -20,9 +20,15 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'ar';
 
-  static String m0(duration) => "(خلال ${duration} شهر)";
+  static String m0(area) => "${area} م²";
 
-  static String m1(age) => "عمر العقار: ${age} سنوات";
+  static String m1(count) => "${count} حمام";
+
+  static String m2(duration) => "(خلال ${duration} شهر)";
+
+  static String m3(age) => "عمر العقار: ${age} سنوات";
+
+  static String m4(count) => "${count} غرف";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -97,6 +103,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "الأسعار تشمل كافة التفاصيل والرسوم:",
     ),
     "arabic": MessageLookupByLibrary.simpleMessage("العربية"),
+    "area_sqm": m0,
     "areyousureyouwanttocanceltheorder": MessageLookupByLibrary.simpleMessage(
       "هل أنت متأكد من إلغاء الطلب؟",
     ),
@@ -106,6 +113,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "attachTransferReceipt": MessageLookupByLibrary.simpleMessage(
       "إرفاق إيصال التحويل",
     ),
+    "bathrooms_count": m1,
     "betSeller": MessageLookupByLibrary.simpleMessage("الأكثر مبيعاً"),
     "birthDate": MessageLookupByLibrary.simpleMessage("تاريخ الميلاد"),
     "building": MessageLookupByLibrary.simpleMessage("عمائر"),
@@ -242,8 +250,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "dontFound": MessageLookupByLibrary.simpleMessage(
       "لا توجد نتائج مطابقة للبحث",
     ),
-    "during_months": m0,
-    "editFile": MessageLookupByLibrary.simpleMessage("تعديل الملف الشخصي"),
+    "during_months": m2,
+    "editFile": MessageLookupByLibrary.simpleMessage("تعديل الملف"),
     "electronicDeed": MessageLookupByLibrary.simpleMessage("الصك الإلكتروني *"),
     "email": MessageLookupByLibrary.simpleMessage("البريد الإلكتروني"),
     "english": MessageLookupByLibrary.simpleMessage("الإنجليزية"),
@@ -327,10 +335,11 @@ class MessageLookup extends MessageLookupByLibrary {
     "fourStreetsFencePercentage": MessageLookupByLibrary.simpleMessage(
       "أربع شوارع",
     ),
+    "without_interest": MessageLookupByLibrary.simpleMessage("بدون فوائد"),
     "full_transparency": MessageLookupByLibrary.simpleMessage("شفافية كاملة"),
     "guaranteed_returns": MessageLookupByLibrary.simpleMessage("عوائد مضمونة"),
     "guarantees_description": MessageLookupByLibrary.simpleMessage(
-      "استثمارك محمي ومضمون؛ حيث أن الجهة المالكة والمطورة للأصول الاستثمارية بشكل مباشر هي RCT ، مما يضمن أعلى مستويات الأمان والشفافية في إدارة عوائدك.",
+      "امتلاكك لمنزلك محمي ومضمون؛ حيث أن الجهة المالكة والمطورة للأصول هي RCT،تأمين ضد العيوب الخفية مما يضمن لك تجربة تملك تتسم بالأمان، المصداقية، والوضوح التام في كافة مراحل التعاقد.",
     ),
     "guarantees_title": MessageLookupByLibrary.simpleMessage("الضمانات"),
     "gurayat": MessageLookupByLibrary.simpleMessage("القريات"),
@@ -362,7 +371,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "jazan": MessageLookupByLibrary.simpleMessage("جازان"),
     "jeddah": MessageLookupByLibrary.simpleMessage("جدة"),
-    "joinRCT": MessageLookupByLibrary.simpleMessage("انضم إلى RCT"),
+    "joinRCT": MessageLookupByLibrary.simpleMessage("شارك RCT"),
     "join_now": MessageLookupByLibrary.simpleMessage("انضم الآن"),
     "khamisMushait": MessageLookupByLibrary.simpleMessage("خميس مشيط"),
     "khobar": MessageLookupByLibrary.simpleMessage("الخبر"),
@@ -371,6 +380,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "هل يوجد تقرير فحص التربة؟",
     ),
     "landdetails": MessageLookupByLibrary.simpleMessage("تفاصيل الأرض"),
+    "language": MessageLookupByLibrary.simpleMessage("English"),
     "license_number": MessageLookupByLibrary.simpleMessage("رقم ترخيص الإعلان"),
     "loadingError": MessageLookupByLibrary.simpleMessage(
       "حدث خطأ أثناء التحميل، حاول مرة أخرى",
@@ -392,6 +402,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "makkahAlMukarramah": MessageLookupByLibrary.simpleMessage("مكة المكرمة"),
     "max_investment_limit": MessageLookupByLibrary.simpleMessage(
       "الحد الأعلى للاستثمار كمستثمر تجزئة هو ٣٠٠٠٠ ريال",
+    ),
+    "max_investment_limit_info": MessageLookupByLibrary.simpleMessage(
+      "للإستثمار بلا حد أعلى، قم بترقية حسابك لمستثمر مؤهل",
+    ),
+    "max_investment_limit_q": MessageLookupByLibrary.simpleMessage(
+      "هل ترغب بالإستثمار بأكثر من 30 ألف ريال ؟",
     ),
     "message": MessageLookupByLibrary.simpleMessage("الرسالة:"),
     "message_title": MessageLookupByLibrary.simpleMessage("عنوان الرسالة:"),
@@ -432,6 +448,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "numberOfApartments": MessageLookupByLibrary.simpleMessage("عدد الشقق"),
     "numberOfFloors": MessageLookupByLibrary.simpleMessage("عدد الأدوار"),
     "of_text": MessageLookupByLibrary.simpleMessage("من"),
+    "offering_document": MessageLookupByLibrary.simpleMessage("مستند الطرح"),
     "ok": MessageLookupByLibrary.simpleMessage("موافق"),
     "oldBuildings": MessageLookupByLibrary.simpleMessage("مباني قديمة"),
     "oldBuildingsOrders": MessageLookupByLibrary.simpleMessage(
@@ -464,7 +481,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "overview": MessageLookupByLibrary.simpleMessage("نظرة عامة"),
     "own_now": MessageLookupByLibrary.simpleMessage("تملك الآن"),
     "ownership_guarantees_description": MessageLookupByLibrary.simpleMessage(
-      "امتلاكك لمنزلك محمي ومضمون؛ حيث أن الجهة المالكة والمطورة للأصول هي RCT، مما يضمن لك تجربة تملك تتسم بالأمان، المصداقية، والوضوح التام في كافة مراحل التعاقد.",
+      "امتلاكك لمنزلك محمي و مضمون ؛ حيث أ، الجهة المالكة و المطورة للأصول هي RCT, مما يضمن لك تجربة تمتلك تتسم بالأمان, المصداقية و الوضوح التام في كافة مراحل التعاقد ضمانات ممتدة على المواد الصحية و الكهربائية.",
     ),
     "ownership_guarantees_title": MessageLookupByLibrary.simpleMessage(
       "ضمانات التملك",
@@ -603,7 +620,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "project_duration": MessageLookupByLibrary.simpleMessage("مدة المشروع"),
     "project_name": MessageLookupByLibrary.simpleMessage("اسم المشروع"),
     "propertyLocation": MessageLookupByLibrary.simpleMessage("موقع العقار"),
-    "property_age_years": m1,
+    "property_age_years": m3,
     "q1": MessageLookupByLibrary.simpleMessage(
       "1. هل أستطيع إضافة عقاري للتطبيق؟",
     ),
@@ -693,6 +710,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "return_date": MessageLookupByLibrary.simpleMessage("تاريخ التوزيع القادم"),
     "return_type": MessageLookupByLibrary.simpleMessage("نوع العائد"),
     "riyadh": MessageLookupByLibrary.simpleMessage("الرياض"),
+    "rooms_count": m4,
     "rowland": MessageLookupByLibrary.simpleMessage("أرض خام"),
     "sar": MessageLookupByLibrary.simpleMessage("ريال"),
     "save": MessageLookupByLibrary.simpleMessage("حفظ"),
@@ -820,7 +838,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "رفع إيصال الدفع",
     ),
     "upload_portfolio_reports": MessageLookupByLibrary.simpleMessage(
-      "يرجى رفع تقارير التداول أو كشف المحفظة لآخر ١٢ شهراً",
+      "يرجى رفع المستندات",
     ),
     "view_on_map": MessageLookupByLibrary.simpleMessage(
       "عرض الموقع على الخريطة",
@@ -842,6 +860,9 @@ class MessageLookup extends MessageLookupByLibrary {
         MessageLookupByLibrary.simpleMessage("لقد قمت برفض الشروط والأحكام"),
     "yourresponsehasbeensuccessfully": MessageLookupByLibrary.simpleMessage(
       "تم إرسال ردك بنجاح، شكراً لك",
+    ),
+    "latent_defects_insurance": MessageLookupByLibrary.simpleMessage(
+        "يوجد تأمين ضد العيوب الخفية."
     ),
   };
 }

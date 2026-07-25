@@ -2,12 +2,14 @@ import 'package:dio/dio.dart';
 import 'package:rct/constants/linkapi.dart';
 import 'package:rct/main.dart';
 import 'package:rct/model/modelget.dart';
+import 'package:rct/services/cache_helper.dart';
 
 class RealEstateDetailsRepository {
   final Dio _dio = Dio();
 
   Future<Modelget> getPropertyDetails(String id) async {
     final String? token = await secureStorage.read(key: 'token');
+    final String lang =  CacheHelper.getData(key: "lang") ?? "ar";
     try {
       final response = await _dio.get(
         '$linkServerName/api/houses/$id',
@@ -15,7 +17,8 @@ class RealEstateDetailsRepository {
           headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
-            if (token != null) 'Authorization': 'Bearer $token',
+            'Accept-Language': lang,
+            if (token != null && token.isNotEmpty) 'Authorization': 'Bearer $token',
           },
         ),
       );

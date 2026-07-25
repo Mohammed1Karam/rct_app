@@ -1,8 +1,8 @@
 flutter_native_splash:
 
-  color: "#1e252f"
+  color: "#20262f"
   #background_image: "assets/background.png"
-  image: assets/images/splash.png
+  #image: assets/images/splash.png
 
   #branding: assets/dart.png
 
@@ -37,10 +37,10 @@ flutter_native_splash:
   # 768 pixels in diameter.  To fit a 1152x1152 image within a circle with a 768 diameter, simply
   # ensure that the most important design elements of your image are placed within a circular area
   # with a 768 diameter at the center of the 1152x1152 canvas.
-   image: assets/images/splash.png
+  #image: assets/images/splash.png
 
   # Splash screen background color.
-   color: "#1e252f"
+   color: "#20262f"
    android: true
    ios: true
   #web: false

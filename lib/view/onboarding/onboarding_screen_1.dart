@@ -1,5 +1,6 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:rct/l10n/app_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rct/common%20copounents/checkLanguage.dart';
@@ -35,8 +36,14 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   Widget build(BuildContext context) {
     var local = S.of(context);
 
-    return Scaffold(
-      backgroundColor: Colors.white,
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (didPop, result) async {
+        if (didPop) return;
+        SystemNavigator.pop();
+      },
+      child: Scaffold(
+        backgroundColor: Colors.white,
       body: SafeArea(child: Column(
         children: [
           Expanded(
@@ -202,6 +209,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           SizedBox(height: 40.h),
         ],
       ),)
+    )
     );
   }
 

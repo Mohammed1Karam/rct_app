@@ -12,6 +12,7 @@ import 'package:rct/constants/linkapi.dart';
 import 'package:rct/generated/l10n.dart';
 import 'package:rct/model/modelget.dart';
 import 'package:rct/services/cache_helper.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../common copounents/custom_text.dart';
@@ -855,6 +856,24 @@ class _DetailsScreenState extends State<DetailsScreen> {
           } else if (state is RealEstateDetailsSuccess) {
             return Scaffold(
               backgroundColor: Colors.white,
+              appBar: AppBar(
+                backgroundColor: Colors.white,
+                elevation: 0,
+                leading: IconButton(
+                  icon: const Icon(Icons.arrow_back_ios_new_sharp, color: Colors.black),
+                  onPressed: () => Navigator.pop(context),
+                ),
+                actions: [
+                  IconButton(
+                    icon: SvgPicture.asset("assets/icons/shareIcon.svg"),
+                    onPressed: () {
+                      final deepLink = "$linkServerName/product/${state.product.id}";
+                      Share.share("$deepLink : ${state.product.house_type ?? state.product.name}");
+                    },
+                  ),
+                  SizedBox(width: 10.w),
+                ],
+              ),
               body: SafeArea(
                 child: SingleChildScrollView(
                   child: Column(
@@ -883,7 +902,6 @@ class _DetailsScreenState extends State<DetailsScreen> {
       ),
     );
   }
-
   Widget _displayImageSlider(double width, double height, Modelget product) {
     final images = _images(product);
 
@@ -931,20 +949,12 @@ class _DetailsScreenState extends State<DetailsScreen> {
           ),
           PositionedDirectional(
             top: 20,
-            start: 10,
-            child: IconButton(
-              icon: const Icon(Icons.arrow_back_ios_new_sharp, color: Colors.white),
-              onPressed: () => Navigator.pop(context),
-            ),
-          ),
-          PositionedDirectional(
-            top: 20,
             end: 20,
             child: Container(
               padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 8.h),
               decoration: BoxDecoration(borderRadius: BorderRadius.circular(24.r), color: Colors.white),
               child: CustomText(
-                text: S.of(context).existing,
+                text: product.house_type,
                 style: TextStyle(fontSize: 14.sp, color: const Color(0xFF20262F), fontWeight: FontWeight.w600),
               ),
             ),
@@ -968,8 +978,8 @@ class _DetailsScreenState extends State<DetailsScreen> {
             children: [
               Expanded(
                 child: CustomText(
-                  text: product.house_type ?? product.name ?? '',
-                  style: TextStyle(fontSize: 18.sp, color: Colors.black, fontWeight: FontWeight.w700),
+                  text: product.house_name??product.type,
+                  style: TextStyle(fontSize: 14.sp, color: Colors.black, fontWeight: FontWeight.w700),
                 ),
               ),
               Row(
@@ -977,7 +987,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                   if (CacheHelper.getData(key: "lang") == "ar") SarImage(height: 18.h, color: primaryColor),
                   CustomText(
                     text: " $formattedCost ",
-                    style: TextStyle(fontSize: 18.sp, color: Colors.black, fontWeight: FontWeight.w700),
+                    style: TextStyle(fontSize: 14.sp, color: Colors.black, fontWeight: FontWeight.w700),
                   ),
                   if (CacheHelper.getData(key: "lang") == "en") SarImage(height: 18.h, color: primaryColor),
                 ],
@@ -1111,7 +1121,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
             SizedBox(width: 12.w),
             CustomText(
               text: local.open_project_file,
-              style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w600, color: const Color(0xFF20262F)),
+              style: TextStyle(fontSize: 10.sp, fontWeight: FontWeight.w600, color: const Color(0xFF20262F)),
             ),
             const Spacer(),
             Icon(Icons.file_download_outlined, color: const Color(0xFF8A8A8A), size: 24.sp),

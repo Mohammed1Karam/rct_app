@@ -5,6 +5,7 @@ import 'package:app_links/app_links.dart';
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -56,9 +57,10 @@ import 'package:url_launcher/url_launcher_string.dart';
 
 import '../common copounents/custom_dialog.dart';
 import '../generated/l10n.dart';
-import 'ownership/renters_cubit.dart';
 import 'package:rct/model/investor_status_model.dart';
 import 'package:rct/view/share_rct/qualified_investor_bottom_sheet.dart';
+
+import 'ownership/renters_cubit.dart';
 
 class HomeScreen extends StatefulWidget {
   static String id = "HomeScreen";
@@ -231,7 +233,13 @@ class _HomeScreenState extends State<HomeScreen> {
     final provider = Provider.of<LocaleProvider>(context);
     OrderModel orderModel = Provider.of<OrderModel>(context, listen: false);
     var local = S.of(context);
-    return Scaffold(
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (didPop, result) {
+        if (didPop) return;
+        SystemNavigator.pop();
+      },
+      child: Scaffold(
       backgroundColor: Colors.white,
       extendBodyBehindAppBar: true,
       appBar: AppBar(
@@ -377,8 +385,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                     SizedBox(width: 5.w),
                                     SvgPicture.asset(
                                       "assets/icons/verifyIcon.svg",
-                                      width: 15.w,
-                                      height: 15.h,
+                                      color: Color(0xFFFF8C00),
+                                      // width: 10.w,
+                                      // height: 10.h,
                                     ),
                                   ]
                                 ],
@@ -725,12 +734,21 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               onTap: () async {
                 if (CacheHelper.getData(key: "lang") == 'ar') {
-                  provider.setLocale(const Locale('en', 'US'));
+                  await provider.setLocale(const Locale('en', 'US'));
                   appLocale.value = 'en';
                 } else {
-                  provider.setLocale(const Locale('ar', 'SA'));
+                  await provider.setLocale(const Locale('ar', 'SA'));
                   appLocale.value = 'ar';
                 }
+
+                // Refresh data for ShareRct and OwnershipScreen
+                context
+                    .read<ShareCubit>()
+                    .fetchShare('$linkServerName/api/opportunities');
+                context
+                    .read<RentersCubit>()
+                    .fetchUnAuthData("$linkServerName/api/renters");
+
                 context.read<ShareCubit>().fetchAboutUs();
                 context.read<ShareCubit>().fetchTermsConditions();
                 context.read<ShareCubit>().fetchPrivacyList();
@@ -792,7 +810,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           setState(() { name = ""; });
                           await AppPreferences.saveData(key: 'myname', value: "");
                           await secureStorage.deleteAll();
-                          Navigator.of(context).push(MaterialPageRoute(builder: (context) => HomeScreen()));
+                          Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => HomeScreen()),(route)=>false);
                         },
                       ),
                     ],
@@ -1412,6 +1430,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
         ],
+      ),
       ),
     );
   }

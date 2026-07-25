@@ -107,8 +107,8 @@ class _SendOtpState extends State<SendOtp> {
         backgroundColor: Colors.white,
         leading: IconButton(
           onPressed: () {
-            Navigator.push(
-                context, MaterialPageRoute(builder: (context) => HomeScreen()));
+            Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>  HomeScreen()),(route)=>false);
+
           },
           icon: Icon(
             Icons.arrow_back_ios_new_sharp,

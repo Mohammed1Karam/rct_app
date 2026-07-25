@@ -2,7 +2,7 @@ name: rct
 description: "A new Flutter project."
 publish_to: 'none'
 
-version: 1.0.28+75
+version: 1.0.35+35
 
 environment:
   sdk: '>=3.2.3 <4.0.0'
@@ -59,7 +59,6 @@ dependencies:
   flutter_xlider: ^3.5.0
   app_links: ^7.0.0
   syncfusion_flutter_pdfviewer: ^31.1.19
-  flutter_native_splash: ^2.4.7
   dots_indicator: ^4.0.1
 
 dev_dependencies:
@@ -70,19 +69,6 @@ dev_dependencies:
 
 dependency_overrides:
   intl: ^0.20.2
-
-
-flutter_native_splash:
-  color: "#1e252f"
-  image: assets/images/splash.png
-
-  android_12:
-    color: "#1e252f"
-    image: assets/images/splash.png
-
-  android: true
-  ios: true
-
 
 
 flutter_lints: ^2.0.0

@@ -122,10 +122,8 @@ class _LogiScreenState extends State<LogiScreen> {
 
         print("ttttk$token");
 
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (context) => HomeScreen()),
-        );
+        Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => HomeScreen()),(route)=>false);
+
 
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text("${response.data['message']}")),

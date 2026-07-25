@@ -45,7 +45,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get welcome => 'مرحباً بك';
 
   @override
-  String get editFile => 'تعديل الملف الشخصي';
+  String get editFile => 'تعديل الملف ';
 
   @override
   String get orders => 'الطلبات';
@@ -430,7 +430,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get rowland => 'أرض خام';
 
   @override
-  String get joinRCT => 'انضم إلى RCT';
+  String get joinRCT => 'شارك RCT';
 
   @override
   String get choosebuidingType => 'اختر نوع البناء';
@@ -1078,7 +1078,7 @@ class AppLocalizationsAr extends AppLocalizations {
       'Calculator and Projects Orders';
 
   @override
-  String get language => 'Arabic';
+  String get language => 'English';
 
   @override
   String get renter_age => 'عمر العقار:';
@@ -1278,6 +1278,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get executive_summary => 'الملخص التنفيذي';
 
   @override
+  String get offering_document => 'مستند الطرح';
+
+  @override
   String get opportunity_status_title => 'حالة الفرص';
 
   @override
@@ -1291,6 +1294,14 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get opportunity => 'فرصة';
+
+  @override
+  String get max_investment_limit_q =>
+      'هل ترغب بالإستثمار بأكثر من 30 ألف ريال ؟';
+
+  @override
+  String get max_investment_limit_info =>
+      'للإستثمار بلا حد أعلى، قم بترقية حسابك لمستثمر مؤهل';
 
   @override
   String get max_investment_limit =>
@@ -1334,8 +1345,7 @@ class AppLocalizationsAr extends AppLocalizations {
       '5. هل قمت بصفقات في أسواق الأوراق المالية لا يقل مجموع قيمتها عن أربعين مليون ريال سعودي ولا تقل عن عشر صفقات في كل ربع سنة خلال الاثني عشر شهراً الماضية؟';
 
   @override
-  String get upload_portfolio_reports =>
-      'يرجى رفع تقارير التداول أو كشف المحفظة لآخر ١٢ شهراً';
+  String get upload_portfolio_reports => 'يرجى رفع المستندات';
 
   @override
   String get supported_formats => '(.jpg, .jpeg, .png, .pdf)';
@@ -1348,17 +1358,20 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get guarantees_description =>
-      'استثمارك محمي ومضمون؛ حيث أن الجهة المالكة والمطورة للأصول الاستثمارية بشكل مباشر هي RCT ، مما يضمن أعلى مستويات الأمان والشفافية في إدارة عوائدك.';
+      'امتلاكك لمنزلك محمي ومضمون؛ حيث أن الجهة المالكة والمطورة للأصول هي RCT، مما يضمن لك تجربة تملك تتسم بالأمان، المصداقية، والوضوح التام في كافة مراحل التعاقد.';
 
   @override
   String get ownership_guarantees_title => 'ضمانات التملك';
 
   @override
   String get ownership_guarantees_description =>
-      'امتلاكك لمنزلك محمي ومضمون؛ حيث أن الجهة المالكة والمطورة للأصول هي RCT، مما يضمن لك تجربة تملك تتسم بالأمان، المصداقية، والوضوح التام في كافة مراحل التعاقد.';
+      'امتلاكك لمنزلك محمي و مضمون ؛ حيث أ، الجهة المالكة و المطورة للأصول هي RCT, مما يضمن لك تجربة تمتلك تتسم بالأمان, المصداقية و الوضوح التام في كافة مراحل التعاقد ضمانات ممتدة على المواد الصحية و الكهربائية.';
 
   @override
   String get direct_ownership => 'ملكية مباشرة';
+
+  @override
+  String get without_interest => 'بدون فوائد';
 
   @override
   String get full_transparency => 'شفافية كاملة';
@@ -1405,4 +1418,22 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get notify_me_future_opportunities => 'أبلغني بالفرص القادمة';
+
+  @override
+  String bathrooms_count(Object count) {
+    return '$count حمام';
+  }
+
+  @override
+  String rooms_count(Object count) {
+    return '$count غرف';
+  }
+
+  @override
+  String area_sqm(Object area) {
+    return '$area م²';
+  }
+
+  @override
+  String get latent_defects_insurance => 'يوجد تأمين ضد العيوب الخفية.';
 }

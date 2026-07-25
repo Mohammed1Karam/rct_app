@@ -2558,6 +2558,12 @@ abstract class AppLocalizations {
   /// **'Executive Summary'**
   String get executive_summary;
 
+  /// No description provided for @offering_document.
+  ///
+  /// In en, this message translates to:
+  /// **'Offering Document'**
+  String get offering_document;
+
   /// No description provided for @opportunity_status_title.
   ///
   /// In en, this message translates to:
@@ -2587,6 +2593,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Opportunity'**
   String get opportunity;
+
+  /// No description provided for @max_investment_limit_q.
+  ///
+  /// In en, this message translates to:
+  /// **'Would you like to invest more than 30,000 SAR?'**
+  String get max_investment_limit_q;
+
+  /// No description provided for @max_investment_limit_info.
+  ///
+  /// In en, this message translates to:
+  /// **'To invest with no upper limit, upgrade your account to a Qualified Investor.'**
+  String get max_investment_limit_info;
 
   /// No description provided for @max_investment_limit.
   ///
@@ -2657,7 +2675,7 @@ abstract class AppLocalizations {
   /// No description provided for @upload_portfolio_reports.
   ///
   /// In en, this message translates to:
-  /// **'Please upload trading reports or portfolio statement for the last 12 months'**
+  /// **'Please upload files'**
   String get upload_portfolio_reports;
 
   /// No description provided for @supported_formats.
@@ -2701,6 +2719,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Direct Ownership'**
   String get direct_ownership;
+
+  /// No description provided for @without_interest.
+  ///
+  /// In en, this message translates to:
+  /// **'Without Interest'**
+  String get without_interest;
 
   /// No description provided for @full_transparency.
   ///
@@ -2791,6 +2815,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Notify me of future opportunities'**
   String get notify_me_future_opportunities;
+
+  /// No description provided for @bathrooms_count.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} Bathrooms'**
+  String bathrooms_count(Object count);
+
+  /// No description provided for @rooms_count.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} Rooms'**
+  String rooms_count(Object count);
+
+  /// No description provided for @area_sqm.
+  ///
+  /// In en, this message translates to:
+  /// **'{area} m²'**
+  String area_sqm(Object area);
+
+  /// No description provided for @latent_defects_insurance.
+  ///
+  /// In en, this message translates to:
+  /// **'Hidden defects insurance is available.'**
+  String get latent_defects_insurance;
 }
 
 class _AppLocalizationsDelegate
