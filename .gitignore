@@ -18,3 +18,20 @@ x86/
 *.[Cc]ache
 # but keep track of directories ending in .cache
 !*.[Cc]ache/
+# Files that should not be public
+.DS_Store
+*.iml
+.flutter-plugins-dependencies
+android/build/
+android/app/.cxx/
+ios/build/
+*.log
+ios/Runner/Certificate/
+*.p8
+*.p12
+*.cer
+*.jks
+*.keystore
+key.properties
+local.properties
+.env
